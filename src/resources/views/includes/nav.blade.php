@@ -47,6 +47,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('cars.index') }}">{{ __('Cars') }}</a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>

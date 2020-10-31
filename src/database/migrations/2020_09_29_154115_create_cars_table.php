@@ -16,21 +16,24 @@ class CreateCarsTable extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('brand_id')
-            ->index()
-            ->constrained()
-            ->onDelete('cascade');
+                ->index()
+                ->constrained()
+                ->onDelete('cascade');
             $table->foreignId('bodystyle_id')
-            ->index()
-            ->constrained()
-            ->onDelete('cascade');
+                ->index()
+                ->constrained()
+                ->onDelete('cascade');
             $table->foreignId('drive_id')
-            ->index()
-            ->constrained()
-            ->onDelete('cascade');
+                ->index()
+                ->constrained()
+                ->onDelete('cascade');
             $table->foreignId('segment_id')
-            ->index()
-            ->constrained()
-            ->onDelete('cascade');
+                ->index()
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->string('name');
+
 
             $table->integer('range_city_cold');
             $table->integer('range_city_mild');
@@ -38,8 +41,8 @@ class CreateCarsTable extends Migration
             $table->integer('range_highway_mild');
             $table->integer('range_combined_cold');
             $table->integer('range_combined_mild');
-                
-            
+
+
             $table->float('acceleration');
             $table->integer('topspeed');
             $table->integer('electricrange');
