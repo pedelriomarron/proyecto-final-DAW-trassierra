@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/contact', 'ContactController@contact')->name('contact');
+Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
+
 
 Auth::routes();
 
