@@ -24,9 +24,12 @@ Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
 Route::resource('cars', 'CarController');
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/private', 'PrivateController@index')->name('private');
+
 
 Route::get('locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
