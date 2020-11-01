@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,3 +27,8 @@ Route::resource('cars', 'CarController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('locale/{locale}', function ($locale) {
+    Session::put('locale', $locale);
+    return redirect()->back();
+});
