@@ -8,7 +8,6 @@
 <body>
     <div id="app" class="">
         @include('includes.nav')
-
         <main class="py-4">
             @yield('content')
         </main>

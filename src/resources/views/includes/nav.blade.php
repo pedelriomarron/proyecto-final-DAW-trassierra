@@ -193,7 +193,18 @@
                 </li>
                 @endguest
 
+                <li class="nav-item">
+                    <language-switcher locale="{{ app()->getLocale() }}" link-en="locale/en" link-es="/locale/es"></language-switcher>
+                </li>
+
             </ul>
         </div>
     </div>
 </nav>
+
+
+@lang('sentence.spanish')
+
+{{ str_replace('_', '-', app()->getLocale()) }}
+
+<example-component></example-component>
