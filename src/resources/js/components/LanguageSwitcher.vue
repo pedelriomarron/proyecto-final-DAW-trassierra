@@ -69,7 +69,7 @@
             @keydown.tab.exact="hideDropdown"
             @keydown.esc.exact="hideDropdown"
           >
-            <img :src="`./flag_en.svg`" alt="spanish flag" class="h-8 w-8" />
+            <img :src="`./flag_es.svg`" alt="spanish flag" class="h-8 w-8" />
             <span class="ml-2">Spanish</span>
           </a>
         </li>

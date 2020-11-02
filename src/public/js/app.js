@@ -38752,7 +38752,7 @@ var render = function() {
                         [
                           _c("img", {
                             staticClass: "h-8 w-8",
-                            attrs: { src: "./flag_en.svg", alt: "spanish flag" }
+                            attrs: { src: "./flag_es.svg", alt: "spanish flag" }
                           }),
                           _vm._v(" "),
                           _c("span", { staticClass: "ml-2" }, [

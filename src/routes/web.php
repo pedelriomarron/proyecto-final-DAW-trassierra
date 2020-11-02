@@ -39,7 +39,7 @@ Route::get('/private', 'PrivateController@index')->name('private');
 Route::get('locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return redirect()->back();
-});
+})->name('locale');
 
 
 
