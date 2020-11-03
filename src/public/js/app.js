@@ -2021,6 +2021,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["locale", "link-en", "link-es"],
   data: function data() {
@@ -38469,7 +38477,7 @@ var render = function() {
         [
           _c("img", {
             staticClass: "w-8 h-8",
-            attrs: { src: "./flag_" + _vm.locale + ".svg", alt: "flag" }
+            attrs: { src: "./img/flags/" + _vm.locale + ".svg", alt: "flag" }
           }),
           _vm._v(" "),
           _c("span", { staticClass: "ml-2" }, [
@@ -38617,7 +38625,10 @@ var render = function() {
                         [
                           _c("img", {
                             staticClass: "h-8 w-8",
-                            attrs: { src: "./flag_en.svg", alt: "english flag" }
+                            attrs: {
+                              src: "./img/flags/en.svg",
+                              alt: "english flag"
+                            }
                           }),
                           _vm._v(" "),
                           _c("span", { staticClass: "ml-2" }, [
@@ -38752,7 +38763,10 @@ var render = function() {
                         [
                           _c("img", {
                             staticClass: "h-8 w-8",
-                            attrs: { src: "./flag_es.svg", alt: "spanish flag" }
+                            attrs: {
+                              src: "./img/flags/es.svg",
+                              alt: "spanish flag"
+                            }
                           }),
                           _vm._v(" "),
                           _c("span", { staticClass: "ml-2" }, [

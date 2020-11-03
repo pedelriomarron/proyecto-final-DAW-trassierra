@@ -10,7 +10,7 @@
       @keydown.up.exact.prevent="startArrowKeys"
       @keydown.down.exact.prevent="startArrowKeys"
     >
-      <img :src="`./flag_${locale}.svg`" alt="flag" class="w-8 h-8" />
+      <img :src="`./img/flags/${locale}.svg`" alt="flag" class="w-8 h-8" />
       <span class="ml-2">{{ locale.toUpperCase() }}</span>
       <svg
         fill="currentColor"
@@ -41,7 +41,11 @@
             @keydown.down.exact.prevent="focusNext(true)"
             @keydown.esc.exact="hideDropdown"
           >
-            <img :src="`./flag_en.svg`" alt="english flag" class="h-8 w-8" />
+            <img
+              :src="`./img/flags/en.svg`"
+              alt="english flag"
+              class="h-8 w-8"
+            />
             <span class="ml-2">English</span>
           </a>
         </li>
@@ -69,7 +73,11 @@
             @keydown.tab.exact="hideDropdown"
             @keydown.esc.exact="hideDropdown"
           >
-            <img :src="`./flag_es.svg`" alt="spanish flag" class="h-8 w-8" />
+            <img
+              :src="`./img/flags/es.svg`"
+              alt="spanish flag"
+              class="h-8 w-8"
+            />
             <span class="ml-2">Spanish</span>
           </a>
         </li>
