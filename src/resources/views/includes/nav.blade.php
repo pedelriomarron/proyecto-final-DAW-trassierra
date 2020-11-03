@@ -141,6 +141,8 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="./img/logo_white.svg" width="50vw" alt="Logo"> Vehiculos Electricos
         </a>
+        @include('includes.toogleDarkMode')
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -197,6 +199,7 @@
                     <language-switcher locale="{{ app()->getLocale() }}" link-en="{{ route('locale', ['locale' => 'en']) }}" link-es="{{ route('locale', ['locale' => 'es']) }}"></language-switcher>
                 </li>
 
+
             </ul>
         </div>
     </div>
@@ -206,5 +209,3 @@
 @lang('sentence.spanish')
 
 {{ str_replace('_', '-', app()->getLocale()) }}
-
-<example-component></example-component>

@@ -6,11 +6,11 @@
 
 <title>{{ config('app.name', 'Laravel') }} - Vehiculos Electricos</title>
 
-
-
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('css/'.session('theme', 'light').'.css') }}" rel="stylesheet">
+<link href="{{ asset('css/toogle_darkmode.css') }}" rel="stylesheet">

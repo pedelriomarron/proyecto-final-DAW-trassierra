@@ -6,7 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
-
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,11 @@ Route::group(['middleware' => ['auth']], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::put('/themes', function (Request $request) {
+    $theme = "light";
+    $request->theme === null ? $theme = 'light' : $theme = 'dark';
+    // dd($request->theme);
+    session(['theme' => $theme]);
+    return back();
+})->name('themes');

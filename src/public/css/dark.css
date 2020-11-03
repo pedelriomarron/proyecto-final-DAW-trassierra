@@ -1,0 +1,106 @@
+body {
+    color: #ccc;
+    background: #525252 url("/assets/img/cloud-bar.png") repeat-x;
+  }
+  
+  .docs article code[class*="language-"],
+  .docs article pre[class*="language-"] {
+    font-size: 14px;
+  }
+  
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: #ccc;
+    text-shadow: none;
+  }
+  
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background: rgb(71, 71, 71);
+  }
+  
+  .token.punctuation {
+    color: #B2B2B2;
+  }
+  
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #E5500F;
+  }
+  
+  .token.scope,
+  .token.attr-name {
+    color: #E5500F;
+  }
+  
+  .token.selector,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: #31BE3A;
+  }
+  
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: #ccc;
+  }
+  
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #00B3FF;
+  }
+  
+  .token.function {
+    color: #ccc;
+  }
+  
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #E5500F;
+  }
+  
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+  
+  .token.italic {
+    font-style: italic;
+  }
+  
+  .sidebar {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .docs article h2 a,
+  .docs article h2 a:hover {
+    color: #ccc;
+  }
+  
+  #search-input {
+    background: #525252;
+  }
+  
+  .twitter-typeahead .tt-dropdown-menu {
+    background-color: #525252;
+  }
+  
+  footer.main {
+    border-top: 3px solid rgb(71, 71, 71);
+    background: transparent;
+  }
+  
+  footer.main > ul > li > a {
+    color: #f4645f;
+  }
