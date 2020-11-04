@@ -9,6 +9,8 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
+use Auth;
+use Image;
 
 class UserController extends Controller
 {
@@ -131,5 +133,30 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
+    }
+
+
+    /**
+     * Edita el perfile de un usuario
+     * 
+     */
+    public function profile()
+    {
+
+        return view('profile', array('user' => Auth::user()));
+    }
+
+
+    public function update_avatar(Request $request)
+    {
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('uploads/avatars/' . $filename));
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save();
+        }
+        return view('profile', array('user' => Auth::user()));
     }
 }

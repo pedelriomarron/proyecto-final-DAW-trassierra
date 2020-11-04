@@ -28,6 +28,7 @@ Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
 
 Route::resource('cars', 'CarController');
+Route::resource('brands', 'BrandController');
 
 
 Auth::routes(['verify' => true]);
@@ -47,7 +48,12 @@ Route::get('locale/{locale}', function ($locale) {
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
+    Route::get('profile', 'UserController@profile')->name('profile');
+    Route::post('profile', 'UserController@update_avatar')->name('profile.update_avatar');
+
     Route::resource('products', 'ProductController');
+    //Admin
+    Route::get('/admin-panel', 'AdminController@index')->name('admin');
 });
 
 Auth::routes();

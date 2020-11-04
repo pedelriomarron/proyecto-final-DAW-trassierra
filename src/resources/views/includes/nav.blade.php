@@ -175,14 +175,18 @@
                         <a class="dropdown-item" href="{{ route('users.index') }}">Administrar Usuarios</a>
                         <a class="dropdown-item" href="{{ route('roles.index') }}">Administrar Roles</a>
                         <a class="dropdown-item" href="{{ route('products.index') }}">Administrar Productos</a>
+                        <a class="dropdown-item" href="{{ route('brands.index') }}">Administrar Brands</a>
+
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position: relative;padding-left:50px">
+                        <img src="{{ asset('uploads/avatars/'.Auth::user()->avatar.'') }}" style="width: 2rem; height:2rem;border-radius:50%;position:absolute; top:10px;left:10px">
                         {{ Auth::user()->name }}
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('profile') }}">{{ __('Profile') }}</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
