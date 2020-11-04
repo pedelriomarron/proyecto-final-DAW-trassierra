@@ -18,7 +18,7 @@ class BrandController extends Controller
         //
         $brands = Brand::latest()->paginate(5);
 
-        return view('brands.index', compact('brands'))
+        return view('admin.brands.index', compact('brands'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

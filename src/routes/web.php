@@ -28,7 +28,7 @@ Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
 
 Route::resource('cars', 'CarController');
-Route::resource('brands', 'BrandController');
+//Route::resource('brands', 'BrandController');
 
 
 Auth::routes(['verify' => true]);
@@ -50,6 +50,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UserController');
     Route::get('profile', 'UserController@profile')->name('profile');
     Route::post('profile', 'UserController@update_avatar')->name('profile.update_avatar');
+    Route::resource('admin-panel/brands', 'BrandController');
+
 
     Route::resource('products', 'ProductController');
     //Admin
