@@ -7,18 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
 
-    protected $table = 'cars';
+    protected $table = 'brands';
     public $timestamps = true;
 
-    protected $casts = [
-        'cost' => 'float'
-    ];
+    protected $casts = [];
 
     protected $fillable = [
         'name',
-        'introduction',
-        'created_at',
-        'location',
-        'cost'
     ];
 }

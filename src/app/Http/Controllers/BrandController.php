@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use DataTables;
+use Validator;
 
 
 class BrandController extends Controller
@@ -13,13 +15,33 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        /*
         $brands = Brand::latest()->paginate(5);
 
         return view('admin.brands.index', compact('brands'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+
+            */
+        if ($request->ajax()) {
+            $data = Brand::latest()->get();
+
+            return DataTables::of($data)
+                ->addColumn('action', function ($data) {
+                    $button = '';
+                    if (\Auth::user()->can('brand-edit')) {
+                        $button .= '<button type="button" name="edit" id="' . $data->id . '" class="edit btn btn-primary btn-sm">Edit</button>';
+                    }
+                    if (\Auth::user()->can('brand-delete')) {
+                        $button .= '&nbsp;&nbsp;&nbsp;<button type="button" name="edit" id="' . $data->id . '" class="delete btn btn-danger btn-sm">Delete</button>';
+                    }
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.brands.index');
     }
 
     /**
@@ -41,15 +63,24 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
-            'name' => 'required',
-        ]);
+        $rules = array(
+            'name'    =>  'required',
+        );
 
-        Brand::create($request->all());
+        $error = Validator::make($request->all(), $rules);
 
-        return redirect()->route('brands.index')
-            ->with('success', 'Brand created successfully.');
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $form_data = array(
+            'name'        =>  $request->name,
+            //   'logo' =>  'default.png'
+        );
+
+        Brand::create($form_data);
+
+        return response()->json(['success' => 'Data Added successfully.']);
     }
 
     /**
@@ -70,6 +101,12 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
+
+        if (request()->ajax()) {
+            //$data = Brand::findOrFail($id);
+            return response()->json(['result' => $brand]);
+        }
+
         return view('brands.edit', compact('brand'));
     }
 
@@ -82,13 +119,23 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-        $brand->update($request->all());
+        $rules = array(
+            'name'        =>  'required',
+        );
 
-        return redirect()->route('brands.index')
-            ->with('success', 'Brand updated successfully');
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $form_data = array(
+            'name'    =>  $request->name,
+        );
+
+        Brand::whereId($request->hidden_id)->update($form_data);
+
+        return response()->json(['success' => 'Data is successfully updated']);
     }
 
     /**
@@ -97,11 +144,9 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
-        $brand->delete();
-
-        return redirect()->route('brands.index')
-            ->with('success', 'Brand deleted successfully');
+        $data = Brand::findOrFail($id);
+        $data->delete();
     }
 }

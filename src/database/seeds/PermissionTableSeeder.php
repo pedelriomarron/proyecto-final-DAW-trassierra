@@ -26,6 +26,10 @@ class PermissionTableSeeder extends Seeder
             'user-create',
             'user-edit',
             'user-delete',
+            'brand-list',
+            'brand-create',
+            'brand-edit',
+            'brand-delete',
         ];
 
         foreach ($permissions as $permission) {

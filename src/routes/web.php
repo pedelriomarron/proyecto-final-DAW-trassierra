@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'UserController@profile')->name('profile');
     Route::post('profile', 'UserController@update_avatar')->name('profile.update_avatar');
     Route::resource('admin-panel/brands', 'BrandController');
+    Route::post('admin-panel/brands/update', 'BrandController@update')->name('brands.update');
+    Route::get('admin-panel/brands/destroy/{id}', 'BrandController@destroy')->name('brands.deletebyid');;
 
 
     Route::resource('products', 'ProductController');
