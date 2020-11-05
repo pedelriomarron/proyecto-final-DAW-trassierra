@@ -63,6 +63,20 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $validation = Validator::make($request->all(), [
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        $new_name = "";
+        if ($validation->passes()) {
+            $image = $request->file('logo');
+            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/brands'), $new_name);
+        }
+
+
+
         $rules = array(
             'name'    =>  'required',
         );
@@ -74,9 +88,11 @@ class BrandController extends Controller
         }
 
         $form_data = array(
-            'name'        =>  $request->name,
-            //   'logo' =>  'default.png'
+            'name'    =>  $request->name,
+            'logo' =>  $new_name,
         );
+
+
 
         Brand::create($form_data);
 
@@ -119,20 +135,37 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
+
+
+        $validation = Validator::make($request->all(), [
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        $new_name = "";
+        if ($validation->passes()) {
+            $image = $request->file('logo');
+            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/brands'), $new_name);
+        }
+
+
         $rules = array(
             'name'        =>  'required',
         );
 
         $error = Validator::make($request->all(), $rules);
 
+
         if ($error->fails()) {
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
+
         $form_data = array(
             'name'    =>  $request->name,
+            'logo' =>  $new_name,
         );
 
+        //dd($request);
         Brand::whereId($request->hidden_id)->update($form_data);
 
         return response()->json(['success' => 'Data is successfully updated']);

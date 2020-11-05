@@ -22,10 +22,10 @@
             <table class="table table-bordered datatable-brand " width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th width="10%">Logo</th>
-                        <th width="10%">Id</th>
+                        <th width="5%">Id</th>
+                        <th width="5%">Logo</th>
                         <th width="35%">Name</th>
-                        <th width="30%">Action</th>
+                        <th width="10%">Action</th>
                     </tr>
                 </thead>
             </table>
@@ -35,35 +35,49 @@
 
 
 
-<div id="formModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h4 class="modal-title">Add New Record</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-1">
+                <h4 class="modal-title" id="exampleModalLabel">Add New Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
             </div>
-            <div class="modal-body">
-                <span id="form_result"></span>
-                <form method="post" id="sample_form" class="form-horizontal">
-                    @csrf
+            <span id="form_result"></span>
+            <form method="post" id="sample_form" class="" enctype="multipart/form-data">
+                {{ csrf_field() }}
+
+                <div class="modal-body">
                     <div class="form-group">
-                        <label class="control-label col-md-4">Name : </label>
-                        <div class="col-md-8">
-                            <input type="text" name="name" id="name" class="form-control" />
-                        </div>
+                        <label for="name">Name brand:</label>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="Name brand">
+                        <small id="nameHelp" class="form-text text-muted">Your information is safe with us.</small>
                     </div>
 
-                    <br />
-                    <div class="form-group" align="center">
-                        <input type="hidden" name="action" id="action" value="Add" />
-                        <input type="hidden" name="hidden_id" id="hidden_id" />
-                        <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" />
+                    <div class="form-group">
+                        <label for="logo">Logo :</label>
+                        <input type="file" class="form-control-file" name="logo" id="logo">
                     </div>
-                </form>
-            </div>
+
+                    <div class="form-group text-center">
+                        <img id="logo_preview" class="img-responsive img-thumbnail" src="" style="max-height:250px;">
+                    </div>
+
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <input type="hidden" name="action" id="action" value="Add" />
+                    <input type="hidden" name="hidden_id" id="hidden_id" />
+                    <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" />
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+
+
 
 <div id="confirmModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -88,6 +102,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
+
+
+
         $('.datatable-brand').DataTable({
             processing: true,
             serverSide: true,
@@ -96,10 +113,10 @@
             },
 
             columns: [{
-                    name: 'logo'
-                }, {
                     data: 'id',
                     name: 'id'
+                }, {
+                    name: 'logo'
                 },
                 {
                     data: 'name',
@@ -113,11 +130,11 @@
 
             ],
             columnDefs: [{
-                targets: 0,
+                targets: 1,
                 render: function(a, b, row) {
-                    let img = "{{ asset('uploads/avatars/') }}" + "/" + row.logo
+                    let img = "{{ asset('uploads/brands/') }}" + "/" + row.logo
 
-                    return '<img height="40rem" src="' + img + '">'
+                    return '<img height="100vw" src="' + img + '">'
                 }
             }]
         });
@@ -127,7 +144,7 @@
             $('#action_button').val('Add');
             $('#action').val('Add');
             $('#form_result').html('');
-
+            $("#logo_preview").attr("src", "{{ asset('uploads/brands/') }}" + "/default.png");
             $('#formModal').modal('show');
         });
 
@@ -146,8 +163,11 @@
             $.ajax({
                 url: action_url,
                 method: "POST",
-                data: $(this).serialize(),
-                dataType: "json",
+                data: new FormData(this),
+                dataType: 'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
                 success: function(data) {
                     var html = '';
                     if (data.errors) {
@@ -161,6 +181,7 @@
                         html = '<div class="alert alert-success">' + data.success + '</div>';
                         $('#sample_form')[0].reset();
                         $('.datatable-brand').DataTable().ajax.reload();
+                        $('#formModal').modal('toggle');
                     }
                     $('#form_result').html(html);
                 }
@@ -177,6 +198,7 @@
                 dataType: "json",
                 success: function(data) {
                     $('#name').val(data.result.name);
+                    $("#logo_preview").attr("src", "{{ asset('uploads/brands/') }}" + '/' + data.result.logo);
                     $('#hidden_id').val(id);
                     $('.modal-title').text('Edit Record');
                     $('#action_button').val('Edit');
@@ -210,9 +232,24 @@
             })
         });
 
-
+        $("#logo").change(function() {
+            readURL(this, '#logo_preview');
+        });
 
     });
+
+
+
+    function readURL(input, id_prev) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $(id_prev).attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
 </script>
 
 

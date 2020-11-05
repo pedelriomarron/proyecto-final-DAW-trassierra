@@ -139,7 +139,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="./img/logo_white.svg" width="50vw" alt="Logo"> Vehiculos Electricos
+            <img src="{{ asset('img/logo_white.svg/') }}" width="50vw" alt="Logo"> Vehiculos Electricos
         </a>
         @include('includes.toogleDarkMode')
 
