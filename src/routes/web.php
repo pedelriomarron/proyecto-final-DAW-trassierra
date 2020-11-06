@@ -46,8 +46,8 @@ Route::get('locale/{locale}', function ($locale) {
 
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('roles', 'RoleController');
-    Route::resource('users', 'UserController');
+    Route::resource('admin-panel/roles', 'RoleController');
+    Route::resource('admin-panel/users', 'UserController');
     Route::get('profile', 'UserController@profile')->name('profile');
     Route::post('profile', 'UserController@update_avatar')->name('profile.update_avatar');
     Route::resource('admin-panel/brands', 'BrandController');

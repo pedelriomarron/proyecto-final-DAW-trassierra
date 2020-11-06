@@ -200,7 +200,7 @@
                 @endguest
 
                 <li class="nav-item">
-                    <language-switcher locale="{{ app()->getLocale() }}" link-en="{{ route('locale', ['locale' => 'en']) }}" link-es="{{ route('locale', ['locale' => 'es']) }}"></language-switcher>
+                    <language-switcher locale="{{ app()->getLocale() }}" link-en="{{ route('locale', ['locale' => 'en']) }}" link-es="{{ route('locale', ['locale' => 'es']) }}" flag="{{ asset('img/flags/')}}"></language-switcher>
                 </li>
 
 

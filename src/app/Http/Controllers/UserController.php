@@ -11,6 +11,8 @@ use Hash;
 use Illuminate\Support\Arr;
 use Auth;
 use Image;
+use DataTables;
+
 
 class UserController extends Controller
 {
@@ -21,9 +23,55 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id', 'DESC')->paginate(5);
-        return view('users.index', compact('data'))
+        /*$data = User::orderBy('id', 'DESC')->paginate(5);
+        return view('admin.users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
+
+*/
+        if ($request->ajax()) {
+            $data = User::latest()->get();
+
+            return DataTables::of($data)
+                ->addColumn('action', function ($data) {
+                    $button = '';
+                    /*
+                    <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+                    <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                    @can('user-delete')
+                    {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
+                    @endcan
+        
+*/
+
+
+                    if (\Auth::user()->can('brand-edit')) {
+                        $button .= '<a class="btn btn-primary" href="' . route('users.edit', array('user' => $data->id)) . '">Edit</a>';
+                    }
+
+
+                    if (\Auth::user()->can('brand-delete')) {
+                        $button .= '<a class="btn btn-primary" href="' . route('users.edit', array('user' => $data->id)) . '">Edit</a>';
+                    }
+
+                    return $button;
+                })
+                ->addColumn('roles', function ($data) {
+                    $button = "";
+                    $user = getUserById($data->id);
+                    if (!empty($user->getRoleNames())) {
+                        foreach (getUserById($data->id)->getRoleNames() as $v) {
+                            $button .=   "<label class='badge badge-success'>" . $v . "</label>";
+                        }
+                    }
+
+                    return $button;
+                })
+                ->rawColumns(['action', 'roles'])
+                ->make(true);
+        }
+        return view('admin.users.index');
     }
 
     /**
@@ -34,7 +82,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles'));
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -58,7 +106,7 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User created successfully');
     }
 
@@ -71,7 +119,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show', compact('user'));
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -86,7 +134,7 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit', compact('user', 'roles', 'userRole'));
+        return view('admin.users.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -118,7 +166,7 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User updated successfully');
     }
 
@@ -131,7 +179,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User deleted successfully');
     }
 
