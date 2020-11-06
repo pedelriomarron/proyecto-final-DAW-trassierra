@@ -66337,40 +66337,68 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ "./resources/admin/js/sb-admin-2.min.js":
-/*!**********************************************!*\
-  !*** ./resources/admin/js/sb-admin-2.min.js ***!
-  \**********************************************/
+/***/ "./resources/admin/js/sb-admin-2.js":
+/*!******************************************!*\
+  !*** ./resources/admin/js/sb-admin-2.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-/*!
- * Start Bootstrap - SB Admin 2 v4.1.2 (https://startbootstrap.com/theme/sb-admin-2)
- * Copyright 2013-2020 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE)
- */
-!function (s) {
-  "use strict";
+window.onload = function () {
+  $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
 
-  s("#sidebarToggle, #sidebarToggleTop").on("click", function (e) {
-    s("body").toggleClass("sidebar-toggled"), s(".sidebar").toggleClass("toggled"), s(".sidebar").hasClass("toggled") && s(".sidebar .collapse").collapse("hide");
-  }), s(window).resize(function () {
-    s(window).width() < 768 && s(".sidebar .collapse").collapse("hide"), s(window).width() < 480 && !s(".sidebar").hasClass("toggled") && (s("body").addClass("sidebar-toggled"), s(".sidebar").addClass("toggled"), s(".sidebar .collapse").collapse("hide"));
-  }), s("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function (e) {
-    if (768 < s(window).width()) {
-      var o = e.originalEvent,
-          l = o.wheelDelta || -o.detail;
-      this.scrollTop += 30 * (l < 0 ? 1 : -1), e.preventDefault();
+    if ($(".sidebar").hasClass("toggled")) {
+      $('.sidebar .collapse').collapse('hide');
     }
-  }), s(document).on("scroll", function () {
-    100 < s(this).scrollTop() ? s(".scroll-to-top").fadeIn() : s(".scroll-to-top").fadeOut();
-  }), s(document).on("click", "a.scroll-to-top", function (e) {
-    var o = s(this);
-    s("html, body").stop().animate({
-      scrollTop: s(o.attr("href")).offset().top
-    }, 1e3, "easeInOutExpo"), e.preventDefault();
+
+    ;
+  }); // Close any open menu accordions when window is resized below 768px
+
+  $(window).resize(function () {
+    if ($(window).width() < 768) {
+      $('.sidebar .collapse').collapse('hide');
+    }
+
+    ; // Toggle the side navigation when window is resized below 480px
+
+    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+      $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $('.sidebar .collapse').collapse('hide');
+    }
+
+    ;
+  }); // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+
+  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (e) {
+    if ($(window).width() > 768) {
+      var e0 = e.originalEvent,
+          delta = e0.wheelDelta || -e0.detail;
+      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+      e.preventDefault();
+    }
+  }); // Scroll to top button appear
+
+  $(document).on('scroll', function () {
+    var scrollDistance = $(this).scrollTop();
+
+    if (scrollDistance > 100) {
+      $('.scroll-to-top').fadeIn();
+    } else {
+      $('.scroll-to-top').fadeOut();
+    }
+  }); // Smooth scrolling using jQuery easing
+
+  $(document).on('click', 'a.scroll-to-top', function (e) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+      scrollTop: $($anchor.attr('href')).offset().top
+    }, 1000, 'easeInOutExpo');
+    e.preventDefault();
   });
-}(jQuery);
+};
 
 /***/ }),
 
@@ -71070,6 +71098,148 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
 /***/ }),
 
+/***/ "./resources/admin/vendor/jquery-easing/jquery.easing.min.js":
+/*!*******************************************************************!*\
+  !*** ./resources/admin/vendor/jquery-easing/jquery.easing.min.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function (factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function ($) {
+      return factory($);
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+})(function ($) {
+  $.easing.jswing = $.easing.swing;
+  var pow = Math.pow,
+      sqrt = Math.sqrt,
+      sin = Math.sin,
+      cos = Math.cos,
+      PI = Math.PI,
+      c1 = 1.70158,
+      c2 = c1 * 1.525,
+      c3 = c1 + 1,
+      c4 = 2 * PI / 3,
+      c5 = 2 * PI / 4.5;
+
+  function bounceOut(x) {
+    var n1 = 7.5625,
+        d1 = 2.75;
+
+    if (x < 1 / d1) {
+      return n1 * x * x;
+    } else if (x < 2 / d1) {
+      return n1 * (x -= 1.5 / d1) * x + .75;
+    } else if (x < 2.5 / d1) {
+      return n1 * (x -= 2.25 / d1) * x + .9375;
+    } else {
+      return n1 * (x -= 2.625 / d1) * x + .984375;
+    }
+  }
+
+  $.extend($.easing, {
+    def: "easeOutQuad",
+    swing: function swing(x) {
+      return $.easing[$.easing.def](x);
+    },
+    easeInQuad: function easeInQuad(x) {
+      return x * x;
+    },
+    easeOutQuad: function easeOutQuad(x) {
+      return 1 - (1 - x) * (1 - x);
+    },
+    easeInOutQuad: function easeInOutQuad(x) {
+      return x < .5 ? 2 * x * x : 1 - pow(-2 * x + 2, 2) / 2;
+    },
+    easeInCubic: function easeInCubic(x) {
+      return x * x * x;
+    },
+    easeOutCubic: function easeOutCubic(x) {
+      return 1 - pow(1 - x, 3);
+    },
+    easeInOutCubic: function easeInOutCubic(x) {
+      return x < .5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2;
+    },
+    easeInQuart: function easeInQuart(x) {
+      return x * x * x * x;
+    },
+    easeOutQuart: function easeOutQuart(x) {
+      return 1 - pow(1 - x, 4);
+    },
+    easeInOutQuart: function easeInOutQuart(x) {
+      return x < .5 ? 8 * x * x * x * x : 1 - pow(-2 * x + 2, 4) / 2;
+    },
+    easeInQuint: function easeInQuint(x) {
+      return x * x * x * x * x;
+    },
+    easeOutQuint: function easeOutQuint(x) {
+      return 1 - pow(1 - x, 5);
+    },
+    easeInOutQuint: function easeInOutQuint(x) {
+      return x < .5 ? 16 * x * x * x * x * x : 1 - pow(-2 * x + 2, 5) / 2;
+    },
+    easeInSine: function easeInSine(x) {
+      return 1 - cos(x * PI / 2);
+    },
+    easeOutSine: function easeOutSine(x) {
+      return sin(x * PI / 2);
+    },
+    easeInOutSine: function easeInOutSine(x) {
+      return -(cos(PI * x) - 1) / 2;
+    },
+    easeInExpo: function easeInExpo(x) {
+      return x === 0 ? 0 : pow(2, 10 * x - 10);
+    },
+    easeOutExpo: function easeOutExpo(x) {
+      return x === 1 ? 1 : 1 - pow(2, -10 * x);
+    },
+    easeInOutExpo: function easeInOutExpo(x) {
+      return x === 0 ? 0 : x === 1 ? 1 : x < .5 ? pow(2, 20 * x - 10) / 2 : (2 - pow(2, -20 * x + 10)) / 2;
+    },
+    easeInCirc: function easeInCirc(x) {
+      return 1 - sqrt(1 - pow(x, 2));
+    },
+    easeOutCirc: function easeOutCirc(x) {
+      return sqrt(1 - pow(x - 1, 2));
+    },
+    easeInOutCirc: function easeInOutCirc(x) {
+      return x < .5 ? (1 - sqrt(1 - pow(2 * x, 2))) / 2 : (sqrt(1 - pow(-2 * x + 2, 2)) + 1) / 2;
+    },
+    easeInElastic: function easeInElastic(x) {
+      return x === 0 ? 0 : x === 1 ? 1 : -pow(2, 10 * x - 10) * sin((x * 10 - 10.75) * c4);
+    },
+    easeOutElastic: function easeOutElastic(x) {
+      return x === 0 ? 0 : x === 1 ? 1 : pow(2, -10 * x) * sin((x * 10 - .75) * c4) + 1;
+    },
+    easeInOutElastic: function easeInOutElastic(x) {
+      return x === 0 ? 0 : x === 1 ? 1 : x < .5 ? -(pow(2, 20 * x - 10) * sin((20 * x - 11.125) * c5)) / 2 : pow(2, -20 * x + 10) * sin((20 * x - 11.125) * c5) / 2 + 1;
+    },
+    easeInBack: function easeInBack(x) {
+      return c3 * x * x * x - c1 * x * x;
+    },
+    easeOutBack: function easeOutBack(x) {
+      return 1 + c3 * pow(x - 1, 3) + c1 * pow(x - 1, 2);
+    },
+    easeInOutBack: function easeInOutBack(x) {
+      return x < .5 ? pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2) / 2 : (pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+    },
+    easeInBounce: function easeInBounce(x) {
+      return 1 - bounceOut(1 - x);
+    },
+    easeOutBounce: bounceOut,
+    easeInOutBounce: function easeInOutBounce(x) {
+      return x < .5 ? (1 - bounceOut(1 - 2 * x)) / 2 : (1 + bounceOut(2 * x - 1)) / 2;
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -71084,11 +71254,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Trae uno ya
 //require('../admin/vendor/jquery/jquery.min.js'); 
-//require('../admin/vendor/jquery-easing/jquery.easing.min.js');
-//require('../admin/vendor/bootstrap/js/bootstrap.bundle.min.js');
 
 
-__webpack_require__(/*! ../admin/js/sb-admin-2.min.js */ "./resources/admin/js/sb-admin-2.min.js");
+__webpack_require__(/*! ../admin/vendor/jquery-easing/jquery.easing.min.js */ "./resources/admin/vendor/jquery-easing/jquery.easing.min.js"); //require('../admin/vendor/bootstrap/js/bootstrap.bundle.min.js');
+
+
+__webpack_require__(/*! ../admin/js/sb-admin-2.js */ "./resources/admin/js/sb-admin-2.js");
 
 __webpack_require__(/*! ../admin/vendor/datatables/jquery.dataTables.min.js */ "./resources/admin/vendor/datatables/jquery.dataTables.min.js");
 
