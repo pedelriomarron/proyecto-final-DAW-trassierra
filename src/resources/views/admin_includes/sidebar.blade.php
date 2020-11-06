@@ -89,6 +89,19 @@
              </div>
          </li>
 
+         <li class="nav-item">
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRoles" aria-expanded="true" aria-controls="collapseRoles">
+                 <i class="fas fa-users-cog"></i>
+                 <span>Roles</span>
+             </a>
+             <div id="collapseRoles" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <a class="collapse-item" href="{{ route('roles.index') }}"> Administrar Roles</a>
+                     <a class="collapse-item" href="{{ route('roles.create') }}">Crear nuevo Rol</a>
+                 </div>
+             </div>
+         </li>
+
          <!-- Nav Item - Charts -->
          <li class="nav-item">
              <a class="nav-link" href="charts.html">
