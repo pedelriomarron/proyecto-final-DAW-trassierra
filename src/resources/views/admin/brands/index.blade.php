@@ -99,6 +99,11 @@
 
 
 
+
+
+@endsection
+
+@push('scripts')
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -252,7 +257,4 @@
     }
 </script>
 
-
-<!-- /.container-fluid -->
-
-@endsection
+@endpush

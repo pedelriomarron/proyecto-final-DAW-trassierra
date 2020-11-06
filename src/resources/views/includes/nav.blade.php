@@ -220,3 +220,4 @@
 @lang('sentence.spanish')
 
 {{ str_replace('_', '-', app()->getLocale()) }}
+

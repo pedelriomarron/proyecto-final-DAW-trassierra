@@ -177,6 +177,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
+
 
 
 

@@ -53,11 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin-panel/brands', 'BrandController');
     Route::post('admin-panel/brands/update', 'BrandController@update')->name('brands.update');
     Route::get('admin-panel/brands/destroy/{id}', 'BrandController@destroy')->name('brands.deletebyid');;
-
     Route::get('/ajax_upload', 'AjaxUploadController@index');
-
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
-
     Route::resource('products', 'ProductController');
     //Admin
     Route::get('/admin-panel', 'AdminController@index')->name('admin');

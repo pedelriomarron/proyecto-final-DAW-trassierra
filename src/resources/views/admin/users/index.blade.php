@@ -41,70 +41,6 @@
 
 
 
-<script type="text/javascript">
-    $(document).ready(function() {
-
-
-
-
-        $('.datatable-user').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "{{ route('users.index') }}",
-            },
-
-            columns: [{
-                    data: 'id',
-                    name: 'id'
-                }, {
-                    name: 'avatar'
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-
-                {
-                    name: 'roles',
-                    data: 'roles',
-                    orderable: false
-
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false
-                },
-
-            ],
-            columnDefs: [{
-                targets: 1,
-                render: function(a, b, row) {
-                    let img = "{{ asset('uploads/avatars') }}" + "/" + row.avatar
-
-                    return '<img height="100vw" src="' + img + '">'
-                }
-            }]
-        });
-
-
-    });
-
-
-
-    function readURL(input, id_prev) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $(id_prev).attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
-        }
-    }
-</script>
-
 
 
 @endsection
@@ -179,3 +115,75 @@
 Page Heading -->
 
 --}}
+
+
+@push('scripts')
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+
+
+
+        $('.datatable-user').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('users.index') }}",
+            },
+
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                }, {
+                    name: 'avatar'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+
+                {
+                    name: 'roles',
+                    data: 'roles',
+                    orderable: false
+
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false
+                },
+
+            ],
+            columnDefs: [{
+                targets: 1,
+                render: function(a, b, row) {
+                    let img = "{{ asset('uploads/avatars') }}" + "/" + row.avatar
+
+                    return '<img height="100vw" src="' + img + '">'
+                }
+            }]
+        });
+
+
+    });
+
+
+
+    function readURL(input, id_prev) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $(id_prev).attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+</script>
+
+
+
+@endpush

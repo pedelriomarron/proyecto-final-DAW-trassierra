@@ -6,6 +6,7 @@
 </head>
 
 <body id="page-top">
+    <div id="app">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
@@ -34,9 +35,10 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- End of Page Wrapper -->
-    @include('admin_includes.scripts')
+    </div>
+        <!-- End of Page Wrapper -->
+        @include('admin_includes.scripts')
+        @stack('scripts')
 </body>
 
 </html>

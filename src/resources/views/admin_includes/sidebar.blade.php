@@ -14,10 +14,16 @@
 
          <!-- Nav Item - Dashboard -->
          <li class="nav-item active">
-             <a class="nav-link" href="index.html">
+             <a class="nav-link" href="{{ route('home') }}">
+                 <i class="fas fa-home"></i> <span>Home</span></a>
+         </li>
+         <li class="nav-item active">
+             <a class="nav-link" href="{{ route('admin') }}">
                  <i class="fas fa-fw fa-tachometer-alt"></i>
                  <span>Dashboard</span></a>
          </li>
+
+
 
          <!-- Divider -->
          <hr class="sidebar-divider">
@@ -88,7 +94,18 @@
                  </div>
              </div>
          </li>
-
+         <li class="nav-item">
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
+                 <i class="fas fa-users"></i>
+                 <span>Usuarios</span>
+             </a>
+             <div id="collapseUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <a class="collapse-item" href="{{ route('users.index') }}"> Administrar Usuarios</a>
+                     <a class="collapse-item" href="{{ route('users.create') }}">Crear nuevo Usuario</a>
+                 </div>
+             </div>
+         </li>
          <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRoles" aria-expanded="true" aria-controls="collapseRoles">
                  <i class="fas fa-users-cog"></i>
@@ -101,6 +118,20 @@
                  </div>
              </div>
          </li>
+         <li class="nav-item">
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLogs" aria-expanded="true" aria-controls="collapseLogs">
+             <i class="fa fa-fw fa-book"></i>
+
+                 <span>Logs</span>
+             </a>
+             <div id="collapseLogs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <a class="collapse-item" href="{{ route('log-viewer::dashboard') }}">@lang('Dashboard')</a>
+                     <a class="collapse-item" href="{{ route('log-viewer::logs.list') }}">@lang('Logs')</a>
+                 </div>
+             </div>
+         </li>
+
 
          <!-- Nav Item - Charts -->
          <li class="nav-item">
@@ -116,10 +147,20 @@
                  <span>Tables</span></a>
          </li>
 
-         <!-- Divider -->
+         <!-- Divider            <hr class="sidebar-divider d-none d-md-block">-->
+
+         <hr class="sidebar-divider my-0">
+         <li class="nav-item">
+             <a class="nav-link">     
+                 <language-switcher locale="{{ app()->getLocale() }}" link-en="{{ route('locale', ['locale' => 'en']) }}" link-es="{{ route('locale', ['locale' => 'es']) }}" flag="{{ asset('img/flags/')}}"></language-switcher>
+                </a>
+         </li>
          <hr class="sidebar-divider d-none d-md-block">
 
-         <!-- Sidebar Toggler (Sidebar) -->
+
+         <!-- Sidebar Toggler (Sidebar)           <hr class="sidebar-divider d-none d-md-block">
+ -->
+         
          <div class="text-center d-none d-md-inline">
              <button class="rounded-circle border-0" id="sidebarToggle"></button>
          </div>

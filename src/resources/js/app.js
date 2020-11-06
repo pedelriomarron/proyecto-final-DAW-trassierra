@@ -5,6 +5,15 @@
  */
 
 require('./bootstrap');
+// Trae uno ya
+//require('../admin/vendor/jquery/jquery.min.js'); 
+//require('../admin/vendor/jquery-easing/jquery.easing.min.js');
+//require('../admin/vendor/bootstrap/js/bootstrap.bundle.min.js');
+require('../admin/js/sb-admin-2.min.js');
+require('../admin/vendor/datatables/jquery.dataTables.min.js');
+require('../admin/vendor/datatables/dataTables.bootstrap4.min.js');
+require('../admin/js/demo/datatables-demo.js');
+
 
 window.Vue = require('vue');
 
