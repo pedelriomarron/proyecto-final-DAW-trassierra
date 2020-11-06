@@ -13,11 +13,11 @@
          <hr class="sidebar-divider my-0">
 
          <!-- Nav Item - Dashboard -->
-         <li class="nav-item active">
+         <li class="nav-item {{ set_active(['home']) }} ">
              <a class="nav-link" href="{{ route('home') }}">
                  <i class="fas fa-home"></i> <span>Home</span></a>
          </li>
-         <li class="nav-item active">
+         <li class="nav-item  {{ set_active(['admin']) }} ">
              <a class="nav-link" href="{{ route('admin') }}">
                  <i class="fas fa-fw fa-tachometer-alt"></i>
                  <span>Dashboard</span></a>
@@ -34,7 +34,7 @@
          </div>
 
          <!-- Nav Item - Pages Collapse Menu -->
-         <li class="nav-item">
+         <li class="nav-item ">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                  <i class="fas fa-fw fa-cog"></i>
                  <span>Administrador</span>
@@ -94,7 +94,7 @@
                  </div>
              </div>
          </li>
-         <li class="nav-item">
+         <li class="nav-item {{ set_active(['users*']) }}">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
                  <i class="fas fa-users"></i>
                  <span>Usuarios</span>
@@ -106,7 +106,7 @@
                  </div>
              </div>
          </li>
-         <li class="nav-item">
+         <li class="nav-item {{ set_active(['roles*']) }}">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRoles" aria-expanded="true" aria-controls="collapseRoles">
                  <i class="fas fa-users-cog"></i>
                  <span>Roles</span>
@@ -118,7 +118,7 @@
                  </div>
              </div>
          </li>
-         <li class="nav-item">
+         <li class="nav-item {{ set_active(['log-viewer*']) }}">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLogs" aria-expanded="true" aria-controls="collapseLogs">
              <i class="fa fa-fw fa-book"></i>
 

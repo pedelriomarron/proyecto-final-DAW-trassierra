@@ -185,6 +185,7 @@ return [
 
 
 
+
     ],
 
     /*
@@ -238,7 +239,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-
 
 
 
