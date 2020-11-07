@@ -15,6 +15,8 @@ require('../admin/vendor/datatables/dataTables.bootstrap4.min.js');
 require('../admin/js/demo/datatables-demo.js');
 
 
+require('./functions.js');
+
 window.Vue = require('vue');
 
 /**
