@@ -10,6 +10,7 @@
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
 <!-- Styles -->
+<link href=" {{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('css/'.session('theme', 'light').'.css') }}" rel="stylesheet">

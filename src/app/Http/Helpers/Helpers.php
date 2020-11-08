@@ -15,18 +15,34 @@ function getUserById($userId)
 
 
 
-function set_active($path, $active = 'active') {
-    $current = \Route::currentRouteName() ;
+function set_active($path, $active = 'active')
+{
+    $current = \Route::currentRouteName();
 
-    foreach($path as $p){
-        if($p == $current) return $active;
+    foreach ($path as $p) {
+        if ($p == $current) return $active;
 
-        $math = substr($p, -1) == "*" ? true:false;
+        $math = substr($p, -1) == "*" ? true : false;
         $length = strlen($p);
-        $newStr = substr($current, 0, $length-1);
-        if($math == true && $newStr == substr($p, 0, -1))return $active;
-
+        $newStr = substr($current, 0, $length - 1);
+        if ($math == true && $newStr == substr($p, 0, -1)) return $active;
     }
 
     return '';
+}
+
+
+
+function getExtension($mime_type)
+{
+
+    $extensions = array(
+        'image/jpeg' => 'jpeg',
+        'text/xml' => 'xml',
+        'image/png' => 'png'
+    );
+
+    // Add as many other Mime Types / File Extensions as you like
+
+    return $extensions[$mime_type];
 }
