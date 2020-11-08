@@ -178,6 +178,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        Laraveles\Spanish\SpanishServiceProvider::class,
 
 
 
