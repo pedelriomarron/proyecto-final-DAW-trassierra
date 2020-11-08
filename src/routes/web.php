@@ -88,4 +88,7 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     //Ajax
     Route::get('/ajax_upload', 'AjaxUploadController@index');
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
+    Route::get('admin-panel/clear-cache', function () {
+        $exitCode = Artisan::call('cache:clear');
+    });
 });
