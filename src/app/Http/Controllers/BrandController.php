@@ -17,13 +17,6 @@ class BrandController extends Controller
      */
     public function index(Request $request)
     {
-        /*
-        $brands = Brand::latest()->paginate(5);
-
-        return view('admin.brands.index', compact('brands'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-
-            */
         if ($request->ajax()) {
             $data = Brand::latest()->get();
 
@@ -73,6 +66,8 @@ class BrandController extends Controller
             $image = $request->file('logo');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/brands'), $new_name);
+        } else {
+            $new_name = "default.png";
         }
 
 
@@ -140,7 +135,7 @@ class BrandController extends Controller
         $validation = Validator::make($request->all(), [
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        $new_name = "";
+        $new_name = false;
         if ($validation->passes()) {
             $image = $request->file('logo');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
@@ -159,13 +154,14 @@ class BrandController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-
         $form_data = array(
             'name'    =>  $request->name,
             'logo' =>  $new_name,
         );
+        if (!$new_name) {
+            unset($form_data['logo']);
+        }
 
-        //dd($request);
         Brand::whereId($request->hidden_id)->update($form_data);
 
         return response()->json(['success' => 'Data is successfully updated']);
