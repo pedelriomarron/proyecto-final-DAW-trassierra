@@ -46,3 +46,21 @@ function getExtension($mime_type)
 
     return $extensions[$mime_type];
 }
+
+
+function getDatatablesURLLang()
+{
+
+    $locale = app()->getLocale();
+
+    switch ($locale) {
+        case 'en':
+            return '//cdn.datatables.net/plug-ins/1.10.20/i18n/English.json';
+            break;
+        case 'es':
+            return '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json';
+            break;
+        default:
+            return '//cdn.datatables.net/plug-ins/1.10.20/i18n/English.json';
+    }
+}

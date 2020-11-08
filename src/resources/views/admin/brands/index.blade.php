@@ -104,6 +104,9 @@
         $('.datatable-brand').DataTable({
             processing: true,
             serverSide: true,
+            language: {
+                "url": "{{ getDatatablesURLLang()}}"
+            },
             ajax: {
                 url: "{{ route('brands.index') }}",
             },
