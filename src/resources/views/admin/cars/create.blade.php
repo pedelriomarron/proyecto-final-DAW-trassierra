@@ -50,7 +50,13 @@
                             </div>
                             <div class="form-group">
                                 <strong>@lang('brand'):</strong>
-                                {!! Form::select('brand', $brands, null, ['class' => 'form-control select2']) !!}
+                              {{--   {!! Form::select('brand', $brands, null, ['class' => 'form-control select2 ', ]) !!} --}} 
+                                <select name="brand" class="form-control select2">
+                                  @foreach($brands as $val)
+                                    <option value="{{ $val->id }}" data-logo="{{ $val->logo }}"> {{ $val->name }}<option>
+                                 @endforeach
+                                 </select>
+
                              </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -70,7 +76,28 @@
 <script>
 
 $(document).ready(function() {
-    $('.select2').select2();
+
+function formatState (state) {
+  if (!state.id) {
+    return state.text;
+  }
+  var baseUrl = "{{ asset('uploads/brands/') }}" 
+  var $state = $(
+    '<span><img class="img-fluid" width="20px" src="' + baseUrl + '/' + state.element.dataset.logo + '" class="img-flag" /> ' + state.text + '</span>'
+  );
+  
+  return $state;
+};
+
+$(".select2").select2({
+  templateResult: formatState,
+    templateSelection: formatState
+
+});
+
+
+
+   // $('.select2').select2();
 });
 </script>
 @endpush

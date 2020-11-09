@@ -30,7 +30,9 @@ class CarController extends Controller
     public function create()
     {
 
-        $brands = Brand::pluck('name', 'id');
+        //$brands = Brand::pluck('name', 'id', 'logo')->toArray();;
+        //$brands = Brand::selectRaw("CONCAT ('name', 'logo') as columns, id")->pluck('columns', 'id');
+        $brands = Brand::select('id', 'name', 'logo')->get();
 
 
         return view('admin.cars.create', ['brands' => $brands]);
