@@ -4,12 +4,12 @@
 <div class="card shadow mb-4">
     <!-- Title Card  -->
     <div class="card-header py-3">
-        <h3 class="m-0 font-weight-bold text-primary">@lang('sentence.manage-segments')</h3>
+        <h3 class="m-0 font-weight-bold text-primary">@lang('manage-segments')</h3>
     </div>
     <!-- Button Add  -->
     <div>
         <div class=" p-3 pt-4">
-            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> @lang('sentence.create-record')</button>
+            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> @lang('create-record')</button>
         </div>
     </div>
     <!-- Body Card  -->
@@ -19,11 +19,11 @@
             <table class="table table-bordered datatable-segment " width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th width="5%">@lang('sentence.segment-id')</th>
-                        <th width="5%">@lang('sentence.segment-logo')</th>
-                        <th width="35%">@lang('sentence.segment-letter')</th>
-                        <th width="35%">@lang('sentence.segment-name')</th>
-                        <th width="10%">@lang('sentence.segment-actions')</th>
+                        <th width="5%">@lang('segment-id')</th>
+                        <th width="5%">@lang('segment-logo')</th>
+                        <th width="35%">@lang('segment-letter')</th>
+                        <th width="35%">@lang('segment-name')</th>
+                        <th width="10%">@lang('segment-actions')</th>
                     </tr>
                 </thead>
             </table>
@@ -37,7 +37,7 @@
         <div class="modal-content">
             <!-- Title / Close  -->
             <div class="modal-header border-bottom-1">
-                <h4 class="modal-title" id="title-modal-edit-create">@lang('sentence.create-record')</h5>
+                <h4 class="modal-title" id="title-modal-edit-create">@lang('create-record')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -50,18 +50,18 @@
                 <div class="modal-body">
                     <!-- Input Name-->
                     <div class="form-group">
-                        <label for="name">@lang('sentence.segment-name'):</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="@lang('sentence.segment-name')">
+                        <label for="name">@lang('segment-name'):</label>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="@lang('segment-name')">
                         <!-- <small id="nameHelp" class="form-text text-muted">Your information is safe with us.</small> -->
                     </div>
                     <div class="form-group">
-                        <label for="letter">@lang('sentence.segment-letter'):</label>
-                        <input type="text" class="form-control" id="letter" name="letter" aria-describedby="letterHelp" placeholder="@lang('sentence.segment-letter')">
+                        <label for="letter">@lang('segment-letter'):</label>
+                        <input type="text" class="form-control" id="letter" name="letter" aria-describedby="letterHelp" placeholder="@lang('segment-letter')">
                         <!-- <small id="nameHelp" class="form-text text-muted">Your information is safe with us.</small> -->
                     </div>
                     <!-- Logo Input and Preview-->
                     <div class="form-group">
-                        <label for="logo">@lang('sentence.segment-logo'):</label>
+                        <label for="logo">@lang('segment-logo'):</label>
                         <div class="form-group text-center">
                             <img id="logo_preview" class="img-responsive img-thumbnail" src="" style="max-height:250px;">
                         </div>
@@ -85,17 +85,17 @@
         <div class="modal-content">
             <!-- Modal title-->
             <div class="modal-header">
-                <h4 class="modal-title">@lang('sentence.confirmation-delete-title')</h4>
+                <h4 class="modal-title">@lang('confirmation-delete-title')</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal text-->
             <div class="modal-body">
-                <h4 align="center" style="margin:0;">@lang('sentence.confirmation-delete-text')</h4>
+                <h4 align="center" style="margin:0;">@lang('confirmation-delete-text')</h4>
             </div>
             <!-- Modal footer-->
             <div class="modal-footer">
-                <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">@lang('sentence.ok')</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('sentence.cancel')</button>
+                <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">@lang('ok')</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('cancel')</button>
             </div>
         </div>
     </div>
@@ -142,7 +142,7 @@
                     targets: 1,
                     render: function(a, b, row) {
                         let img = "{{ asset('uploads/segments/') }}" + "/" + row.logo
-                        return '<img height="100vw" src="' + img + '">'
+                        return '<img class="img-fluid" width="100vw" src="' + img + '">'
                     }
                 }
             ]
@@ -150,7 +150,7 @@
 
         // Click Create new record
         $('#create_record').click(function() {
-            $('#title-modal-edit-create').text("@lang('sentence.create-record')");
+            $('#title-modal-edit-create').text("@lang('create-record')");
             $('#action_button').val('Add');
             $('#action').val('Add');
             $('#form_result').html('');
@@ -213,7 +213,7 @@
                     $('#letter').val(data.result.letter);
                     $("#logo_preview").attr("src", "{{ asset('uploads/segments/') }}" + '/' + data.result.logo);
                     $('#hidden_id').val(id);
-                    $('#title-modal-edit-create').text("@lang('sentence.edit-record')");
+                    $('#title-modal-edit-create').text("@lang('edit-record')");
                     $('#action_button').val('Edit');
                     $('#action').val('Edit');
                     $('#formModal').modal('show');
@@ -235,13 +235,13 @@
             $.ajax({
                 url: url,
                 beforeSend: function() {
-                    $('#ok_button').text("@lang('sentence.deleting')");
+                    $('#ok_button').text("@lang('deleting')");
                 },
                 success: function(data) {
                     setTimeout(function() {
                         $('#confirmModal').modal('hide');
                         $('.datatable-segment').DataTable().ajax.reload();
-                        $('#ok_button').text("@lang('sentence.ok')");
+                        $('#ok_button').text("@lang('ok')");
                     }, 2000);
                 }
             })

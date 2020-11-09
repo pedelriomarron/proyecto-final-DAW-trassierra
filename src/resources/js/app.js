@@ -13,6 +13,7 @@ require('../admin/js/sb-admin-2.js');
 require('../admin/vendor/datatables/jquery.dataTables.min.js');
 require('../admin/vendor/datatables/dataTables.bootstrap4.min.js');
 require('../admin/js/demo/datatables-demo.js');
+require('../admin/vendor/select2/js/select2.min.js');
 
 
 require('./functions.js');

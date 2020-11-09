@@ -97,6 +97,9 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::resource('admin-panel/segments', 'SegmentController');
     Route::post('admin-panel/segments/update', 'SegmentController@update')->name('segments.update');
     Route::get('admin-panel/segments/destroy/{id}', 'SegmentController@destroy')->name('segments.deletebyid');
+    //Cars
+    Route::resource('admin-panel/cars', 'CarController');
+
     //Ajax
     Route::get('/ajax_upload', 'AjaxUploadController@index');
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');

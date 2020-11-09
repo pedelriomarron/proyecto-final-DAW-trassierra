@@ -97,5 +97,15 @@
     "dashboard_admin-bodystyles": "",
     "dashboard_admin-drives": "",
     "dashboard_admin-segments": "",
-    "sentence.segment-letter": ""
+    "sentence.segment-letter": "",
+    "sentence.brand-slug": "",
+    "create-car": "",
+    "create-cars": "",
+    "add.car": "",
+    "car-name": "",
+    "brand": "",
+    "submit": "",
+    "dashboard_cars": "",
+    "dashboard_cars-admin": "",
+    "dashboard_cars-create": ""
 }

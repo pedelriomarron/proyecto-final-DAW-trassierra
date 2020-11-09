@@ -74,6 +74,7 @@ class BrandController extends Controller
 
         $rules = array(
             'name'    =>  'required',
+            'slug'    =>  'required',
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -85,6 +86,7 @@ class BrandController extends Controller
         $form_data = array(
             'name'    =>  $request->name,
             'logo' =>  $new_name,
+            'slug' => $request->slug,
         );
 
 
@@ -145,6 +147,7 @@ class BrandController extends Controller
 
         $rules = array(
             'name'        =>  'required',
+            'slug'    =>  'required',
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -157,6 +160,7 @@ class BrandController extends Controller
         $form_data = array(
             'name'    =>  $request->name,
             'logo' =>  $new_name,
+            'slug' => $request->slug,
         );
         if (!$new_name) {
             unset($form_data['logo']);
