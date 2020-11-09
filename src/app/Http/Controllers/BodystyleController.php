@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Brand;
+use App\Models\Bodystyle;
 use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Lang;
 
 
-class BrandController extends Controller
+class BodystyleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +19,15 @@ class BrandController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Brand::latest()->get();
+            $data = Bodystyle::latest()->get();
 
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $button = '';
-                    if (\Auth::user()->can('brand-edit')) {
+                    if (\Auth::user()->can('bodystyle-edit')) {
                         $button .= '<button type="button" name="edit" id="' . $data->id . '" class="edit btn btn-primary btn-sm">' . Lang::get('edit') . '</button>';
                     }
-                    if (\Auth::user()->can('brand-delete')) {
+                    if (\Auth::user()->can('bodystyle-delete')) {
                         $button .= '&nbsp;&nbsp;&nbsp;<button type="button" name="edit" id="' . $data->id . '" class="delete btn btn-danger btn-sm">' . Lang::get('delete') . '</button>';
                     }
                     return $button;
@@ -35,7 +35,7 @@ class BrandController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.brands.index');
+        return view('admin.bodystyles.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class BrandController extends Controller
     public function create()
     {
         //
-        return view('brands.create');
+        return view('bodystyles.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class BrandController extends Controller
         if ($validation->passes()) {
             $image = $request->file('logo');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/brands'), $new_name);
+            $image->move(public_path('uploads/bodystyles'), $new_name);
         } else {
             $new_name = "default.png";
         }
@@ -89,7 +89,7 @@ class BrandController extends Controller
 
 
 
-        Brand::create($form_data);
+        Bodystyle::create($form_data);
 
         return response()->json(['success' => 'Data Added successfully.']);
     }
@@ -97,38 +97,38 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Bodystyle  $bodystyle
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show(Bodystyle $bodystyle)
     {
-        return view('brands.show', compact('brand'));
+        return view('bodystyles.show', compact('bodystyle'));
     }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Bodystyle  $bodystyle
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit(Bodystyle $bodystyle)
     {
 
         if (request()->ajax()) {
-            //$data = Brand::findOrFail($id);
-            return response()->json(['result' => $brand]);
+            //$data = Bodystyle::findOrFail($id);
+            return response()->json(['result' => $bodystyle]);
         }
 
-        return view('brands.edit', compact('brand'));
+        return view('bodystyles.edit', compact('bodystyle'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Bodystyle  $bodystyle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, Bodystyle $bodystyle)
     {
 
 
@@ -139,7 +139,7 @@ class BrandController extends Controller
         if ($validation->passes()) {
             $image = $request->file('logo');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/brands'), $new_name);
+            $image->move(public_path('uploads/bodystyles'), $new_name);
         }
 
 
@@ -162,7 +162,7 @@ class BrandController extends Controller
             unset($form_data['logo']);
         }
 
-        Brand::whereId($request->hidden_id)->update($form_data);
+        Bodystyle::whereId($request->hidden_id)->update($form_data);
 
         return response()->json(['success' => 'Data is successfully updated']);
     }
@@ -170,12 +170,12 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Bodystyle  $bodystyle
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data = Brand::findOrFail($id);
+        $data = Bodystyle::findOrFail($id);
         $data->delete();
     }
 }

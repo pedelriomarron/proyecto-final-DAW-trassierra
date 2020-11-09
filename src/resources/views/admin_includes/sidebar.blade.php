@@ -13,18 +13,16 @@
          <hr class="sidebar-divider my-0">
 
          <!-- Nav Item - Dashboard -->
-         <li class="nav-item {{ set_active(['home']) }} ">
-             <a class="nav-link" href="{{ route('home') }}">
-                 <i class="fas fa-home"></i> <span>Home</span></a>
-         </li>
-         <li class="nav-item  {{ set_active(['admin']) }} ">
+            <li class="nav-item  {{ set_active(['admin']) }} ">
              <a class="nav-link" href="{{ route('admin') }}">
                  <i class="fas fa-fw fa-tachometer-alt"></i>
-                 <span>Dashboard</span></a>
+                 <span>@lang('dashboard_dashboard')</span></a>
          </li>
-
-
-
+         <li class="nav-item {{ set_active(['home']) }} ">
+             <a class="nav-link" href="{{ route('home') }}">
+                 <i class="fas fa-home"></i> <span>@lang('dashboard_back-to-home')</span></a>
+         </li>
+    
          <!-- Divider -->
          <hr class="sidebar-divider">
 
@@ -37,15 +35,15 @@
          <li class="nav-item ">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                  <i class="fas fa-fw fa-cog"></i>
-                 <span>Administrador</span>
+                 <span>@lang('dashboard_admin-tables-title')</span>
              </a>
              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
-                     <h6 class="collapse-header">Custom Components:</h6>
-                     <a class="collapse-item" href="{{ route('brands.index') }}">Administrar Brands</a>
-
-                     <a class="collapse-item" href="buttons.html">Buttons</a>
-                     <a class="collapse-item" href="cards.html">Cards</a>
+                     <h6 class="collapse-header">@lang('dashboard_admin-tables-sub'):</h6>
+                     <a class="collapse-item" href="{{ route('brands.index') }}">@lang('dashboard_admin-brands')</a>
+                     <a class="collapse-item" href="{{ route('bodystyles.index') }}">@lang('dashboard_admin-bodystyles')</a>
+                     <a class="collapse-item" href="{{ route('drives.index') }}">@lang('dashboard_admin-drives')</a>
+                     <a class="collapse-item" href="{{ route('segments.index') }}">@lang('dashboard_admin-segments')</a>
                  </div>
              </div>
          </li>
@@ -97,24 +95,24 @@
          <li class="nav-item {{ set_active(['users*']) }}">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
                  <i class="fas fa-users"></i>
-                 <span>Usuarios</span>
+                 <span>@lang('dashboard_users')</span>
              </a>
              <div id="collapseUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
-                     <a class="collapse-item" href="{{ route('users.index') }}"> Administrar Usuarios</a>
-                     <a class="collapse-item" href="{{ route('users.create') }}">Crear nuevo Usuario</a>
+                     <a class="collapse-item" href="{{ route('users.index') }}"> @lang('dashboard_user-admin')</a>
+                     <a class="collapse-item" href="{{ route('users.create') }}">@lang('dashboard_user-create')</a>
                  </div>
              </div>
          </li>
          <li class="nav-item {{ set_active(['roles*']) }}">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRoles" aria-expanded="true" aria-controls="collapseRoles">
                  <i class="fas fa-users-cog"></i>
-                 <span>Roles</span>
+                 <span>@lang('dashboard_roles')</span>
              </a>
              <div id="collapseRoles" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
-                     <a class="collapse-item" href="{{ route('roles.index') }}"> Administrar Roles</a>
-                     <a class="collapse-item" href="{{ route('roles.create') }}">Crear nuevo Rol</a>
+                     <a class="collapse-item" href="{{ route('roles.index') }}"> @lang('dashboard_roles-admin')</a>
+                     <a class="collapse-item" href="{{ route('roles.create') }}">@lang('dashboard_roles-create')</a>
                  </div>
              </div>
          </li>
@@ -122,12 +120,12 @@
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLogs" aria-expanded="true" aria-controls="collapseLogs">
              <i class="fa fa-fw fa-book"></i>
 
-                 <span>Logs</span>
+                 <span>@lang('dashboard_logs')</span>
              </a>
              <div id="collapseLogs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
-                     <a class="collapse-item" href="{{ route('log-viewer::dashboard') }}">@lang('Dashboard')</a>
-                     <a class="collapse-item" href="{{ route('log-viewer::logs.list') }}">@lang('Logs')</a>
+                     <a class="collapse-item" href="{{ route('log-viewer::dashboard') }}">@lang('dashboard_logs-dashboard')</a>
+                     <a class="collapse-item" href="{{ route('log-viewer::logs.list') }}">@lang('dashboard_logs-logs')</a>
                  </div>
              </div>
          </li>

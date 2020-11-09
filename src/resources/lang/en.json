@@ -64,5 +64,17 @@
     "Context": "",
     "The list of logs is empty!": "",
     "Page :current of :last": "",
-    "Are you sure you want to delete this log file: :date ?": ""
+    "Are you sure you want to delete this log file: :date ?": "",
+    "dashboard_dashboard": "",
+    "dashboard_back-to-home": "",
+    "dashboard_admin-brands": "",
+    "dashboard_users": "",
+    "dashboard_user-admin": "",
+    "dashboard_user-create": "",
+    "dashboard_roles": "",
+    "dashboard_roles-admin": "",
+    "dashboard_roles-create": "",
+    "dashboard_logs": "",
+    "dashboard_logs-dashboard": "",
+    "dashboard_logs-logs": ""
 }

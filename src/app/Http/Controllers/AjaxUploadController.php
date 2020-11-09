@@ -7,11 +7,15 @@ use Validator;
 
 class AjaxUploadController extends Controller
 {
+
+    /*
     function index()
     {
         return view('brands.index');
     }
 
+
+    */
     function action(Request $request)
     {
         $validation = Validator::make($request->all(), [

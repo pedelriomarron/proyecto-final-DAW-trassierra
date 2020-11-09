@@ -84,7 +84,19 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     //Brands
     Route::resource('admin-panel/brands', 'BrandController');
     Route::post('admin-panel/brands/update', 'BrandController@update')->name('brands.update');
-    Route::get('admin-panel/brands/destroy/{id}', 'BrandController@destroy')->name('brands.deletebyid');;
+    Route::get('admin-panel/brands/destroy/{id}', 'BrandController@destroy')->name('brands.deletebyid');
+    //Bodystyles
+    Route::resource('admin-panel/bodystyles', 'BodystyleController');
+    Route::post('admin-panel/bodystyles/update', 'BodystyleController@update')->name('bodystyles.update');
+    Route::get('admin-panel/bodystyles/destroy/{id}', 'BodystyleController@destroy')->name('bodystyles.deletebyid');
+    //Drives
+    Route::resource('admin-panel/drives', 'DriveController');
+    Route::post('admin-panel/drives/update', 'DriveController@update')->name('drives.update');
+    Route::get('admin-panel/drives/destroy/{id}', 'DriveController@destroy')->name('drives.deletebyid');
+    //Segments
+    Route::resource('admin-panel/segments', 'SegmentController');
+    Route::post('admin-panel/segments/update', 'SegmentController@update')->name('segments.update');
+    Route::get('admin-panel/segments/destroy/{id}', 'SegmentController@destroy')->name('segments.deletebyid');
     //Ajax
     Route::get('/ajax_upload', 'AjaxUploadController@index');
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');

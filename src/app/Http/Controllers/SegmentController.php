@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Brand;
+use App\Models\Segment;
 use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Lang;
 
 
-class BrandController extends Controller
+class SegmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +19,15 @@ class BrandController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Brand::latest()->get();
+            $data = Segment::latest()->get();
 
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $button = '';
-                    if (\Auth::user()->can('brand-edit')) {
+                    if (\Auth::user()->can('segment-edit')) {
                         $button .= '<button type="button" name="edit" id="' . $data->id . '" class="edit btn btn-primary btn-sm">' . Lang::get('edit') . '</button>';
                     }
-                    if (\Auth::user()->can('brand-delete')) {
+                    if (\Auth::user()->can('segment-delete')) {
                         $button .= '&nbsp;&nbsp;&nbsp;<button type="button" name="edit" id="' . $data->id . '" class="delete btn btn-danger btn-sm">' . Lang::get('delete') . '</button>';
                     }
                     return $button;
@@ -35,7 +35,7 @@ class BrandController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.brands.index');
+        return view('admin.segments.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class BrandController extends Controller
     public function create()
     {
         //
-        return view('brands.create');
+        return view('segments.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class BrandController extends Controller
         if ($validation->passes()) {
             $image = $request->file('logo');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/brands'), $new_name);
+            $image->move(public_path('uploads/segments'), $new_name);
         } else {
             $new_name = "default.png";
         }
@@ -89,7 +89,7 @@ class BrandController extends Controller
 
 
 
-        Brand::create($form_data);
+        Segment::create($form_data);
 
         return response()->json(['success' => 'Data Added successfully.']);
     }
@@ -97,38 +97,38 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Segment  $segment
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show(Segment $segment)
     {
-        return view('brands.show', compact('brand'));
+        return view('segments.show', compact('segment'));
     }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Segment  $segment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit(Segment $segment)
     {
 
         if (request()->ajax()) {
-            //$data = Brand::findOrFail($id);
-            return response()->json(['result' => $brand]);
+            //$data = Segment::findOrFail($id);
+            return response()->json(['result' => $segment]);
         }
 
-        return view('brands.edit', compact('brand'));
+        return view('segments.edit', compact('segment'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Segment  $segment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, Segment $segment)
     {
 
 
@@ -139,7 +139,7 @@ class BrandController extends Controller
         if ($validation->passes()) {
             $image = $request->file('logo');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/brands'), $new_name);
+            $image->move(public_path('uploads/segments'), $new_name);
         }
 
 
@@ -162,7 +162,7 @@ class BrandController extends Controller
             unset($form_data['logo']);
         }
 
-        Brand::whereId($request->hidden_id)->update($form_data);
+        Segment::whereId($request->hidden_id)->update($form_data);
 
         return response()->json(['success' => 'Data is successfully updated']);
     }
@@ -170,12 +170,12 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Segment  $segment
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data = Brand::findOrFail($id);
+        $data = Segment::findOrFail($id);
         $data->delete();
     }
 }
