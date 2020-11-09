@@ -74,6 +74,7 @@ class SegmentController extends Controller
 
         $rules = array(
             'name'    =>  'required',
+            'letter'    =>  'required',
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -84,6 +85,7 @@ class SegmentController extends Controller
 
         $form_data = array(
             'name'    =>  $request->name,
+            'letter'    =>  $request->letter,
             'logo' =>  $new_name,
         );
 
@@ -145,6 +147,7 @@ class SegmentController extends Controller
 
         $rules = array(
             'name'        =>  'required',
+            'letter' => 'required'
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -156,6 +159,7 @@ class SegmentController extends Controller
 
         $form_data = array(
             'name'    =>  $request->name,
+            'letter'    =>  $request->letter,
             'logo' =>  $new_name,
         );
         if (!$new_name) {

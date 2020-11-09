@@ -21,6 +21,7 @@
                     <tr>
                         <th width="5%">@lang('sentence.segment-id')</th>
                         <th width="5%">@lang('sentence.segment-logo')</th>
+                        <th width="35%">@lang('sentence.segment-letter')</th>
                         <th width="35%">@lang('sentence.segment-name')</th>
                         <th width="10%">@lang('sentence.segment-actions')</th>
                     </tr>
@@ -51,6 +52,11 @@
                     <div class="form-group">
                         <label for="name">@lang('sentence.segment-name'):</label>
                         <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="@lang('sentence.segment-name')">
+                        <!-- <small id="nameHelp" class="form-text text-muted">Your information is safe with us.</small> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="letter">@lang('sentence.segment-letter'):</label>
+                        <input type="text" class="form-control" id="letter" name="letter" aria-describedby="letterHelp" placeholder="@lang('sentence.segment-letter')">
                         <!-- <small id="nameHelp" class="form-text text-muted">Your information is safe with us.</small> -->
                     </div>
                     <!-- Logo Input and Preview-->
@@ -115,6 +121,10 @@
                     name: 'id'
                 }, {
                     name: 'logo'
+                },
+                  {
+                    data: 'letter',
+                    name: 'letter'
                 },
                 {
                     data: 'name',
@@ -200,6 +210,7 @@
                 dataType: "json",
                 success: function(data) {
                     $('#name').val(data.result.name);
+                    $('#letter').val(data.result.letter);
                     $("#logo_preview").attr("src", "{{ asset('uploads/segments/') }}" + '/' + data.result.logo);
                     $('#hidden_id').val(id);
                     $('#title-modal-edit-create').text("@lang('sentence.edit-record')");

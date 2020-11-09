@@ -44,6 +44,7 @@ class Init extends Command
         echo shell_exec('php artisan db:seed --class=CreateAdminUserSeeder');
         echo shell_exec('php artisan db:seed --class=DrivesSeeder');
         echo shell_exec('php artisan db:seed --class=BodystylesSeeder');
+        echo shell_exec('php artisan db:seed --class=SegmentsSeeder');
         echo shell_exec('php artisan translator:update');
         echo "Fin";
     }

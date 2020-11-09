@@ -13,6 +13,6 @@ class Segment extends Model
     protected $casts = [];
 
     protected $fillable = [
-        'name', 'logo'
+        'name', 'logo', 'letter'
     ];
 }
