@@ -19,7 +19,7 @@ class ImageGalleryController extends Controller
      */
     public function index()
     {
-        $images = ImageGallery::get();
+        $images = ImageGallery::orderBy('order')->get();
         return view('image-gallery', compact('images'));
     }
 
@@ -80,5 +80,17 @@ class ImageGalleryController extends Controller
         ImageGallery::find($id)->delete();
         return back()
             ->with('success', 'Image removed successfully.');
+    }
+
+
+    public function order(Request $request)
+    {
+        $order = json_decode($request->order);
+        foreach ($order as $or => $key) {
+            ImageGallery::where('id', $key)
+                ->update(['order' => $or]);
+        }
+        return back()
+            ->with('success', 'Update Order successfully.');
     }
 }

@@ -1,63 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Image Gallery Example</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-    <!-- References: https://github.com/fancyapps/fancyBox -->
+@push('styles')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <meta name="csrf_token" content="{{ csrf_token() }}" />
-
- <style>
- 
-  </style>
-
-    <style type="text/css">
+    <style >
     .gallery
     {
-        display: inline-block;
-        margin-top: 20px;
+       /* display: inline-block;
+        margin-top: 20px; */
+
     }
     #sortable div a  img { width: 100vw;  height: 20vh;   }
   
     .close-icon{
-    	border-radius: 50%;
-        position: absolute;
-        right: 5px;
-        top: -10px;
-        padding: 5px 8px;
+ 
     }
     .order-icon{
-    	border-radius: 50%;
-        position: absolute;
-        left: 5px;
-        top: -10px;
-        padding: 5px 8px;
-        min-width:30px;
+    	
     }
     .form-image-upload{
         background: #e8e8e8 none repeat scroll 0 0;
         padding: 15px;
     }
     </style>
-</head>
-<body>
+@endpush
 
-
-<div class="container">
-
+ 
 
     <form action="{{ url('image-gallery') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
-
-
         {!! csrf_field() !!}
-
-
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -81,11 +53,11 @@
         <div class="row">
             <div class="col-md-5">
                 <strong>Title:</strong>
-                <input type="title" name="title" class="form-control" placeholder="Title">
+                <input type="title" name="title" class="form-control " placeholder="Title">
             </div>
             <div class="col-md-5">
                 <strong>Image:</strong>
-                <input type="file" name="image[]" class="form-control" multiple>
+                <input type="file" name="image[]" class="form-control-file" multiple>
             </div>
             <div class="col-md-2">
                 <br/>
@@ -94,35 +66,38 @@
         </div>
 
     </form> 
-
-    <div class="row">
-    <div id="sortable" class='list-group gallery '>
+ <div class="">
+    <div id="sortable" class='gallery row  my-5'>
             @if($images->count())
                 @foreach($images as $image)
-                <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3' id="{{ $image->id }}" >
+                <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3 my-3 border' id="{{ $image->id }}" >
                     <a class="thumbnail fancybox" rel="ligthbox" href="{{ asset('uploads/gallery/') }}/{{ $image->image }}">
-                        <img class="img-responsive" alt="" src="{{ asset('uploads/gallery/') }}/{{ $image->image }}" />
+                        <img class="img-fluid" alt="" src="{{ asset('uploads/gallery/') }}/{{ $image->image }}" />
                         <div class='text-center'>
                             <small class='text-muted'>{{ $image->title }}</small>
                         </div> <!-- text-center / end -->
                     </a>
                     <form action="{{ url('image-gallery',$image->id) }}" method="POST">
-                    <input type="hidden" name="_method" value="delete">
-                    {!! csrf_field() !!}
-                    <button type="submit" class="close-icon btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                    <button  class="order-icon btn btn-primary">{{ $image->order }}</button>
+                        <input type="hidden" name="_method" value="delete">
+                        {!! csrf_field() !!}
+                        <button type="submit" class="close-icon btn btn-danger"><i class="fas fa-times"></i></button>
+                        <button  class="order-icon btn btn-primary">{{ $image->order }}</button>
                     </form>
                 </div> <!-- col-6 / end -->
                 @endforeach
             @endif
     </div>
     <button id="submitOrder" onClick="submit()">Enviar</button>
+    </div>
+   
 
-</div> <!-- container / end -->
 
 
-</body>
 
+
+  @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -163,4 +138,7 @@ document.getElementById('submitOrder').disabled = true
 }
 
   </script>
-</html>
+
+
+  @endpush
+

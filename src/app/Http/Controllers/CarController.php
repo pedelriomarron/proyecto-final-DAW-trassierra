@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Brand;
+use App\Models\ImageGallery;
 
 use Illuminate\Http\Request;
 
@@ -33,9 +34,9 @@ class CarController extends Controller
         //$brands = Brand::pluck('name', 'id', 'logo')->toArray();;
         //$brands = Brand::selectRaw("CONCAT ('name', 'logo') as columns, id")->pluck('columns', 'id');
         $brands = Brand::select('id', 'name', 'logo')->get();
+        $images = ImageGallery::orderBy('order')->get();
 
-
-        return view('admin.cars.create', ['brands' => $brands]);
+        return view('admin.cars.create', ['brands' => $brands, 'images' => $images]);
     }
 
     /**

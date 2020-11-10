@@ -70,6 +70,26 @@
 </div>
 
 
+<div class="card shadow mb-4">
+    <!-- Title Card  -->
+    <div class="card-header py-3">
+        <h3 class="m-0 font-weight-bold text-primary">@lang('g-car')</h3>
+    </div>
+    <!-- Button Add 
+    <div>
+        <div class=" p-3 pt-4">
+            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> @lang('create-cars')</button>
+        </div>
+    </div>
+     -->
+    <!-- Body Card  -->
+    <div class="card-body">
+         <div class="">
+         @include('admin.gallery.index')
+            </div>   
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')

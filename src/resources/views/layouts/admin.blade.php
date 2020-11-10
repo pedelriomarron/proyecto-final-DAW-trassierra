@@ -3,6 +3,7 @@
 
 <head>
     @include('admin_includes.head')
+    @stack('styles')
 </head>
 
 <body id="page-top">

@@ -103,6 +103,7 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     //Upload
     Route::get('image-gallery', 'ImageGalleryController@index');
     Route::post('image-gallery', 'ImageGalleryController@upload');
+    Route::post('image-gallery/order', 'ImageGalleryController@order')->name('gallery.order');
     Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
 
     //Ajax
