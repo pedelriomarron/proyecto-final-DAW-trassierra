@@ -51,12 +51,36 @@
                             <div class="form-group">
                                 <strong>@lang('brand'):</strong>
                               {{--   {!! Form::select('brand', $brands, null, ['class' => 'form-control select2 ', ]) !!} --}} 
-                                <select name="brand" class="form-control select2">
+                                <select name="brand_id" class="form-control select2">
                                   @foreach($brands as $val)
                                     <option value="{{ $val->id }}" data-logo="{{ $val->logo }}"> {{ $val->name }}<option>
                                  @endforeach
                                  </select>
 
+                             </div>
+                            <div class="form-group">
+                                <strong>@lang('drive'):</strong>
+                                <select name="drive_id" class="form-control select2">
+                                  @foreach($drives as $val)
+                                    <option value="{{ $val->id }}" data-logo="{{ $val->logo }}"> {{ $val->name }}<option>
+                                 @endforeach
+                                 </select>
+                             </div>
+                            <div class="form-group">
+                                <strong>@lang('bodystyles'):</strong>
+                                <select name="bodystyle_id" class="form-control select2">
+                                  @foreach($bodystyles as $val)
+                                    <option value="{{ $val->id }}" data-logo="{{ $val->logo }}"> {{ $val->name }}<option>
+                                 @endforeach
+                                 </select>
+                             </div>
+                              <div class="form-group">
+                                <strong>@lang('segments'):</strong>
+                                <select name="segment_id" class="form-control select2">
+                                  @foreach($segments as $val)
+                                    <option value="{{ $val->id }}" data-logo="{{ $val->logo }}"> {{ $val->name }}<option>
+                                 @endforeach
+                                 </select>
                              </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

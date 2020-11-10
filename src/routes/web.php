@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::get('admin-panel/segments/destroy/{id}', 'SegmentController@destroy')->name('segments.deletebyid');
     //Cars
     Route::resource('admin-panel/cars', 'CarController');
+    Route::get('admin-panel/cars/destroy/{id}', 'CarController@destroy')->name('cars.deletebyid');
 
     //Upload
     Route::get('image-gallery', 'ImageGalleryController@index');

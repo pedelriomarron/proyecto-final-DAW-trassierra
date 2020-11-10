@@ -10,15 +10,13 @@ class Car extends Model
     protected $table = 'cars';
     public $timestamps = true;
 
-    protected $casts = [
-        'cost' => 'float'
-    ];
+    protected $casts = [];
 
     protected $fillable = [
         'name',
-        'introduction',
-        'created_at',
-        'location',
-        'cost'
+        'brand_id',
+        'segment_id',
+        'drive_id',
+        'bodystyle_id'
     ];
 }

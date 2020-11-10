@@ -14,10 +14,12 @@
     #sortable div a  img { width: 100vw;  height: 20vh;   }
   
     .close-icon{
- 
+         float:right
+
     }
     .order-icon{
-    	
+     float:right
+	
     }
     .form-image-upload{
         background: #e8e8e8 none repeat scroll 0 0;
@@ -70,19 +72,26 @@
     <div id="sortable" class='gallery row  my-5'>
             @if($images->count())
                 @foreach($images as $image)
-                <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3 my-3 border' id="{{ $image->id }}" >
+                <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3 my-3 border '  id="{{ $image->id }}" >
                     <a class="thumbnail fancybox" rel="ligthbox" href="{{ asset('uploads/gallery/') }}/{{ $image->image }}">
                         <img class="img-fluid" alt="" src="{{ asset('uploads/gallery/') }}/{{ $image->image }}" />
-                        <div class='text-center'>
+                       <!-- <div class='text-center'>
                             <small class='text-muted'>{{ $image->title }}</small>
-                        </div> <!-- text-center / end -->
+                        </div>  text-center / end -->
                     </a>
-                    <form action="{{ url('image-gallery',$image->id) }}" method="POST">
+                    <div style="background: #e8e8e8"  class="row">
+                    <div class="col">
+                    <form action="{{ url('image-gallery',$image->id) }}"  method="POST">
                         <input type="hidden" name="_method" value="delete">
                         {!! csrf_field() !!}
-                        <button type="submit" class="close-icon btn btn-danger"><i class="fas fa-times"></i></button>
-                        <button  class="order-icon btn btn-primary">{{ $image->order }}</button>
+                        <button type="submit" class="close-icon btn btn-danger m-1"><i class="fas fa-times"></i></button>
+                        <button  class="order-icon btn btn-primary m-1">{{ $image->order }}</button>
                     </form>
+                    
+                    </div>
+                 
+                    </div>
+                  
                 </div> <!-- col-6 / end -->
                 @endforeach
             @endif
@@ -136,6 +145,8 @@ document.getElementById('submitOrder').disabled = true
     location.reload()
   })
 }
+
+
 
   </script>
 
