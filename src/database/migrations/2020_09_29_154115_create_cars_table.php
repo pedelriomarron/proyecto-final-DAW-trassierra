@@ -35,59 +35,59 @@ class CreateCarsTable extends Migration
             $table->string('name');
 
 
-            $table->integer('range_city_cold');
-            $table->integer('range_city_mild');
-            $table->integer('range_highway_cold');
-            $table->integer('range_highway_mild');
-            $table->integer('range_combined_cold');
-            $table->integer('range_combined_mild');
+            $table->integer('range_city_cold')->nullable();
+            $table->integer('range_city_mild')->nullable();
+            $table->integer('range_highway_cold')->nullable();
+            $table->integer('range_highway_mild')->nullable();
+            $table->integer('range_combined_cold')->nullable();
+            $table->integer('range_combined_mild')->nullable();
 
 
-            $table->float('acceleration');
-            $table->integer('topspeed');
-            $table->integer('electricrange');
-            $table->integer('totalpower');
-            $table->integer('totaltorque');
+            $table->float('acceleration')->nullable();
+            $table->integer('topspeed')->nullable();
+            $table->integer('electricrange')->nullable();
+            $table->integer('totalpower')->nullable();
+            $table->integer('totaltorque')->nullable();
 
-            $table->integer('batterycapacity');
-            $table->integer('batteryuseable');
+            $table->integer('batterycapacity')->nullable();
+            $table->integer('batteryuseable')->nullable();
 
-            $table->integer('realrange');
-            $table->integer('realco2emissions');
-            $table->integer('realconsumption');
-            $table->integer('realfuelequivalent');
+            $table->integer('realrange')->nullable();
+            $table->integer('realco2emissions')->nullable();
+            $table->integer('realconsumption')->nullable();
+            $table->integer('realfuelequivalent')->nullable();
 
-            $table->integer('wltprange');
-            $table->integer('wltpco2emissions');
-            $table->integer('wltpconsumption');
-            $table->integer('wltpfuelequivalent');
+            $table->integer('wltprange')->nullable();
+            $table->integer('wltpco2emissions')->nullable();
+            $table->integer('wltpconsumption')->nullable();
+            $table->integer('wltpfuelequivalent')->nullable();
 
 
-            $table->integer('energy_city_cold');
-            $table->integer('energy_city_mild');
-            $table->integer('energy_highway_cold');
-            $table->integer('energy_highway_mild');
-            $table->integer('energy_combined_cold');
-            $table->integer('energy_combined_mild');
+            $table->integer('energy_city_cold')->nullable();
+            $table->integer('energy_city_mild')->nullable();
+            $table->integer('energy_highway_cold')->nullable();
+            $table->integer('energy_highway_mild')->nullable();
+            $table->integer('energy_combined_cold')->nullable();
+            $table->integer('energy_combined_mild')->nullable();
 
-            $table->integer('length');
-            $table->integer('width');
-            $table->integer('height');
-            $table->integer('wheelbase');
-            $table->integer('weightunladen');
-            $table->integer('gvwr');
+            $table->integer('length')->nullable();
+            $table->integer('width')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('wheelbase')->nullable();
+            $table->integer('weightunladen')->nullable();
+            $table->integer('gvwr')->nullable();
 
-            $table->integer('cargovolume');
-            $table->integer('cargovolumemax');
-            $table->integer('towingweightunbraked');
-            $table->integer('towingweightbraked');
-            $table->integer('roofload');
-            $table->integer('maxpayload');
+            $table->integer('cargovolume')->nullable();
+            $table->integer('cargovolumemax')->nullable();
+            $table->integer('towingweightunbraked')->nullable();
+            $table->integer('towingweightbraked')->nullable();
+            $table->integer('roofload')->nullable();
+            $table->integer('maxpayload')->nullable();
 
-            $table->integer('seat');
-            $table->integer('isofix');
-            $table->integer('turningcircle');
-            $table->boolean('roofrails');
+            $table->integer('seat')->nullable();
+            $table->integer('isofix')->nullable();
+            $table->integer('turningcircle')->nullable();
+            $table->boolean('roofrails')->nullable();
 
 
 

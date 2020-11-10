@@ -100,6 +100,11 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     //Cars
     Route::resource('admin-panel/cars', 'CarController');
 
+    //Upload
+    Route::get('image-gallery', 'ImageGalleryController@index');
+    Route::post('image-gallery', 'ImageGalleryController@upload');
+    Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
+
     //Ajax
     Route::get('/ajax_upload', 'AjaxUploadController@index');
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
