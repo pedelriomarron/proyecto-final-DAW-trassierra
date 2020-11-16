@@ -9,7 +9,7 @@
     <!-- Button Add  -->
     <div>
         <div class=" p-3 pt-4">
-            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> @lang('create-record')</button>
+            <a href="{{ route('cars.create') }}" type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> @lang('create-record')</a>
         </div>
     </div>
     <!-- Body Card  -->
@@ -29,48 +29,7 @@
     </div>
 </div>
 
-<!-- Modal Add/Edit  -->
-<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <!-- Title / Close  -->
-            <div class="modal-header border-bottom-1">
-                <h4 class="modal-title" id="title-modal-edit-create">@lang('create-record')</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-            </div>
-            <!-- Result Ajax -->
-            <span id="form_result"></span>
-            <!-- Form -->
-            <form method="post" id="sample_form" class="" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <div class="modal-body">
-                    <!-- Input Name-->
-                    <div class="form-group">
-                        <label for="name">@lang('car-name'):</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="@lang('car-name')">
-                        <!-- <small id="nameHelp" class="form-text text-muted">Your information is safe with us.</small> -->
-                    </div>
-                    <!-- Logo Input and Preview-->
-                    <div class="form-group">
-                        <label for="logo">@lang('car-logo'):</label>
-                        <div class="form-group text-center">
-                            <img id="logo_preview" class="img-responsive img-thumbnail" src="" style="max-height:250px;">
-                        </div>
-                        <input type="file" class="form-control-file" name="logo" id="logo">
-                    </div>
-                </div>
-                <!-- Hidden inputs-->
-                <div class="modal-footer border-top-0 d-flex justify-content-center">
-                    <input type="hidden" name="action" id="action" value="Add" />
-                    <input type="hidden" name="hidden_id" id="hidden_id" />
-                    <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" />
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 
 <!-- Modal delete-->
 <div id="confirmModal" class="modal fade" role="dialog">

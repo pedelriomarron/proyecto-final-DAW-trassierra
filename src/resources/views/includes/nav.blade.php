@@ -209,15 +209,3 @@
     </div>
 </nav>
 
-<audio autoplay="autoplay" controls="controls" loop="loop" id="vid">
-    <source src="https://server3.elgenero.com/dfiles/Wisin_y_Yandel_-_Algo_Me_Gusta_De_Ti_(Los_Lideres)(By_JGalvezFlow)_(WWW.ELGENERO.COM).mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-</audio>
-
-
-
-
-@lang('sentence.spanish')
-
-{{ str_replace('_', '-', app()->getLocale()) }}
-

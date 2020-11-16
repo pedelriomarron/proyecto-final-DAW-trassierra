@@ -47,6 +47,11 @@ Route::get('locale/{locale}', function ($locale) {
 
 
 
+Route::get('/cars', 'CarController@public_index')->name('car_public_index');
+
+
+
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('profile', 'UserController@profile')->name('profile');
@@ -110,13 +115,4 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     //Ajax
     Route::get('/ajax_upload', 'AjaxUploadController@index');
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
-    Route::get('admin-panel/clear-cache', function () {
-        $exitCode = Artisan::call('cache:clear');
-        $exitCode = Artisan::call('config:clear');
-        echo exec('php ../artisan log-viewer:check');
-        echo exec('php ../artisan log-viewer:clear');
-        Cache::flush();
-        //dd($exitCode);
-        //clear-compiled
-    });
 });

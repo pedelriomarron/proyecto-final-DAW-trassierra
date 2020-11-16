@@ -19,4 +19,16 @@ class Car extends Model
         'drive_id',
         'bodystyle_id'
     ];
+
+    public function getIMG()
+    {
+        try {
+            $image = ImageGallery::where('car_id', '=', $this->id)->orderBy('order', 'ASC')->first();
+
+
+            return $image->image;
+        } catch (\Throwable $th) {
+            return 'dd';
+        }
+    }
 }

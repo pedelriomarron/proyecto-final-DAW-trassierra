@@ -43,6 +43,11 @@ class PermissionTableSeeder extends Seeder
             'bodystyle-create',
             'bodystyle-edit',
             'bodystyle-delete',
+
+            'car-list',
+            'car-create',
+            'car-edit',
+            'car-delete',
         ];
 
         foreach ($permissions as $permission) {

@@ -46,7 +46,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>@lang('car-name'):</strong>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ old('name', $car->name) }}">
                             </div>
                             <div class="form-group">
                                 <strong>@lang('brand'):</strong>
@@ -93,7 +93,7 @@
     </div>
 </div>
 
-
+ @if (isset($car->id))
 <div class="card shadow mb-4">
     <!-- Title Card  -->
     <div class="card-header py-3">
@@ -107,12 +107,15 @@
     </div>
      -->
     <!-- Body Card  -->
-    <div class="card-body">
+   
+  <div class="card-body">
          <div class="">
          @include('admin.gallery.index')
-            </div>   
+        </div>   
     </div>
+  
 </div>
+@endif
 
 @endsection
 

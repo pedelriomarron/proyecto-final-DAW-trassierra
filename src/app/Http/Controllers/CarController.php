@@ -10,9 +10,23 @@ use App\Models\Bodystyle;
 use App\Models\Segment;
 use Illuminate\Http\Request;
 use DataTables;
+use URL;
+use Illuminate\Support\Facades\Lang;
+use Route;
+
+
 
 class CarController extends Controller
 {
+
+    public function public_index()
+    {
+        $cars = Car::all();
+
+        return view('cars.index', ['cars' => $cars]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -20,14 +34,18 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
             $data = Car::latest()->get();
+
+
+
 
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $button = '';
                     if (\Auth::user()->can('car-edit')) {
-                        $button .= '<button type="button" name="edit" id="' . $data->id . '" class="edit btn btn-primary btn-sm">' . Lang::get('edit') . '</button>';
+                        $button .= '<a href="' . route('cars.edit', ['car' => $data->id]) . '" type="button" name="edit" id="' . $data->id . '" class="edit btn btn-primary btn-sm">' . Lang::get('edit') . '</a>';
                     }
                     if (\Auth::user()->can('car-delete')) {
                         $button .= '&nbsp;&nbsp;&nbsp;<button type="button" name="edit" id="' . $data->id . '" class="delete btn btn-danger btn-sm">' . Lang::get('delete') . '</button>';
@@ -55,8 +73,12 @@ class CarController extends Controller
         $bodystyles = Bodystyle::select('id', 'name', 'logo')->get();
         $segments = Segment::select('id', 'name', 'logo')->get();
         $drives = Drive::select('id', 'name', 'logo')->get();
+        $car = new Car;
+        $action = URL::route('cars.store');
 
-        return view('admin.cars.create', ['brands' => $brands, 'images' => $images, 'drives' => $drives, 'segments' => $segments, 'bodystyles' => $bodystyles]);
+
+
+        return view('admin.cars.create', ['brands' => $brands, 'images' => $images, 'drives' => $drives, 'segments' => $segments, 'bodystyles' => $bodystyles, "car" => $car, "action" => $action]);
     }
 
     /**
@@ -113,7 +135,20 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        return view('admin.cars.edit', compact('car'));
+
+
+
+        //$brands = Brand::pluck('name', 'id', 'logo')->toArray();;
+        //$brands = Brand::selectRaw("CONCAT ('name', 'logo') as columns, id")->pluck('columns', 'id');
+        $brands = Brand::select('id', 'name', 'logo')->get();
+        $images = ImageGallery::where('car_id', '=', $car->id)->orderBy('order')->get();
+        $bodystyles = Bodystyle::select('id', 'name', 'logo')->get();
+        $segments = Segment::select('id', 'name', 'logo')->get();
+        $drives = Drive::select('id', 'name', 'logo')->get();
+        $action = URL::route('cars.store');
+
+
+        return view('admin.cars.create', ['car' => $car, 'brands' => $brands, 'images' => $images, 'drives' => $drives, 'segments' => $segments, 'bodystyles' => $bodystyles, "car" => $car, "action" => $action]);
     }
     /**
      * Update the specified resource in storage.

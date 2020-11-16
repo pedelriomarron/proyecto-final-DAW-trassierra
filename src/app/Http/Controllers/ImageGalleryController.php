@@ -19,8 +19,8 @@ class ImageGalleryController extends Controller
      */
     public function index()
     {
-        $images = ImageGallery::orderBy('order')->get();
-        return view('image-gallery', compact('images'));
+        //  $images = ImageGallery::orderBy('order')->get();
+        //return view('image-gallery', compact('images'));
     }
 
 
