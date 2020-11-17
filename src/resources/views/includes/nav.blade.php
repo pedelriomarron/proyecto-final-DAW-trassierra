@@ -135,15 +135,15 @@
 
 -->
 
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('img/logo_white.svg/') }}" width="50vw" alt="Logo"> Vehiculos Electricos
+            <img src="{{ asset('img/logo_white.svg/') }}" width="50vw" alt="Logo"> Vehículos Eléctricos
         </a>
         @include('includes.toogleDarkMode')
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
@@ -153,7 +153,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('car_public_index') }}">{{ __('cars') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact') }}">{{ __('contact') }}</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -170,7 +175,9 @@
                 @endif
                 @else
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Administrar</a>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        Administrar</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('users.index') }}">Administrar Usuarios</a>
                         <a class="dropdown-item" href="{{ route('roles.index') }}">Administrar Roles</a>
@@ -180,8 +187,11 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position: relative;padding-left:50px">
-                        <img src="{{ asset('uploads/avatars/'.Auth::user()->avatar.'') }}" style="width: 2rem; height:2rem;border-radius:50%;position:absolute; top:10px;left:10px">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                        style="position: relative;padding-left:50px">
+                        <img src="{{ asset('uploads/avatars/'.Auth::user()->avatar.'') }}"
+                            style="width: 2rem; height:2rem;border-radius:50%;position:absolute; top:10px;left:10px">
                         {{ Auth::user()->name }}
                     </a>
 
@@ -200,12 +210,34 @@
                 @endguest
 
                 <li class="nav-item">
-                    <language-switcher locale="{{ app()->getLocale() }}" link-en="{{ route('locale', ['locale' => 'en']) }}" link-es="{{ route('locale', ['locale' => 'es']) }}" flag="{{ asset('img/flags/')}}"></language-switcher>
+                    <language-switcher locale="{{ app()->getLocale() }}"
+                        link-en="{{ route('locale', ['locale' => 'en']) }}"
+                        link-es="{{ route('locale', ['locale' => 'es']) }}" flag="{{ asset('img/flags/')}}">
+                    </language-switcher>
                 </li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
+                    <defs>
+                        <style>
+                            .a {
+                                fill: none;
+                                stroke: #000;
+                                stroke-linecap: round;
+                                stroke-linejoin: round;
+                            }
 
-
+                        </style>
+                    </defs>
+                    <path class="a"
+                        d="M.789,7.867a.29.29,0,0,0-.209.089.293.293,0,0,0-.08.212,4.742,4.742,0,0,0,4.907,4.9c3.033,0,6.359-2.458,6.359-5.491,1.527.289,1.734-.867,1.734-.867a1.316,1.316,0,0,0-1.879-.723c.289-1.445-1.3-2.167-1.3-2.167a2.512,2.512,0,0,0,0,2.6s.289,1.445-.867,1.445Z" />
+                    <circle class="a" cx="4.251" cy="9.89" r="0.289" />
+                    <rect class="a" x="1.506" y="5.555" width="2.312" height="2.312" />
+                    <rect class="a" x="3.818" y="5.555" width="2.312" height="2.312" />
+                    <rect class="a" x="6.13" y="5.555" width="2.312" height="2.312" />
+                    <rect class="a" x="3.818" y="3.243" width="2.312" height="2.312" />
+                    <rect class="a" x="3.818" y="0.931" width="2.312" height="2.312" />
+                    <rect class="a" x="6.13" y="3.243" width="2.312" height="2.312" />
+                </svg>
             </ul>
         </div>
     </div>
 </nav>
-

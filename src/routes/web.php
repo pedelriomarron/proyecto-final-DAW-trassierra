@@ -22,15 +22,17 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/test', function () {
+    return view('test');
 });
 
+Route::get('/', 'CarController@public_index')->name('car_public_index');
+
+// Contacto
 Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
 
-Route::resource('cars', 'CarController');
-//Route::resource('brands', 'BrandController');
+//Route::resource('cars', 'CarController');
 
 
 Auth::routes(['verify' => true]);
@@ -39,7 +41,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/private', 'PrivateController@index')->name('private');
 
-
+// Idioma
 Route::get('locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return redirect()->back();
@@ -63,8 +65,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::put('/themes', function (Request $request) {
     $theme = "light";

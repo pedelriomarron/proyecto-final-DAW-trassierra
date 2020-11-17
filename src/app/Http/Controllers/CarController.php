@@ -22,12 +22,12 @@ class CarController extends Controller
     public function public_index()
     {
         $cars = Car::all();
-
         return view('cars.index', ['cars' => $cars]);
     }
 
 
     /**
+     *! TODO: ksksk
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
