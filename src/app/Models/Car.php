@@ -28,7 +28,26 @@ class Car extends Model
 
             return $image->image;
         } catch (\Throwable $th) {
-            return 'dd';
+            return 'default.png';
         }
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\Brand', 'brand_id');
+    }
+
+    public function segment()
+    {
+        return $this->belongsTo('App\Models\Segment', 'segment_id');
+    }
+
+    public function bodystyle()
+    {
+        return $this->belongsTo('App\Models\Bodystyle', 'bodystyle_id');
+    }
+    public function drive()
+    {
+        return $this->belongsTo('App\Models\Drive', 'drive_id');
     }
 }

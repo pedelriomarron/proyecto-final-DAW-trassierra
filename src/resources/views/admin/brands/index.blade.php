@@ -9,7 +9,8 @@
     <!-- Button Add  -->
     <div>
         <div class=" p-3 pt-4">
-            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> @lang('create-record')</button>
+            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i
+                    class="fas fa-plus"></i> @lang('create-record')</button>
         </div>
     </div>
     <!-- Body Card  -->
@@ -32,7 +33,8 @@
 </div>
 
 <!-- Modal Add/Edit  -->
-<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <!-- Title / Close  -->
@@ -51,20 +53,23 @@
                     <!-- Input Name-->
                     <div class="form-group">
                         <label for="name">@lang('brand-name'):</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="@lang('brand-name')">
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp"
+                            placeholder="@lang('brand-name')">
                         <!-- <small id="nameHelp" class="form-text text-muted">Your information is safe with us.</small> -->
                     </div>
-                      <!-- Input Slug-->
+                    <!-- Input Slug-->
                     <div class="form-group">
                         <label for="slug">@lang('brand-slug'):</label>
-                        <input type="text" class="form-control" id="slug" name="slug" aria-describedby="slugHelp" placeholder="@lang('brand-slug')">
+                        <input type="text" class="form-control" id="slug" name="slug" aria-describedby="slugHelp"
+                            placeholder="@lang('brand-slug')">
                         <!-- <small id="nameHelp" class="form-text text-muted">Your information is safe with us.</small> -->
                     </div>
                     <!-- Logo Input and Preview-->
                     <div class="form-group">
                         <label for="logo">@lang('brand-logo'):</label>
                         <div class="form-group text-center">
-                            <img id="logo_preview" class="img-responsive img-thumbnail" src="" style="max-height:250px;">
+                            <img id="logo_preview" class="img-responsive img-thumbnail" src=""
+                                style="max-height:250px;">
                         </div>
                         <input type="file" class="form-control-file" name="logo" id="logo">
                     </div>
@@ -106,7 +111,7 @@
 <!-- Scripts  -->
 @push('scripts')
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Datables ajax 
         $('.datatable-brand').DataTable({
             processing: true,
@@ -127,7 +132,7 @@
                     data: 'name',
                     name: 'name'
                 },
-                 {
+                {
                     data: 'slug',
                     name: 'slug'
                 },
@@ -141,7 +146,7 @@
                 // Add img to table
                 {
                     targets: 1,
-                    render: function(a, b, row) {
+                    render: function (a, b, row) {
                         let img = "{{ asset('uploads/brands/') }}" + "/" + row.logo
                         return '<img class="img-fluid" width="100vw" src="' + img + '">'
                     }
@@ -150,7 +155,7 @@
         });
 
         // Click Create new record
-        $('#create_record').click(function() {
+        $('#create_record').click(function () {
             $('#title-modal-edit-create').text("@lang('create-record')");
             $('#action_button').val('Add');
             $('#action').val('Add');
@@ -160,7 +165,7 @@
         });
 
         // Submit form
-        $('#sample_form').on('submit', function(event) {
+        $('#sample_form').on('submit', function (event) {
             event.preventDefault();
             var action_url = '';
 
@@ -180,7 +185,7 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     var html = '';
                     if (data.errors) {
                         html = '<div class="alert alert-danger">';
@@ -190,7 +195,8 @@
                         html += '</div>';
                     }
                     if (data.success) {
-                        html = '<div class="alert alert-success">' + data.success + '</div>';
+                        html = '<div class="alert alert-success">' + data.success +
+                        '</div>';
                         $('#sample_form')[0].reset();
                         $('.datatable-brand').DataTable().ajax.reload();
                         $('#formModal').modal('toggle');
@@ -201,7 +207,7 @@
         });
 
         // Click Edit 
-        $(document).on('click', '.edit', function() {
+        $(document).on('click', '.edit', function () {
             var id = $(this).attr('id');
             $('#form_result').html('');
             var url = '{{ route("brands.edit", ":id") }}';
@@ -209,10 +215,11 @@
             $.ajax({
                 url: url,
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
                     $('#name').val(data.result.name);
                     $('#slug').val(data.result.slug);
-                    $("#logo_preview").attr("src", "{{ asset('uploads/brands/') }}" + '/' + data.result.logo);
+                    $("#logo_preview").attr("src", "{{ asset('uploads/brands/') }}" + '/' +
+                        data.result.logo);
                     $('#hidden_id').val(id);
                     $('#title-modal-edit-create').text("@lang('edit-record')");
                     $('#action_button').val('Edit');
@@ -224,22 +231,22 @@
 
         var user_id;
         // Click Delete
-        $(document).on('click', '.delete', function() {
+        $(document).on('click', '.delete', function () {
             user_id = $(this).attr('id');
             $('#confirmModal').modal('show');
         });
 
         // click ok delete
-        $('#ok_button').click(function() {
+        $('#ok_button').click(function () {
             var url = '{{ route("brands.deletebyid", ":id") }}';
             url = url.replace(':id', user_id);
             $.ajax({
                 url: url,
-                beforeSend: function() {
+                beforeSend: function () {
                     $('#ok_button').text("@lang('deleting')");
                 },
-                success: function(data) {
-                    setTimeout(function() {
+                success: function (data) {
+                    setTimeout(function () {
                         $('#confirmModal').modal('hide');
                         $('.datatable-brand').DataTable().ajax.reload();
                         $('#ok_button').text("@lang('ok')");
@@ -255,5 +262,6 @@
 
 
     });
+
 </script>
 @endpush

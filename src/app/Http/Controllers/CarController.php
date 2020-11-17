@@ -21,13 +21,21 @@ class CarController extends Controller
 
     public function public_index()
     {
+        $brands = Brand::select('id', 'name')->get();
+        $bodystyles = Bodystyle::select('id', 'name')->get();
+        $segments = Segment::select('id', 'name', 'letter')->get();
+        $drives = Drive::select('id', 'name')->get();
+
+
+
+
         $cars = Car::all();
-        return view('cars.index', ['cars' => $cars]);
+        return view('cars.index', ['cars' => $cars, 'brands' => $brands, 'bodystyles' => $bodystyles, "segments" => $segments, "drives" => $drives]);
     }
 
 
     /**
-     *! TODO: ksksk
+     *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

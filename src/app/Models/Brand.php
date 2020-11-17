@@ -15,4 +15,9 @@ class Brand extends Model
     protected $fillable = [
         'name', 'logo', 'slug'
     ];
+
+    public function cars()
+    {
+        return $this->hasMany('App\Models\Car');
+    }
 }

@@ -15,4 +15,9 @@ class Bodystyle extends Model
     protected $fillable = [
         'name', 'logo'
     ];
+
+    public function cars()
+    {
+        return $this->hasMany('App\Models\Car');
+    }
 }

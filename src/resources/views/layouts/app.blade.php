@@ -3,6 +3,7 @@
 
 <head>
     @include('includes.head')
+    @stack('styles')
 </head>
 
 <body>
@@ -13,7 +14,9 @@
         </main>
         @include('includes.footer')
     </div>
-    @include('includes.scripts')
+    @include('admin_includes.scripts')
+    @stack('scripts')
+
 </body>
 
 </html>

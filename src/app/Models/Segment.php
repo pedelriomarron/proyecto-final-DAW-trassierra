@@ -15,4 +15,9 @@ class Segment extends Model
     protected $fillable = [
         'name', 'logo', 'letter'
     ];
+
+    public function cars()
+    {
+        return $this->hasMany('App\Models\Car');
+    }
 }
