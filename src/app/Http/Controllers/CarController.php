@@ -169,11 +169,18 @@ class CarController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'brand_id' => 'required',
+            'segment_id' => 'required',
+            'drive_id' => 'required',
+            'bodystyle_id' => 'required'
         ]);
+
+
+
         $car->update($request->all());
 
-        return redirect()->route('cars.index')
-            ->with('success', 'Car updated successfully');
+
+        return redirect()->back()->with('success', 'Car updated successfully');
     }
     /**
      * Remove the specified resource from storage.

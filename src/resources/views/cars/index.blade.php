@@ -3,7 +3,6 @@
 @section('content')
 @push('scripts')
 <!-- ESTILOS -->
-<link href="https://ev-database.org/css/dynamic/style.css?u=si&l=si&p=index&v=4.2.6" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- PAra el select con dropwdonw-->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -31,15 +30,22 @@
                         </div>
 
                         <div class="sort-reset">
-                            <!-- sort dropdown 
+
                             <div class="jplist-drop-down" data-control-type="sort-drop-down" data-control-name="sort"
                                 data-control-action="sort">
 
                                 <ul>
+                                    <!-- sort dropdown 
                                     <li><span data-path=".rank" data-order="desc" data-type="number">Most Viewed</span>
                                     </li>
-                                    <li><span data-path=".title" data-order="asc" data-type="text">Alphabetic</span>
+                                    -->
+                                    <li><span data-path=".title" data-order="asc" data-type="text">Alphabetic
+                                            (a-z)</span>
                                     </li>
+                                    <li><span data-path=".title" data-order="desc" data-type="text">Alphabetic
+                                            (z-a)</span>
+                                    </li>
+                                    <!--
                                     <li><span data-path=".price" data-order="asc" data-type="number">Price
                                             Low-High</span></li>
                                     <li><span data-path=".price" data-order="desc" data-type="number">Price
@@ -50,16 +56,17 @@
                                             data-type="number">Efficiency</span></li>
                                     <li><span data-path=".fastcharge_speed" data-order="desc"
                                             data-type="number">Fastcharging</span></li>
+                                            -->
                                     <li><span data-path=".acceleration" data-order="asc"
                                             data-type="number">Acceleration</span>
                                     </li>
-
+                                    <!--
                                     <li><span data-path=".date_from" data-order="desc" data-type="number">Date
                                             Available</span>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
--->
+
                             <!-- reset button -->
                             <button type="button" class="jplist-reset-btn" data-control-type="reset"
                                 data-control-name="reset" data-control-action="reset">
@@ -79,7 +86,7 @@
                                 <!-- make dropdown -->
                                 <div class="jplist-checkbox-dropdown" data-control-type="checkbox-dropdown"
                                     data-control-name="make-checkbox-dropdown" data-control-action="filter"
-                                    data-no-selected-text="Make" data-one-item-text="{selected}"
+                                    data-no-selected-text="Brand" data-one-item-text="{selected}"
                                     data-many-items-text="{num} selected">
                                     <ul>
                                         @foreach ( $brands as $brand )
@@ -322,21 +329,29 @@
 
                             </div>
 
-                            <!-- first slider row 
+
                             <div class="first-slider-row">
 
                                 <div class="jplist-range-slider" data-control-type="range-slider"
-                                    data-control-name="range-slider-range" data-control-action="filter"
-                                    data-path=".erange_real" data-slider-func="rangeSlider"
-                                    data-setvalues-func="rangeValues">
-                                    <label for="range-slider-range">Range: <span data-type="prev-value"></span> - <span
+                                    data-control-name="range-slider-acceleration" data-control-action="filter"
+                                    data-path=".acceleration" data-slider-func="accelerationSlider"
+                                    data-setvalues-func="accelerationValues">
+                                    <label for="range-slider-acceleration">Acceleration: <span
+                                            data-type="prev-value"></span> - <span
                                             data-type="next-value"></span></label>
                                     <div class="ui-slider" data-type="ui-slider"></div>
                                 </div>
-
+                                <div class="jplist-range-slider" data-control-type="range-slider"
+                                    data-control-name="range-slider-topspeed" data-control-action="filter"
+                                    data-path=".topspeed" data-slider-func="topspeedSlider"
+                                    data-setvalues-func="topspeedValues">
+                                    <label for="range-slider-topspeed">Top Speed: <span data-type="prev-value"></span> -
+                                        <span data-type="next-value"></span></label>
+                                    <div class="ui-slider" data-type="ui-slider"></div>
+                                </div>
 
                             </div>
-
+                            <!-- first slider row 
                             
                             <div class="second-slider-row">
 
@@ -363,56 +378,59 @@
                             <div class="data-wrapper">
                                 <!-- img -->
                                 <div class="img">
-                                    <a href=https://ev-database.org/car/1127/Volkswagen-ID3-Pure> <img width="224"
-                                        height="126" src="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
-                                        data-src-retina="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
-                                        data-src="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
-                                        alt="{{$car->name}}" /></a>
+                                    <a href=""> <img width="224" height="126"
+                                            src="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
+                                            data-src-retina="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
+                                            data-src="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
+                                            alt="{{$car->name}}" /></a>
                                 </div>
 
                                 <!-- item-data -->
                                 <div class="title-wrap">
-                                    <h2><a href="/car/1127/Volkswagen-ID3-Pure" class="title"><span
+                                    <h2><a href="" class="title"><span
                                                 class="brand-{{$car->brand->id}}">{{$car->brand->name}}
                                             </span><span class="model">{{$car->name}}</span></a>
                                     </h2><span class="date_from hidden">1606777200</span><span
                                         class="rank hidden">7673</span>
-                                    <span class="not-current">(coming soon)</span>
+                                    <!--<span class="not-current">(coming soon)</span>-->
                                     <div class="subtitle">
-                                        Battery Electric Vehicle - <span class="battery">48</span> kWh *
+                                        <!--    Battery Electric Vehicle - <span class="battery">48</span> kWh *-->
                                     </div>
 
                                 </div>
 
                                 <div class="icons">
+                                    <!-- 
                                     <span title="Rapid charging possible" class="fastcharge_ja fa fa-bolt"></span><span
                                         title="Rear Wheel Drive">
                                         <span class="drive-{{$car->drive->id}} fa fa-circle-o"
                                             style="padding-left: 10px; margin-right: -3px;"></span>
                                         <span class="drive-{{$car->drive->id}} fa fa-circle"></span>
-                                    </span>
-                                    <span title="plug-type2-ccs" class="plug-type2-ccs hidden">Type 2 CCS</span>
+                                    </span>-->
+                                    <!-- 
+                                    <span title="plug-type2-ccs" class="plug-type2-ccs hidden">Type 2 CCS</span>-->
                                     <span class="bodystyle-{{$car->bodystyle->id}}
                                         hidden">{{$car->bodystyle->name}}</span>
                                     <span title="Market Segment" class="segment-{{$car->segment->id}}"
                                         style="padding-left: 10px;">{{$car->segment->letter}}
                                     </span>
-                                    <span title="Number of seats" class="seats-{{$car->seat}} fa fa-user" style="padding-left:
-                                        10px;">{{$car->seat}}
+                                    <span style="padding-left: 10px;" title="Number of seats"
+                                        class="seats-{{$car->seat}} fa fa-user"> {{$car->seat}}
                                     </span>
                                 </div>
 
                                 <div class="specs">
+
                                     <p class="left">
                                         <span class="tag">0 - 100*</span>
-                                        <span class="acceleration">10.0 sec</span>
+                                        <span class="acceleration">{{$car->acceleration}} sec</span>
                                     </p>
 
                                     <p class="left">
                                         <span class="tag">Top Speed</span>
-                                        <span class="topspeed">160 km/h</span>
+                                        <span class="topspeed">{{$car->topspeed}} km/h</span>
                                     </p>
-
+                                    <!-- 
                                     <p class="left">
                                         <span class="tag">Range*</span>
                                         <span class="erange_real">280 km</span>
@@ -428,6 +446,7 @@
                                         <span class="fastcharge_speed_print">260 km/h</span>
                                         <span class="fastcharge_speed hidden">260</span>
                                     </p>
+                                    -->
                                 </div>
                                 <!-- 
 
@@ -463,10 +482,9 @@
 
                     <!-- no-results -->
                     <div class="jplist-no-results align-center">
-                        <p>No results, adjust the search parameters or click 'Reset'.</p>
-                        <p>Looking for discontinued vehicles?<br /><a
-                                href="/compare/second-hand-used-electric-vehicle-archive">Click here to go to the
-                                archive.</a>
+                        <p>No results</p>
+                        <p><br /><a href="">
+                                .</a>
                         </p>
                     </div>
 
@@ -476,7 +494,7 @@
                     <div class="jplist-panel panel-bottom">
 
                         <div class="pagination-wrapper">
-                            <div class="jplist-label" data-type="Page {current} of {pages}"
+                            <div class="jplist-label" data-type="Pagina {current} de {pages}"
                                 data-control-type="pagination-info" data-control-name="paging"
                                 data-control-action="paging">
                             </div>
@@ -486,7 +504,7 @@
                                 data-range="5" data-control-animate-to-top="true">
                             </div>
 
-                            <div class="jplist-label" data-type="{start} - {end} of {all}"
+                            <div class="jplist-label" data-type="{start} - {end} de {all}"
                                 data-control-type="pagination-info" data-control-name="paging"
                                 data-control-action="paging">
                             </div>
@@ -497,10 +515,10 @@
                                 data-control-name="paging" data-control-action="paging">
 
                                 <ul>
-                                    <li><span data-number="3">3 per page</span></li>
-                                    <li><span data-number="6">6 per page</span></li>
-                                    <li><span data-number="9" data-default="true">9 per page</span></li>
-                                    <li><span data-number="all">view all</span></li>
+                                    <li><span data-number="3">3 por pagina</span></li>
+                                    <li><span data-number="6">6 por pagina</span></li>
+                                    <li><span data-number="9" data-default="true">9 por pagina</span></li>
+                                    <li><span data-number="all">ver todo</span></li>
                                 </ul>
                             </div>
                         </div>

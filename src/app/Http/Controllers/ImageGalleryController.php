@@ -35,6 +35,7 @@ class ImageGalleryController extends Controller
             'title' => 'required',
             'image' => 'required',
             'image.*' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'car_id' => 'required'
         ]);
 
 
@@ -54,7 +55,7 @@ class ImageGalleryController extends Controller
                 'title' => $request->title,
                 'image' => $img,
                 //     'order' => 1,
-                'car_id' => 1
+                'car_id' => $request->car_id
             ]);
         }
         //$input['title'] = $request->title;
