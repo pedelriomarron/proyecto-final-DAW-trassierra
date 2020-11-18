@@ -46,14 +46,15 @@
                 <strong>{{ $message }}</strong>
             </div>
             @endif
+
             <form action="
-            @if (request()->route()->parameters !== null)
-   {{route('cars.update',['car'=> request()->car->id])}}
-@else
-   {{route('cars.store')}}
-@endif" method="POST">
+            @if (request()->route()->getName() !== 'cars.create')
+             {{route('cars.update',['car'=> request()->car->id])}}
+                @else
+            {{route('cars.store')}}
+            @endif" method="POST">
                 {{--  @if (request()->route()->parameters != null) route('cars.update') @else route('cars.store') @endif --}}
-                @if (request()->route()->parameters !== null)
+                @if (request()->route()->getName() !== 'cars.create')
                 @method('PUT')
                 @else
                 @endif
@@ -70,7 +71,8 @@
                             {{--   {!! Form::select('brand', $brands, null, ['class' => 'form-control select2 ', ]) !!} --}}
                             <select name="brand_id" class="form-control select2">
                                 @foreach($brands as $val)
-                                <option @if($car->brand->id == $val->id) selected="selected" @endif
+                                <option @if (request()->route()->getName() !== 'cars.create')@if($car->brand->id ==
+                                    $val->id) selected="selected" @endif @endif
                                     value="{{ $val->id }}"
                                     data-logo="{{ $val->logo }}">
                                     {{ $val->name }}</option>
@@ -82,7 +84,8 @@
                             <strong>@lang('drive'):</strong>
                             <select name="drive_id" class="form-control select2">
                                 @foreach($drives as $val)
-                                <option @if($car->drive->id == $val->id) selected="selected" @endif
+                                <option @if (request()->route()->getName() !== 'cars.create') @if($car->drive->id ==
+                                    $val->id) selected="selected" @endif @endif
                                     value="{{ $val->id }}"
                                     data-logo="{{ $val->logo }}"> {{ $val->name }}
                                 </option>
@@ -93,7 +96,8 @@
                             <strong>@lang('bodystyles'):</strong>
                             <select name="bodystyle_id" class="form-control select2">
                                 @foreach($bodystyles as $val)
-                                <option @if($car->bodystyle->id == $val->id) selected="selected" @endif
+                                <option @if (request()->route()->getName() !== 'cars.create') @if($car->bodystyle->id ==
+                                    $val->id) selected="selected" @endif @endif
                                     value="{{ $val->id }}"
                                     data-logo="{{ $val->logo }}"> {{ $val->name }}
                                 </option>
@@ -104,7 +108,8 @@
                             <strong>@lang('segments'):</strong>
                             <select name="segment_id" class="form-control select2">
                                 @foreach($segments as $val)
-                                <option @if($car->segment->id == $val->id) selected="selected" @endif
+                                <option @if (request()->route()->getName() !== 'cars.create') @if($car->segment->id ==
+                                    $val->id) selected="selected" @endif @endif
                                     value="{{ $val->id }}"
                                     data-logo="{{ $val->logo }}"> {{ $val->name }}
                                 </option>

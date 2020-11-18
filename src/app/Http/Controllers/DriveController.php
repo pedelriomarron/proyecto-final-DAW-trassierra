@@ -20,7 +20,6 @@ class DriveController extends Controller
     {
         if ($request->ajax()) {
             $data = Drive::latest()->get();
-            dd($data);
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $button = '';

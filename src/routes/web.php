@@ -37,7 +37,6 @@ Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/private', 'PrivateController@index')->name('private');
 
@@ -51,6 +50,7 @@ Route::get('locale/{locale}', function ($locale) {
 
 Route::get('/cars', 'CarController@public_index')->name('car_public_index');
 
+Route::get('/home', 'CarController@public_index')->name('home');
 
 
 
