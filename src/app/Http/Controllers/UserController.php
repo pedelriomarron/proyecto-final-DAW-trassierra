@@ -12,7 +12,6 @@ use Illuminate\Support\Arr;
 use Auth;
 use Image;
 use DataTables;
-use Illuminate\Support\Facades\Lang;
 
 
 class UserController extends Controller
@@ -47,12 +46,13 @@ class UserController extends Controller
 */
 
 
-                    if (\Auth::user()->can('user-edit')) {
-                        $button .= '<a class="btn btn-primary  btn-sm" href="' . route('users.edit', array('user' => $data->id)) . '">Edit</a>';
+                    if (\Auth::user()->can('brand-edit')) {
+                        $button .= '<a class="btn btn-primary" href="' . route('users.edit', array('user' => $data->id)) . '">Edit</a>';
                     }
 
-                    if (\Auth::user()->can('user-delete')) {
-                        $button .= '&nbsp;&nbsp;&nbsp;<button type="button" name="edit" id="' . $data->id . '" class="delete btn btn-danger btn-sm">' . Lang::get('delete') . '</button>';
+
+                    if (\Auth::user()->can('brand-delete')) {
+                        $button .= '<a class="btn btn-primary" href="' . route('users.edit', array('user' => $data->id)) . '">Edit</a>';
                     }
 
                     return $button;
