@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 
 @section('content')
@@ -50,7 +50,8 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Confirm Password:</strong>
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control'))
+            !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
