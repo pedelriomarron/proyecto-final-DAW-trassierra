@@ -3,3 +3,5 @@ php artisan db:seed --class=PermissionTableSeeder
  php artisan db:seed --class=CreateAdminUserSeeder
 
  php artisan translator:update
+
+ php artisan command:init

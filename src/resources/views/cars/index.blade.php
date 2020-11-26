@@ -430,7 +430,7 @@
                                         <span class="tag">Top Speed</span>
                                         <span class="topspeed">{{$car->topspeed}} km/h</span>
                                     </p>
-                                    <!-- 
+
                                     <p class="left">
                                         <span class="tag">Range*</span>
                                         <span class="erange_real">280 km</span>
@@ -446,7 +446,7 @@
                                         <span class="fastcharge_speed_print">260 km/h</span>
                                         <span class="fastcharge_speed hidden">260</span>
                                     </p>
-                                    -->
+
                                 </div>
                                 <!-- 
 

@@ -133,12 +133,13 @@
                         <div class="form-group">
                             <strong>@lang('acceleration'):</strong>
                             <input class="form-control" type="number"
-                                value="{{ old('acceleration', $car->acceleration) }}" id="acceleration"
-                                name="acceleration">
+                                value="{{  old('acceleration',  empty($car->acceleration) ? 0 : $car->acceleration ) }}"
+                                id="acceleration" name="acceleration">
                         </div>
                         <div class="form-group">
                             <strong>@lang('topspeed'):</strong>
-                            <input class="form-control" type="number" value="{{ old('topspeed', $car->topspeed) }}"
+                            <input class="form-control" type="number"
+                                value="{{  old('topspeed',  empty($car->topspeed) ? 0 : $car->topspeed ) }}"
                                 id="topspeed" name="topspeed">
                         </div>
 
