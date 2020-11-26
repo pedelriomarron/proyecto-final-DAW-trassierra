@@ -161,7 +161,17 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto" style="">
+
+              <li  style="" class="nav-item">
+                <div style="padding-top:4px">
+                 <language-switcher locale="{{ app()->getLocale() }}"
+                        link-en="{{ route('locale', ['locale' => 'en']) }}"
+                        link-es="{{ route('locale', ['locale' => 'es']) }}" flag="{{ asset('img/flags/')}}">
+                    </language-switcher>
+                </div>
+                   
+                </li>
                 <!-- Authentication Links -->
                 @guest
                 <li class="nav-item">
@@ -173,7 +183,8 @@
                 </li>
                 @endif
                 @else
-                @if( Auth::user()->roles()->where('name', 'Admin')->exists())
+                @if( Auth::user())
+                <!--
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -182,19 +193,26 @@
                         <a class="dropdown-item" href="{{ route('admin') }}">Panel de Administracion</a>
                     </div>
                 </li>
+                -->
                 @endif
 
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
-                        style="position: relative;padding-left:50px">
-                        <img src="{{ asset('uploads/avatars/'.Auth::user()->avatar.'') }}"
-                            style="width: 2rem; height:2rem;border-radius:50%;position:absolute; top:10px;left:10px">
+                        style="padding-top:5px">
+                     
                         {{ Auth::user()->name }}
+                           <img class="border border-dark" src="{{ asset('uploads/avatars/'.Auth::user()->avatar.'') }}"
+                            style="width: 2rem; height:2rem;border-radius:50%;">
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        
+                                                                        <a class="dropdown-item" href="{{ route('admin') }}">{{ __('Panel de Administracion') }}</a>
+
                         <a class="dropdown-item" href="{{ route('profile') }}">{{ __('Profile') }}</a>
+
+                       
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
@@ -207,12 +225,7 @@
                 </li>
                 @endguest
 
-                <li class="nav-item">
-                    <language-switcher locale="{{ app()->getLocale() }}"
-                        link-en="{{ route('locale', ['locale' => 'en']) }}"
-                        link-es="{{ route('locale', ['locale' => 'es']) }}" flag="{{ asset('img/flags/')}}">
-                    </language-switcher>
-                </li>
+              
 
             </ul>
         </div>

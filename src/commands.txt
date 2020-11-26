@@ -5,3 +5,5 @@ php artisan db:seed --class=PermissionTableSeeder
  php artisan translator:update
 
  php artisan command:init
+
+  @if( Auth::user()->roles()->where('name', 'Admin')->exists())

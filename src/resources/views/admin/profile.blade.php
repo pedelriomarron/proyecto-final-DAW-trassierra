@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="form-group text-center">
                 <img style="width: 10rem; height: 10rem; border-radius:50%; margin-right: 25px;margin-bottom:3em"
-                    class="img-fluid rounded-circle" id="logo_preview"
+                    class="img-fluid rounded-circle border border-dark" id="logo_preview"
                     src="{{ asset('uploads/avatars/'.$user->avatar.'') }}" style="">
                 <h1>{{ $user->name }} @lang('profile')</h1>
 

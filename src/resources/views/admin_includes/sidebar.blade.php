@@ -18,19 +18,20 @@
                  <i class="fas fa-fw fa-tachometer-alt"></i>
                  <span>@lang('dashboard_dashboard')</span></a>
          </li>
+          <!-- Divider 
          <li class="nav-item {{ set_active(['home']) }} ">
              <a class="nav-link" href="{{ route('home') }}">
                  <i class="fas fa-home"></i> <span>@lang('dashboard_back-to-home')</span></a>
          </li>
-
+-->
          <!-- Divider -->
          <hr class="sidebar-divider">
 
          <!-- Heading -->
          <div class="sidebar-heading">
-             Interface
+             Settings
          </div>
-
+ @hasanyrole('admin|writter')
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item ">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -49,7 +50,6 @@
                  </div>
              </div>
          </li>
-
          <!-- Nav Item - Utilities Collapse Menu -->
          <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -65,21 +65,20 @@
                  </div>
              </div>
          </li>
-
+@endhasanyrole
          <li class="nav-item  {{ set_active(['admin/api']) }} ">
              <a class="nav-link" href="{{ route('admin.api') }}">
                  <i class="fas fa-database"></i>
                  <span>@lang('dashboard_api')</span></a>
          </li>
 
+ @hasanyrole('admin|writter')
          <!-- Divider -->
          <hr class="sidebar-divider">
-
          <!-- Heading -->
          <div class="sidebar-heading">
-             xxxxxxxxx
+             Administrador
          </div>
-
 
          <li class="nav-item {{ set_active(['users*']) }}">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
@@ -123,7 +122,9 @@
                  </div>
              </div>
          </li>
+    @endhasanyrole
 
+    
 
          <!-- Divider            <hr class="sidebar-divider d-none d-md-block">-->
 

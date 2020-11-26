@@ -10,35 +10,19 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Auth\LoginController;
 
-
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Rutas Publicas
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Route::get('/', 'CarController@public_index')->name('car_public_index');
+Route::get('/cars', 'CarController@public_index')->name('car_public_index');
+Route::get('/home', 'CarController@public_index')->name('home');
 
 // Contacto
 Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
-
-//Route::resource('cars', 'CarController');
-
-
-Auth::routes(['verify' => true]);
-
-
-Route::get('/private', 'PrivateController@index')->name('private');
 
 // Idioma
 Route::get('locale/{locale}', function ($locale) {
@@ -46,18 +30,15 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
-
-
-Route::get('/cars', 'CarController@public_index')->name('car_public_index');
-
-Route::get('/home', 'CarController@public_index')->name('home');
-
-
-
-
-
+//Auth
+Auth::routes(['verify' => true]);
 Auth::routes();
 
+//Login google
+Route::get('login/google', [LoginController::class, 'redirectToProvider'])->name('login.google');
+Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback'])->name('callback.google');
+
+// Tema dark
 Route::put('/themes', function (Request $request) {
     $theme = "light";
     $request->theme === null ? $theme = 'light' : $theme = 'dark';
@@ -67,20 +48,23 @@ Route::put('/themes', function (Request $request) {
 })->name('themes');
 
 
-Route::get('login/google', [LoginController::class, 'redirectToProvider'])->name('login.google');
-Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback'])->name('callback.google');
 
 
-
-Route::group(['middleware' => ['auth']], function () {
+// Usuarios Identificados
+Route::group(['middleware' => ['auth','verified']], function () {
+     //index
+    Route::get('/admin-panel', 'AdminController@index')->name('admin');
+    // Profile
     Route::get('/admin-panel/profile', 'UserController@profile')->name('profile');
     Route::post('/admin-panel/profile', 'UserController@update_avatar')->name('profile.update_avatar');
+     // API
+    Route::get('admin-panel/api', 'AdminApiController@index')->name('admin.api');
+    Route::POST('admin-panel/api/generate', 'AdminApiController@generate')->name('admin.api.generate');
 });
 
-
-Route::group(['middleware' => ['auth', 'role:Admin']], function () {
-    //index
-    Route::get('/admin-panel', 'AdminController@index')->name('admin');
+//Usuarios Administradores
+Route::group(['middleware' => ['auth','verified', 'role:Admin']], function () {
+   
     //Role
     Route::resource('admin-panel/roles', 'RoleController');
     //users
@@ -104,18 +88,11 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     //Cars
     Route::resource('admin-panel/cars', 'CarController');
     Route::get('admin-panel/cars/destroy/{id}', 'CarController@destroy')->name('cars.deletebyid');
-
-    // API
-    Route::get('admin-panel/api', 'AdminApiController@index')->name('admin.api');
-    Route::POST('admin-panel/api/generate', 'AdminApiController@generate')->name('admin.api.generate');
-
-
     //Upload
     Route::get('image-gallery', 'ImageGalleryController@index');
     Route::post('image-gallery', 'ImageGalleryController@upload');
     Route::post('image-gallery/order', 'ImageGalleryController@order')->name('gallery.order');
     Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
-
     //Ajax
     Route::get('/ajax_upload', 'AjaxUploadController@index');
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
