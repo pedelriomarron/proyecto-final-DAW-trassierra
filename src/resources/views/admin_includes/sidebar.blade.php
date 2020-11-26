@@ -31,7 +31,7 @@
          <div class="sidebar-heading">
              Settings
          </div>
- @hasanyrole('admin|writter')
+ @hasanyrole('Admin|writter')
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item ">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -72,7 +72,7 @@
                  <span>@lang('dashboard_api')</span></a>
          </li>
 
- @hasanyrole('admin|writter')
+ @hasanyrole('Admin|writter')
          <!-- Divider -->
          <hr class="sidebar-divider">
          <!-- Heading -->
