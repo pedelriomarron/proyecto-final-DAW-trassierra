@@ -66,6 +66,12 @@
              </div>
          </li>
 
+         <li class="nav-item  {{ set_active(['admin/api']) }} ">
+             <a class="nav-link" href="{{ route('admin.api') }}">
+                 <i class="fas fa-database"></i>
+                 <span>@lang('dashboard_api')</span></a>
+         </li>
+
          <!-- Divider -->
          <hr class="sidebar-divider">
 

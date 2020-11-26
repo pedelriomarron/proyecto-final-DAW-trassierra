@@ -64,3 +64,8 @@ function getDatatablesURLLang()
             return '//cdn.datatables.net/plug-ins/1.10.20/i18n/English.json';
     }
 }
+
+function generateToken()
+{
+    return md5(rand(1, 10) . microtime());
+}

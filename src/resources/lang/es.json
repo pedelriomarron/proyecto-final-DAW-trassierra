@@ -158,5 +158,12 @@
     "manage-cars": "",
     "car-id": "",
     "car-actions": "",
-    "car-logo": ""
+    "car-logo": "",
+    "manage-api": "",
+    "seats": "",
+    "acceleration": "",
+    "topspeed": "",
+    "dashboard_api": "",
+    "cars": "",
+    "contact": ""
 }

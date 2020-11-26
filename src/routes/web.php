@@ -106,6 +106,11 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::resource('admin-panel/cars', 'CarController');
     Route::get('admin-panel/cars/destroy/{id}', 'CarController@destroy')->name('cars.deletebyid');
 
+    // API
+    Route::get('admin-panel/api', 'AdminApiController@index')->name('admin.api');
+    Route::POST('admin-panel/api/generate', 'AdminApiController@generate')->name('admin.api.generate');
+
+
     //Upload
     Route::get('image-gallery', 'ImageGalleryController@index');
     Route::post('image-gallery', 'ImageGalleryController@upload');
