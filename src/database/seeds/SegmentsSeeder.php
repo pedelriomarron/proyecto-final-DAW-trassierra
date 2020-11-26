@@ -16,37 +16,37 @@ class SegmentsSeeder extends Seeder
 
             [
                 'id' => 1,
-                'name' => 'Coche de ciudad/Minicompacto',
+                'name' => 'Minicompacto',
                 'letter' => 'A',
                 'logo' => 'a.svg',
             ],
             [
                 'id' => 2,
-                'name' => 'Supermini/Subcompacto',
+                'name' => 'Subcompacto',
                 'letter' => 'B',
                 'logo' => 'b.svg',
             ],
             [
                 'id' => 3,
-                'name' => 'Compacto/Familiar pequeño',
+                'name' => 'Compacto',
                 'letter' => 'C',
                 'logo' => 'c.svg',
             ],
             [
                 'id' => 4,
-                'name' => 'Compacto/Mediano',
+                'name' => 'Mediano',
                 'letter' => 'D',
                 'logo' => 'd.svg',
             ],
             [
                 'id' => 5,
-                'name' => 'Ejecutivos/Automóvil largo',
+                'name' => 'Ejecutivos',
                 'letter' => 'E',
                 'logo' => 'e.svg',
             ],
             [
                 'id' => 6,
-                'name' => 'Berlina de lujo/Largo de lujo',
+                'name' => 'Berlina de lujo',
                 'letter' => 'F',
                 'logo' => 'f.svg',
             ],

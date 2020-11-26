@@ -10,7 +10,7 @@
 <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" rel="stylesheet"
     type="text/css">
 <!-- Script carga-->
-<script src="https://ev-database.org/js/dynamic/script.js?u=si&l=si&p=index&v=4.2.5"></script>
+<script src="{{ asset('js/jplist.js') }}"></script>
 <!-- FIN ESTILOS -->
 @endpush
 <div class="container">

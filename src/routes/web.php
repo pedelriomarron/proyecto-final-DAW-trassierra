@@ -54,15 +54,7 @@ Route::get('/home', 'CarController@public_index')->name('home');
 
 
 
-Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('profile', 'UserController@profile')->name('profile');
-    Route::post('profile', 'UserController@update_avatar')->name('profile.update_avatar');
-
-    Route::resource('products', 'ProductController');
-    //Admin
-
-});
 
 Auth::routes();
 
@@ -77,6 +69,13 @@ Route::put('/themes', function (Request $request) {
 
 Route::get('login/google', [LoginController::class, 'redirectToProvider'])->name('login.google');
 Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback'])->name('callback.google');
+
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/admin-panel/profile', 'UserController@profile')->name('profile');
+    Route::post('/admin-panel/profile', 'UserController@update_avatar')->name('profile.update_avatar');
+});
 
 
 Route::group(['middleware' => ['auth', 'role:Admin']], function () {
