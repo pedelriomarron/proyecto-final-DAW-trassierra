@@ -16,7 +16,7 @@
     <div>
 
         <div align="left" class=" p-3 pt-4">
-            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
+            <a type="button" href="{{ route('users.create') }}" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</a>
         </div>
     </div>
     <div class="card-body">
@@ -38,6 +38,27 @@
 
 
 
+<!-- Modal delete-->
+<div id="confirmModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal title-->
+            <div class="modal-header">
+                <h4 class="modal-title">@lang('confirmation-delete-title')</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal text-->
+            <div class="modal-body">
+                <h4 align="center" style="margin:0;">@lang('confirmation-delete-text')</h4>
+            </div>
+            <!-- Modal footer-->
+            <div class="modal-footer">
+                <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">@lang('ok')</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('cancel')</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -168,7 +189,39 @@ Page Heading -->
         });
 
 
+ var user_id;
+        // Click Delete
+        $(document).on('click', '.delete', function () {
+            user_id = $(this).attr('id');
+            $('#confirmModal').modal('show');
+        });
+
+        // click ok delete
+        $('#ok_button').click(function () {
+            var url = '{{ route("users.deletebyid", ":id") }}';
+            url = url.replace(':id', user_id);
+            $.ajax({
+                url: url,
+                beforeSend: function () {
+                    $('#ok_button').text("@lang('deleting')");
+                },
+                success: function (data) {
+                    setTimeout(function () {
+                        $('#confirmModal').modal('hide');
+                        $('.datatable-user').DataTable().ajax.reload();
+                        $('#ok_button').text("@lang('ok')");
+                    }, 2000);
+                }
+            })
+        });
+
+
+
+
     });
+
+
+
 
 
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use Auth;
 use Image;
 use DataTables;
+use Illuminate\Support\Facades\Lang;
 
 
 class UserController extends Controller
@@ -29,7 +30,7 @@ class UserController extends Controller
 
 */
         if ($request->ajax()) {
-            $data = User::latest()->get();
+            $data = User::latest()->where('id',"!=" ,1)->get();
 
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
@@ -46,13 +47,13 @@ class UserController extends Controller
 */
 
 
-                    if (\Auth::user()->can('brand-edit')) {
-                        $button .= '<a class="btn btn-primary" href="' . route('users.edit', array('user' => $data->id)) . '">Edit</a>';
+                    if (\Auth::user()->can('user-edit')) {
+                        $button .= '<a class="btn btn-primary btn-sm" href="' . route('users.edit', array('user' => $data->id)) . '">'.Lang::get('edit').'</a>';
                     }
 
-
-                    if (\Auth::user()->can('brand-delete')) {
-                        $button .= '<a class="btn btn-primary" href="' . route('users.edit', array('user' => $data->id)) . '">Edit</a>';
+              
+                    if (\Auth::user()->can('user-delete')) {
+                        $button .= '&nbsp;&nbsp;&nbsp;<button type="button"  id="' . $data->id . '"  class="delete btn btn-danger btn-sm" href="' . route('users.edit', array('user' => $data->id)) . '">'.Lang::get('delete').'</button>';
                     }
 
                     return $button;
@@ -106,7 +107,7 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
             ->with('success', 'User created successfully');
     }
 
@@ -130,11 +131,19 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+       try {
+           if($id==1)   return redirect()->route('admin');
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
         return view('admin.users.edit', compact('user', 'roles', 'userRole'));
+       } catch (\Throwable $th) {
+           //throw $th;
+        return redirect()->route('admin');
+
+       }
+       
     }
 
     /**
@@ -166,7 +175,7 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
             ->with('success', 'User updated successfully');
     }
 
@@ -176,13 +185,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+   public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('admin.users.index')
-            ->with('success', 'User deleted successfully');
+         if($id==1)   {return redirect()->route('admin');}
+        $data = User::findOrFail($id);
+        $data->delete();
     }
-
 
     /**
      * Edita el perfile de un usuario

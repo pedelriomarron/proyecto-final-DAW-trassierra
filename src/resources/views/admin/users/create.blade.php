@@ -1,12 +1,26 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 
 @section('content')
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h3 class="m-0 font-weight-bold text-primary">Administradir de Brand</h3>
+    </div>
+   
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
+
+    <div class="card-body">
+        
 <div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Create New User</h2>
-        </div>
+    <div class="col-lg-12 margin-tb pb-3">
+      
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
         </div>
@@ -67,4 +81,21 @@
 
 
 <p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection
