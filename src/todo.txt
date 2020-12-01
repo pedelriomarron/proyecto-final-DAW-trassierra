@@ -8,3 +8,17 @@ contacta con nosotros edtilo
 explicar como funciona api key , user
 admin role no se vea osi?
 Mirar cierre main de car
+
+añadir disponibilidad
+     <!-- concept or expected -->
+                        <section class="expected-notification">
+                            <h2>This electric vehicle is not available yet</h2>
+                            Specifications with an * are estimates.
+                        </section>
+
+Precios en paises
+Mirar los menores de rangos reales y las maximos del betewn
+bateria hacer la grasia
+algoritmo buisqye vehiculos similares
+Imagen en car si no hay quitar paisaje
+youtube añadir

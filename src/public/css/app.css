@@ -276,12 +276,7 @@ pre code {
     overflow: hidden
 }
 
-main {
-  margin: 0 auto;
-  width: 900px;
-  max-width: 100%;
-	flex: 1 0 auto;
-}
+
 
 *.content {
 	border-radius: 5px;
@@ -1584,12 +1579,7 @@ pre code {
     overflow: hidden;
 }
 
-main {
-    margin: 0 auto;
-    width: 900px;
-    max-width: 100%;
-    flex: 1 0 auto;
-}
+
 
 *.content {
     border-radius: 5px;

@@ -20,6 +20,7 @@
         "laravel/ui": "2.4",
         "laravelcollective/html": "^6.2",
         "laraveles/spanish": "^1.5",
+        "merujan99/laravel-video-embed": "dev-master",
         "spatie/laravel-permission": "^3.17",
         "thiagocordeiro/laravel-translator": "^1.1",
         "yajra/laravel-datatables-oracle": "^9.14"

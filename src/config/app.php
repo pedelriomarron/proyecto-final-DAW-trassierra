@@ -180,6 +180,7 @@ return [
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
         Laraveles\Spanish\SpanishServiceProvider::class,
         Translator\Framework\TranslatorServiceProvider::class,
+        Merujan99\LaravelVideoEmbed\Providers\LaravelVideoEmbedServiceProvider::class,
 
 
 
@@ -241,6 +242,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'LaravelVideoEmbed' => Merujan99\LaravelVideoEmbed\Facades\LaravelVideoEmbed::class,
+
 
 
 

@@ -13,7 +13,7 @@ use DataTables;
 use URL;
 use Illuminate\Support\Facades\Lang;
 use Route;
-
+use Merujan99\LaravelVideoEmbed\Facades\LaravelVideoEmbed;
 
 
 class CarController extends Controller
@@ -22,11 +22,29 @@ class CarController extends Controller
     public function show_car($id)
     {
         $car = Car::findOrFail($id);
+        $params = [
+            "allow"=> "autoplay; encrypted-media",
+            "frameborder" => '0',
+            "width" =>"560" ,
+            "height" =>"315",
+         ];
 
+//Optional attributes for embed container
+$attributes = [
+  'type' => null,
+  'class' => 'iframe-class',
+  'data-html5-parameter' => true
+];
+
+        $car->yt_iframe = LaravelVideoEmbed::parse('https://www.youtube.com/watch?v=qvUWA45GOMg', ['YouTube'], $params, $attributes);
         $images = ImageGallery::where('car_id', '=', $car->id)->orderBy('order')->get();
 
 
-        return view('cars.show', ['car' => $car,"images"=>$images]);
+
+        $similars = Car::inRandomOrder()->where('id', '!=', $car->id)->limit(3)->get();
+
+
+        return view('cars.show', ['car' => $car,"images"=>$images,"similars"=>$similars]);
     }
 
 

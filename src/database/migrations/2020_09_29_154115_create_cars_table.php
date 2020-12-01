@@ -49,18 +49,18 @@ class CreateCarsTable extends Migration
             $table->integer('totalpower')->default('0')->nullable(true);
             $table->integer('totaltorque')->default('0')->nullable(true);
 
-            $table->integer('batterycapacity')->default('0')->nullable(true);
-            $table->integer('batteryuseable')->default('0')->nullable(true);
+            $table->float('batterycapacity')->default('0')->nullable(true);
+            $table->float('batteryuseable')->default('0')->nullable(true);
 
             $table->integer('realrange')->default('0')->nullable(true);
             $table->integer('realco2emissions')->default('0')->nullable(true);
             $table->integer('realconsumption')->default('0')->nullable(true);
-            $table->integer('realfuelequivalent')->default('0')->nullable(true);
+            $table->float('realfuelequivalent')->default('0')->nullable(true);
 
             $table->integer('wltprange')->default('0')->nullable(true);
             $table->integer('wltpco2emissions')->default('0')->nullable(true);
             $table->integer('wltpconsumption')->default('0')->nullable(true);
-            $table->integer('wltpfuelequivalent')->default('0')->nullable(true);
+            $table->float('wltpfuelequivalent')->default('0')->nullable(true);
 
 
             $table->integer('energy_city_cold')->default('0')->nullable(true);
@@ -89,6 +89,7 @@ class CreateCarsTable extends Migration
             $table->integer('turningcircle')->default('0')->nullable(true);
             $table->boolean('roofrails')->default('0')->nullable(true);
 
+            $table->string('youtube')->nullable(true);
 
 
             $table->timestamps();
