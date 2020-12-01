@@ -467,7 +467,7 @@
 
                     <!-- subfooter -->
                     <footer class="sub-footer">
-                        <h1>Volkswagen ID.3 Pure</h1>
+                        <h1>{{$car->brand->name}} {{$car->name}}</h1>
                         <span>Battery Electric Vehicle</span>
                     </footer>
 

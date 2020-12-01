@@ -21,4 +21,5 @@ Mirar los menores de rangos reales y las maximos del betewn
 bateria hacer la grasia
 algoritmo buisqye vehiculos similares
 Imagen en car si no hay quitar paisaje
-youtube añadir
+Informar de galeria de arrastre
+cuidado campos a 0

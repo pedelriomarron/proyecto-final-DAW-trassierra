@@ -36,7 +36,7 @@ $attributes = [
   'data-html5-parameter' => true
 ];
 
-        $car->yt_iframe = LaravelVideoEmbed::parse('https://www.youtube.com/watch?v=qvUWA45GOMg', ['YouTube'], $params, $attributes);
+        $car->yt_iframe = LaravelVideoEmbed::parse($car->youtube, ['YouTube'], $params, $attributes);
         $images = ImageGallery::where('car_id', '=', $car->id)->orderBy('order')->get();
 
 

@@ -378,7 +378,7 @@
                             <div class="data-wrapper">
                                 <!-- img -->
                                 <div class="img">
-                                    <a href=""> <img width="224" height="126"
+                                    <a href="{{route('show_car',$car->id)}}"> <img width="224" height="126"
                                             src="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
                                             data-src-retina="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
                                             data-src="{{ asset('uploads/gallery/')."/".$car->getIMG()}}"
@@ -387,7 +387,7 @@
 
                                 <!-- item-data -->
                                 <div class="title-wrap">
-                                    <h2><a href="" class="title"><span
+                                    <h2><a href="{{route('show_car',$car->id)}}" class="title"><span
                                                 class="brand-{{$car->brand->id}}">{{$car->brand->name}}
                                             </span><span class="model">{{$car->name}}</span></a>
                                     </h2><span class="date_from hidden">1606777200</span><span
