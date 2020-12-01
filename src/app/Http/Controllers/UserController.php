@@ -232,8 +232,8 @@ class UserController extends Controller
 
 
 
+return redirect()->route('profile')
+            ->with('success', 'Profile Edit successfully');
 
-
-        return view('admin.profile', array('user' => Auth::user()));
     }
 }

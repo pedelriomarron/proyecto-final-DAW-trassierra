@@ -7,6 +7,14 @@
     <div class="card-header py-3">
         <h3 class="m-0 font-weight-bold text-primary">@lang('manage-profile')</h3>
     </div>
+
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
+
+
     @if (count($errors) > 0)
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
