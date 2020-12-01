@@ -19,6 +19,19 @@ use Route;
 class CarController extends Controller
 {
 
+    public function show_car($id)
+    {
+        $car = Car::findOrFail($id);
+
+        $images = ImageGallery::where('car_id', '=', $car->id)->orderBy('order')->get();
+
+
+        return view('cars.show', ['car' => $car,"images"=>$images]);
+    }
+
+
+
+
     public function public_index()
     {
         $brands = Brand::select('id', 'name')->get();

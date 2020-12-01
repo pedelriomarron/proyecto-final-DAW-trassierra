@@ -18,11 +18,17 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', 'CarController@public_index')->name('car_public_index');
 Route::get('/cars', 'CarController@public_index')->name('car_public_index');
+Route::get('/car/{id}', 'CarController@show_car')->name('show_car');
+
 Route::get('/home', 'CarController@public_index')->name('home');
 
 // Contacto
 Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
+
+//Collaborate
+Route::get('/collaborate', 'CollaborateController@index')->name('collaborate');
+Route::post('/collaborate', 'CollaborateController@send_mail')->name('addCollaborate');
 
 // Idioma
 Route::get('locale/{locale}', function ($locale) {
@@ -51,20 +57,20 @@ Route::put('/themes', function (Request $request) {
 
 
 // Usuarios Identificados
-Route::group(['middleware' => ['auth','verified']], function () {
-     //index
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    //index
     Route::get('/admin-panel', 'AdminController@index')->name('admin');
     // Profile
     Route::get('/admin-panel/profile', 'UserController@profile')->name('profile');
     Route::post('/admin-panel/profile', 'UserController@update_avatar')->name('profile.update_avatar');
-     // API
+    // API
     Route::get('admin-panel/api', 'AdminApiController@index')->name('admin.api');
     Route::POST('admin-panel/api/generate', 'AdminApiController@generate')->name('admin.api.generate');
 });
 
 //Usuarios Administradores
-Route::group(['middleware' => ['auth','verified', 'role:Admin']], function () {
-   
+Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
+
     //Role
     Route::resource('admin-panel/roles', 'RoleController');
     //users

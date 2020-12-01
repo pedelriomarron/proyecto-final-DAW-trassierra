@@ -2,3 +2,9 @@ Diseño
 Concecionario
 Experto
 borrar al admin de todo
+contrasñas cambios
+dejar mensaje cuando edit profile
+contacta con nosotros edtilo
+explicar como funciona api key , user
+admin role no se vea osi?
+Mirar cierre main de car

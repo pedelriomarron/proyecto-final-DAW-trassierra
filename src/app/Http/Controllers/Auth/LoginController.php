@@ -73,14 +73,15 @@ class LoginController extends Controller
                 Image::make($avatar)->resize(300, 300)->save(public_path('uploads/avatars/' . $filename));
             }
             // Add user to database
+
             $user = User::create([
                 'email' => $googleUser->getEmail(),
                 'name' => $googleUser->getName(),
                 'google_id' => $googleUser->getId(),
                 'avatar' => $filename,
-            ]);
+                'email_verified_at' => now(),
+            ])->assignRole('User');;
         }
-
         //Login
         Auth::login($user, true);
         return redirect($this->redirectTo);

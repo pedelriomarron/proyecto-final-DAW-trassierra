@@ -187,7 +187,7 @@ class UserController extends Controller
      */
    public function destroy($id)
     {
-         if($id==1)   {return redirect()->route('admin');}
+        if($id==1)   {return redirect()->route('admin');}
         $data = User::findOrFail($id);
         $data->delete();
     }
