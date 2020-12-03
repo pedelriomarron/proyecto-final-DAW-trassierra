@@ -90,6 +90,7 @@
                  <div class="bg-white py-2 collapse-inner rounded">
                      <a class="collapse-item" href="{{ route('users.index') }}"> @lang('dashboard_user-admin')</a>
                      <a class="collapse-item" href="{{ route('users.create') }}">@lang('dashboard_user-create')</a>
+                    <a class="collapse-item" href="{{ route('experts.index') }}">@lang('dashboard_admin-experts')</a>
                  </div>
              </div>
          </li>

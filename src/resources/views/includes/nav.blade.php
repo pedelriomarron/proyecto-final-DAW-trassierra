@@ -158,6 +158,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contact') }}">{{ __('contact') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('collaborate') }}">{{ __('collaborate') }}</a>
+                </li>
+
             </ul>
 
             <!-- Right Side Of Navbar -->

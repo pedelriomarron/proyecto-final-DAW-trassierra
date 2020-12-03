@@ -124,7 +124,7 @@
                                     <label for="name"
                                         class="col-form-label text-md-right">{{ __('Attach Screenshot') }}</label>
 
-                                    <input type="file" accept="image/*"
+                                    <input type="file" 
                                         class="form-control @error('screenshot') is-invalid @enderror" name="screenshot"
                                         autofocus>
 

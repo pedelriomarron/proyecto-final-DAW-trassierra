@@ -76,6 +76,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
     //users
     Route::resource('admin-panel/users', 'UserController');
     Route::get('admin-panel/users/destroy/{id}', 'UserController@destroy')->name('users.deletebyid');
+    // experts
+    Route::resource('admin-panel/experts', 'ExpertController');
 
     //Brands
     Route::resource('admin-panel/brands', 'BrandController');

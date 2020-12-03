@@ -189,7 +189,7 @@
 
                                 <h2>Energy Consumption</h2>
 
-                                <h3>EVDB Real Range</h3>
+                                <h3>Real Range</h3>
 
                                 <div class="inline-block">
                                     <table>
