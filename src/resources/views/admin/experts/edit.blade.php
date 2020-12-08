@@ -2,6 +2,7 @@
 
 
 @section('content')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -46,39 +47,34 @@
         @endif
 
 
-        {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+        {!! Form::model($user, ['method' => 'PATCH','route' => ['experts.update', $user->id]]) !!}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
                     {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+
                 <div class="form-group">
-                    <strong>Email:</strong>
-                    {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                    <strong>@lang('brand'):</strong>
+                    {{--   {!! Form::select('brand', $brands, null, ['class' => 'form-control select2 ', ]) !!} --}}
+                    <select multiple="multiple" name="brands[]" class="form-control select2">
+                        @foreach($brands as $val)
+                        <option @foreach($old_records as $old) @if($old->brand_id ==$val->id)
+                            selected="selected"
+                            @endif
+                            @endforeach
+                            value="{{ $val->id }}" data-logo="{{ $val->logo }}">
+                            {{ $val->name }}
+                        </option>
+                        @endforeach
+                    </select>
+
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Password:</strong>
-                    {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Confirm Password:</strong>
-                    {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' =>
-                    'form-control')) !!}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Role:</strong>
-                    {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
-                </div>
-            </div>
+
+
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -96,3 +92,34 @@
 
 
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+
+        function formatState(state) {
+            if (!state.id) {
+                return state.text;
+            }
+            var baseUrl = "{{ asset('uploads/brands/') }}"
+            var $state = $(
+                '<span><img class="img-fluid" width="20px" src="' + baseUrl + '/' + state.element.dataset
+                .logo + '" class="img-flag" /> ' + state.text + '</span>'
+            );
+
+            return $state;
+        };
+
+        $(".select2").select2({
+            templateResult: formatState,
+            templateSelection: formatState
+
+        });
+
+
+
+        // $('.select2').select2();
+    });
+
+</script>
+@endpush

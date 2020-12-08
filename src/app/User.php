@@ -39,4 +39,19 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    function getBrandNames(){
+
+        $data= [];
+        $array = Models\Expert::where('user_id', $this->id)->get();
+        if(!empty($array)){
+            foreach ($array as $key => $value) {
+               array_push($data,$value->brand->name);
+            }
+        }
+
+        return $data;
+    }
 }
