@@ -18,7 +18,7 @@
                  <i class="fas fa-fw fa-tachometer-alt"></i>
                  <span>@lang('dashboard_dashboard')</span></a>
          </li>
-          <!-- Divider 
+         <!-- Divider 
          <li class="nav-item {{ set_active(['home']) }} ">
              <a class="nav-link" href="{{ route('home') }}">
                  <i class="fas fa-home"></i> <span>@lang('dashboard_back-to-home')</span></a>
@@ -31,7 +31,7 @@
          <div class="sidebar-heading">
              Settings
          </div>
- @hasanyrole('Admin|writter')
+         @hasanyrole('Admin|writter')
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item ">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -50,6 +50,8 @@
                  </div>
              </div>
          </li>
+         @endhasanyrole
+         @hasanyrole('Admin|Expert')
          <!-- Nav Item - Utilities Collapse Menu -->
          <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -61,18 +63,21 @@
                  data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
                      <a class="collapse-item" href="{{ route('cars.index') }}">@lang('dashboard_cars-admin')</a>
+                     @hasanyrole('Admin')
                      <a class="collapse-item" href="{{ route('cars.create') }}">@lang('dashboard_cars-create')</a>
+                     @endhasanyrole
+
                  </div>
              </div>
          </li>
-@endhasanyrole
+         @endhasanyrole
          <li class="nav-item  {{ set_active(['admin/api']) }} ">
              <a class="nav-link" href="{{ route('admin.api') }}">
                  <i class="fas fa-database"></i>
                  <span>@lang('dashboard_api')</span></a>
          </li>
 
- @hasanyrole('Admin|writter')
+         @hasanyrole('Admin|writter')
          <!-- Divider -->
          <hr class="sidebar-divider">
          <!-- Heading -->
@@ -90,7 +95,7 @@
                  <div class="bg-white py-2 collapse-inner rounded">
                      <a class="collapse-item" href="{{ route('users.index') }}"> @lang('dashboard_user-admin')</a>
                      <a class="collapse-item" href="{{ route('users.create') }}">@lang('dashboard_user-create')</a>
-                    <a class="collapse-item" href="{{ route('experts.index') }}">@lang('dashboard_admin-experts')</a>
+                     <a class="collapse-item" href="{{ route('experts.index') }}">@lang('dashboard_admin-experts')</a>
                  </div>
              </div>
          </li>
@@ -123,9 +128,9 @@
                  </div>
              </div>
          </li>
-    @endhasanyrole
+         @endhasanyrole
 
-    
+
 
          <!-- Divider            <hr class="sidebar-divider d-none d-md-block">-->
 

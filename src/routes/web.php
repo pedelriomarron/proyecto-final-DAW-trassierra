@@ -68,6 +68,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::POST('admin-panel/api/generate', 'AdminApiController@generate')->name('admin.api.generate');
 });
 
+
+
 //Usuarios Administradores
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
 
@@ -78,7 +80,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
     Route::get('admin-panel/users/destroy/{id}', 'UserController@destroy')->name('users.deletebyid');
     // experts
     Route::resource('admin-panel/experts', 'ExpertController');
-
+    // Cars
+    Route::get('admin-panel/cars/destroy/{id}', 'CarController@destroy')->name('cars.deletebyid');
     //Brands
     Route::resource('admin-panel/brands', 'BrandController');
     Route::post('admin-panel/brands/update', 'BrandController@update')->name('brands.update');
@@ -95,9 +98,6 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
     Route::resource('admin-panel/segments', 'SegmentController');
     Route::post('admin-panel/segments/update', 'SegmentController@update')->name('segments.update');
     Route::get('admin-panel/segments/destroy/{id}', 'SegmentController@destroy')->name('segments.deletebyid');
-    //Cars
-    Route::resource('admin-panel/cars', 'CarController');
-    Route::get('admin-panel/cars/destroy/{id}', 'CarController@destroy')->name('cars.deletebyid');
     //Upload
     Route::get('image-gallery', 'ImageGalleryController@index');
     Route::post('image-gallery', 'ImageGalleryController@upload');
@@ -106,4 +106,12 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
     //Ajax
     Route::get('/ajax_upload', 'AjaxUploadController@index');
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
+});
+
+
+
+// Usuarios Expertos
+Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Expert']], function () {
+    //Cars
+    Route::resource('admin-panel/cars', 'CarController');
 });
