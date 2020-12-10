@@ -8,9 +8,11 @@ use App\Models\ImageGallery;
 use App\Models\Drive;
 use App\Models\Bodystyle;
 use App\Models\Segment;
+use App\Models\Expert;
 use Illuminate\Http\Request;
 use DataTables;
 use URL;
+use Auth;
 use Illuminate\Support\Facades\Lang;
 use Route;
 use Merujan99\LaravelVideoEmbed\Facades\LaravelVideoEmbed;
@@ -23,18 +25,18 @@ class CarController extends Controller
     {
         $car = Car::findOrFail($id);
         $params = [
-            "allow"=> "autoplay; encrypted-media",
+            "allow" => "autoplay; encrypted-media",
             "frameborder" => '0',
-            "width" =>"560" ,
-            "height" =>"315",
-         ];
+            "width" => "560",
+            "height" => "315",
+        ];
 
-//Optional attributes for embed container
-$attributes = [
-  'type' => null,
-  'class' => 'iframe-class',
-  'data-html5-parameter' => true
-];
+        //Optional attributes for embed container
+        $attributes = [
+            'type' => null,
+            'class' => 'iframe-class',
+            'data-html5-parameter' => true
+        ];
 
         $car->yt_iframe = LaravelVideoEmbed::parse($car->youtube, ['YouTube'], $params, $attributes);
         $images = ImageGallery::where('car_id', '=', $car->id)->orderBy('order')->get();
@@ -44,7 +46,7 @@ $attributes = [
         $similars = Car::inRandomOrder()->where('id', '!=', $car->id)->limit(3)->get();
 
 
-        return view('cars.show', ['car' => $car,"images"=>$images,"similars"=>$similars]);
+        return view('cars.show', ['car' => $car, "images" => $images, "similars" => $similars]);
     }
 
 
@@ -75,8 +77,14 @@ $attributes = [
     {
 
         if ($request->ajax()) {
-            $data = Car::latest()->get();
-
+            if (Auth::user()->hasRole('Admin')) {
+                $data = Car::latest()->get();
+            } elseif (Auth::user()->hasRole('Expert')) {
+                $data3 = Car::latest()->get();
+                $data = [];
+                $brands = Expert::where('user_id', '=', Auth::user()->id)->get();
+                $data = researchExpert($data3, $brands);
+            }
 
 
 
@@ -176,9 +184,17 @@ $attributes = [
     {
 
 
+        if (Auth::user()->hasRole('Expert')) {
+            try {
+                $brands = Expert::where('user_id', '=', Auth::user()->id)->get();
+                $data = researchExpert([$car], $brands);
+                $car = $data[0];
+            } catch (\Throwable $th) {
+                abort(401);
+            }
+        }
 
-        //$brands = Brand::pluck('name', 'id', 'logo')->toArray();;
-        //$brands = Brand::selectRaw("CONCAT ('name', 'logo') as columns, id")->pluck('columns', 'id');
+
         $brands = Brand::select('id', 'name', 'logo')->get();
         $images = ImageGallery::where('car_id', '=', $car->id)->orderBy('order')->get();
         $bodystyles = Bodystyle::select('id', 'name', 'logo')->get();
@@ -198,6 +214,18 @@ $attributes = [
      */
     public function update(Request $request, Car $car)
     {
+
+        if (Auth::user()->hasRole('Expert')) {
+            try {
+                $brands = Expert::where('user_id', '=', Auth::user()->id)->get();
+                $data = researchExpert([$car], $brands);
+                $car = $data[0];
+            } catch (\Throwable $th) {
+                abort(401);
+            }
+        }
+
+
         $request->validate([
             'name' => 'required',
             'brand_id' => 'required',

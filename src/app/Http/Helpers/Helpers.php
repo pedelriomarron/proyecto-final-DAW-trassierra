@@ -69,3 +69,17 @@ function generateToken()
 {
     return md5(rand(1, 10) . microtime());
 }
+
+
+function researchExpert($data3, $brands)
+{
+    $data = [];
+    foreach ($brands as $key => $brand) {
+        foreach ($data3 as $key => $car) {
+            if ($brand->brand_id == $car->brand->id) {
+                array_push($data, $car);
+            }
+        }
+    }
+    return $data;
+}
