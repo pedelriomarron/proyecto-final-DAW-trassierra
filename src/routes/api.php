@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::get('car', 'API\CarController@getAllCars');
-Route::get('car/{id}', 'Api\CarController@getCar');
+Route::get('car', 'API\CarController@getAllCars')->name('api_allCars');
+Route::get('car/{id}', 'Api\CarController@getCar')->name('api_getCar');;
 
 
 //Route::apiResource('car', 'CarController');

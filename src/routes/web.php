@@ -66,6 +66,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // API
     Route::get('admin-panel/api', 'AdminApiController@index')->name('admin.api');
     Route::POST('admin-panel/api/generate', 'AdminApiController@generate')->name('admin.api.generate');
+    // Comparate
+    Route::get('comparate', 'ComparateController@index')->name('comparate');
 });
 
 
@@ -98,11 +100,6 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
     Route::resource('admin-panel/segments', 'SegmentController');
     Route::post('admin-panel/segments/update', 'SegmentController@update')->name('segments.update');
     Route::get('admin-panel/segments/destroy/{id}', 'SegmentController@destroy')->name('segments.deletebyid');
-    //Upload
-    Route::get('image-gallery', 'ImageGalleryController@index');
-    Route::post('image-gallery', 'ImageGalleryController@upload');
-    Route::post('image-gallery/order', 'ImageGalleryController@order')->name('gallery.order');
-    Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
     //Ajax
     Route::get('/ajax_upload', 'AjaxUploadController@index');
     Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
@@ -114,4 +111,9 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
 Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Expert']], function () {
     //Cars
     Route::resource('admin-panel/cars', 'CarController');
+    //Gallery
+    Route::get('image-gallery', 'ImageGalleryController@index');
+    Route::post('image-gallery', 'ImageGalleryController@upload');
+    Route::post('image-gallery/order', 'ImageGalleryController@order')->name('gallery.order');
+    Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
 });

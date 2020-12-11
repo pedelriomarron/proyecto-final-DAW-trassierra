@@ -30,6 +30,6 @@ class AuthKey
         }
 
 
-        return response()->json(['msg' => 'API NO Permitida con estos parámetros: ' . $user . " y " . $token], 401);
+        return response()->json(['msg' => 'API NO Permitida con estos parámetros: ' . $user . " y " . $token . "en :"], 401);
     }
 }
