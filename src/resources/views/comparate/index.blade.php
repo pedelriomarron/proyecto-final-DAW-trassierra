@@ -20,7 +20,8 @@
                             {{ $val->brand->name }} {{ $val->name }}</option>
                         @endforeach
                     </select>
-
+                    <div id="car_1_data">
+                    </div>
                 </div>
                 <div class="col-lg-4 border">
                     1
@@ -64,14 +65,14 @@
         });
 
 
-        $('.select2').on('select2:select', function (e) {
+        $('.select2').on('select2:select', async function (e) {
             var data = e.params.data;
             //console.log(data);
             //console.log(this.id)
             let section = this.id
             let car = data.id
-            console.log(car, section)
-            getCar(car)
+            let carOb = await getCar(car)
+            drawCar(carOb, section)
         });
 
         async function getCar(id) {
@@ -83,9 +84,24 @@
                 }
             })
             let car = await res.json();
+            console.log('car_', car)
             return car[0]
         }
 
+        function drawCar(car, id) {
+            let pathIMG = "{{ asset('uploads/gallery') }}"
+            let elemento = document.getElementById(`${id}_data`);
+            console.log(car)
+            alert(`${pathIMG}/${id}`)
+            let foto = document.createElement("img");
+            foto.setAttribute('width', '100%');
+            foto.setAttribute('src', `${pathIMG}/${car.images[0].image}`);
+            elemento.appendChild(foto);
+
+            //var textnode = document.createTextNode("Water"); // Create a text node
+
+
+        }
         // $('.select2').select2();
     });
 
