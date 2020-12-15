@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Models\Api;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -20,6 +21,10 @@ class CreateAdminUserSeeder extends Seeder
             'password' => bcrypt('123456'),
             'email_verified_at' => now(),
 
+        ]);
+        $api = Api::create([
+            'key' => 'key',
+            'user' => '1',
         ]);
 
         $role = Role::create(['name' => 'Admin']);

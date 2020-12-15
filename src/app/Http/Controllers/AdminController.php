@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Models\Car;
 
 class AdminController extends Controller
 {
@@ -24,6 +26,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+
+        $statCar = Car::count();
+        $statUser = User::count();
+
+        return view('admin.index', compact("statCar", "statUser"));
     }
 }
