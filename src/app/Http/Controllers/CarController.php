@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\ImageGallery;
 use App\Models\Drive;
 use App\Models\Bodystyle;
+use App\Models\Concessionaire;
 use App\Models\Segment;
 use App\Models\Expert;
 use Illuminate\Http\Request;
@@ -23,6 +24,8 @@ class CarController extends Controller
 
     public function show_car($id)
     {
+
+
         $car = Car::findOrFail($id);
         $params = [
             "allow" => "autoplay; encrypted-media",
@@ -30,6 +33,15 @@ class CarController extends Controller
             "width" => "560",
             "height" => "315",
         ];
+
+        $experts = Expert::where("brand_id", "=", $car->brand_id)->get();
+        $expertsNum = [];
+        foreach ($experts as $key => $value) {
+
+            array_push($expertsNum, $value->user_id);
+        }
+        $conses = Concessionaire::whereIn('user_id', $expertsNum)->get();
+
 
         //Optional attributes for embed container
         $attributes = [
@@ -46,7 +58,7 @@ class CarController extends Controller
         $similars = Car::inRandomOrder()->where('id', '!=', $car->id)->limit(3)->get();
 
 
-        return view('cars.show', ['car' => $car, "images" => $images, "similars" => $similars]);
+        return view('cars.show', ['car' => $car, "images" => $images, "similars" => $similars, "conses" => $conses]);
     }
 
 

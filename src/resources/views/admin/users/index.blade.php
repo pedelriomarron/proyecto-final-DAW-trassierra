@@ -5,9 +5,6 @@
 
 
 
-<h1 class="h3 mb-2 text-gray-800">Tables</h1>
-<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -16,7 +13,8 @@
     <div>
 
         <div align="left" class=" p-3 pt-4">
-            <a type="button" href="{{ route('users.create') }}" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</a>
+            <a type="button" href="{{ route('users.create') }}" name="create_record" id="create_record"
+                class="btn btn-success btn-sm">Create Record</a>
         </div>
     </div>
     <div class="card-body">
@@ -142,7 +140,7 @@ Page Heading -->
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
 
 
 
@@ -180,7 +178,7 @@ Page Heading -->
             ],
             columnDefs: [{
                 targets: 1,
-                render: function(a, b, row) {
+                render: function (a, b, row) {
                     let img = "{{ asset('uploads/avatars') }}" + "/" + row.avatar
 
                     return '<img height="100vw" src="' + img + '">'
@@ -189,7 +187,7 @@ Page Heading -->
         });
 
 
- var user_id;
+        var user_id;
         // Click Delete
         $(document).on('click', '.delete', function () {
             user_id = $(this).attr('id');
@@ -228,13 +226,14 @@ Page Heading -->
     function readURL(input, id_prev) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 $(id_prev).attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
     }
+
 </script>
 
 

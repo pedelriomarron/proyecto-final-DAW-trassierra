@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Expert;
+use App\Models\Concessionaire;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -82,7 +83,12 @@ class ExpertController extends Controller
             $brands = Brand::select('id', 'name', 'logo')->get();
             $old_records = Expert::where('user_id', '=', $id)->get();
 
-            return view('admin.experts.edit', compact('user', 'brands', 'old_records'));
+
+            $concessionaire =  Concessionaire::findOrCreate($id);
+            $concessionaire->user_id = $id;
+            $concessionaire->save();
+
+            return view('admin.experts.edit', compact('user', 'brands', 'old_records', 'concessionaire'));
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->route('admin');
@@ -94,7 +100,8 @@ class ExpertController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-
+        $concessionaire =  Concessionaire::findOrCreate($id);
+        $concessionaire->user_id = $id;
 
         $this->validate($request, [
             'name' => 'required',
@@ -110,8 +117,16 @@ class ExpertController extends Controller
         }
 
 
+        $user->name = $request->name;
+        unset($request['name']);
+        $user->save();
+
         $input = $request->all();
-        $user->update($input);
+        $concessionaire->save();
+        $concessionaire->update($input);
+
+
+
 
         return redirect()->route('experts.index')
             ->with('success', 'Experts editado successfully');

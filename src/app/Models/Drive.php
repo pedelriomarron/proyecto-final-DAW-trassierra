@@ -9,9 +9,7 @@ class Drive extends Model
 
     protected $table = 'drives';
     public $timestamps = true;
-
     protected $casts = [];
-
     protected $fillable = [
         'name', 'logo'
     ];

@@ -3,8 +3,6 @@
 
 @section('content')
 
-<h1 class="h3 mb-2 text-gray-800">Tables</h1>
-<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -43,7 +41,8 @@
                         <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
                         @endcan
                         @can('role-delete')
-                        {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                        {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy',
+                        $role->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                         @endcan

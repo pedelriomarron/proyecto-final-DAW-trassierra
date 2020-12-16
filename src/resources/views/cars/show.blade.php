@@ -2,9 +2,9 @@
 @section('content')
 
 @push('styles')
-   <!-- image main -->
-                        <style>
-                        </style>
+<!-- image main -->
+<style>
+</style>
 @endpush
 
 <div class="container">
@@ -20,22 +20,23 @@
                     </header>
 
                     <!-- core content -->
-                   
+
                     <div class="core-content ">
 
-                     <div  data-allowfullscreen="true"  data-width="100%"  data-max-width="100%" data-nav="thumbs" class="fotorama ">
-                     @forelse ($images as $image)
-                        <img  src="{{ asset('uploads/gallery') }}/{{ $image->image }}">
-                   
-                   
-                    @empty
-                            <img class="img-fluid" src="https://s.fotorama.io/2.jpg">
-                    @endforelse
+                        <div data-allowfullscreen="true" data-width="100%" data-max-width="100%" data-nav="thumbs"
+                            class="fotorama ">
+                            @forelse ($images as $image)
+                            <img src="{{ asset('uploads/gallery') }}/{{ $image->image }}">
 
-                            
-                    </div>
-                    <hr>
-                     
+
+                            @empty
+                            <img class="img-fluid" src="{{ asset('uploads/gallery/')."/".$car->getIMG()}}">
+                            @endforelse
+
+
+                        </div>
+                        <hr>
+
                         <!-- icons -->
                         <section class="data-table" id="icons">
                             <a href="#charging">
@@ -54,12 +55,21 @@
                             </a>
                         </section>
 
-                   
+                        <section class="expected-notification">
+                            <h1><b>Concesionarios asociados:</b></h1>
+                            @forelse($conses as $conse)
+                            <p><a target="_blank" href="{{ $conse->url_show}}">{{ $conse->name_show }}</a></p>
+                            @empty
+                            <p>No tenemos concesionarios asociados para esta marca</p>
+                            @endforelse
+                        </section>
+
                         <section class="data-table-container" id="main-data">
-                         <!-- data-table realrange -->
+                            <!-- data-table realrange -->
                             <div class="data-table has-legend" id="range">
 
-                                <h2>Real Range Estimation <span>between {{$car->range_highway_cold}} - {{$car->range_city_mild}} km</span></h2>
+                                <h2>Real Range Estimation <span>between {{$car->range_highway_cold}} -
+                                        {{$car->range_city_mild}} km</span></h2>
 
                                 <div class="inline-block">
                                     <table>
@@ -85,15 +95,15 @@
                                         <tbody>
                                             <tr>
                                                 <td>City - Mild Weather *</td>
-                                                <td>{{$car->range_city_mild}}  km</td>
+                                                <td>{{$car->range_city_mild}} km</td>
                                             </tr>
                                             <tr>
                                                 <td>Highway - Mild Weather *</td>
-                                                <td>{{$car->range_highway_mild}}  km</td>
+                                                <td>{{$car->range_highway_mild}} km</td>
                                             </tr>
                                             <tr>
                                                 <td>Combined - Mild Weather *</td>
-                                                <td>{{$car->range_combined_mild}}  km</td>
+                                                <td>{{$car->range_combined_mild}} km</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -233,7 +243,7 @@
                                                 <td>Range</td>
                                                 <td>{{$car->wltprange}} km</td>
                                             </tr>
-                                           
+
                                             <tr>
                                                 <td>Vehicle Consumption</td>
                                                 <td>{{$car->wltpconsumption}} Wh/km</td>
@@ -259,7 +269,7 @@
 
                             </div>
 
-                    
+
                             <!-- data-table real consumption -->
                             <div class="data-table has-legend" id="real-consumption">
                                 <h2>Real Energy Consumption Estimation <span>between 107 - 225 Wh/km</span></h2>
@@ -303,9 +313,9 @@
                                 </div>
                             </div>
 
-                          
+
                             <!-- data-table fuel consumption -->
-                       
+
                             <!-- data-table size weight -->
                             <div class="data-table">
 
@@ -424,7 +434,7 @@
 
 
 
-                         
+
 
                         </section>
 
@@ -438,19 +448,34 @@
                                     <a href="{{route('show_car',$similar->id)}}">
                                         <img class="thumb" src="{{ asset('uploads/gallery/')."/".$similar->getIMG()}}"
                                             alt="Coche similar">
-                                            {{ $similar->brand->name}} {{$similar->name}}
+                                        {{ $similar->brand->name}} {{$similar->name}}
                                     </a>
-                                    <span class="{{ $similar->realrange > $car->realrange  ?  'better' : ($similar->realrange < $car->realrange  ? 'worse' : 'same' )}}"><i class="fa fa{{ $car->realrange < $similar->realrange  ?  '-plus' : ($car->realrange == $similar->realrange ? '' : '-minus') }}-circle"></i> {{ abs($car->realrange - $similar->realrange)}} km {{ $car->realrange < $similar->realrange  ?  'more' : ($car->realrange == $similar->realrange ? 'same' : 'less') }} range</span>
-                                    <span class="{{ $car->acceleration < $similar->acceleration  ?  'worse' : ($car->acceleration == $similar->acceleration ? 'same' : 'better' )}}"><i class="fa fa{{ $car->acceleration > $similar->acceleration  ?  '-plus' : ( $car->acceleration == $similar->acceleration ? '' : '-minus') }}-circle"></i> {{round(abs(abs(($similar->acceleration/$car->acceleration)*100) -100))   }} % {{ $car->acceleration < $similar->acceleration  ?  'slower ' :( $car->acceleration == $similar->acceleration ? 'same' : 'faster') }} acceleration</span>
-                                    <span class="{{ $car->realconsumption > $similar->realconsumption  ?  'better' : ($car->realconsumption == $similar->realconsumption ? 'same' : 'worse' )}}"><i class="fa fa{{ $car->realconsumption > $similar->realconsumption  ?  '-plus' : ($car->realconsumption == $similar->realconsumption ? '' : '-minus' )}}-circle"></i> {{round(abs(abs(($similar->realconsumption/$car->realconsumption)*100) -100))   }}% {{ $car->realconsumption < $similar->realconsumption  ?  'less' : ($car->realconsumption == $similar->realconsumption ? 'same' : 'more') }} energy efficient</span>
+                                    <span
+                                        class="{{ $similar->realrange > $car->realrange  ?  'better' : ($similar->realrange < $car->realrange  ? 'worse' : 'same' )}}"><i
+                                            class="fa fa{{ $car->realrange < $similar->realrange  ?  '-plus' : ($car->realrange == $similar->realrange ? '' : '-minus') }}-circle"></i>
+                                        {{ abs($car->realrange - $similar->realrange)}} km
+                                        {{ $car->realrange < $similar->realrange  ?  'more' : ($car->realrange == $similar->realrange ? 'same' : 'less') }}
+                                        range</span>
+                                    <span
+                                        class="{{ $car->acceleration < $similar->acceleration  ?  'worse' : ($car->acceleration == $similar->acceleration ? 'same' : 'better' )}}"><i
+                                            class="fa fa{{ $car->acceleration > $similar->acceleration  ?  '-plus' : ( $car->acceleration == $similar->acceleration ? '' : '-minus') }}-circle"></i>
+                                        {{round(abs(abs(($similar->acceleration/$car->acceleration)*100) -100))   }} %
+                                        {{ $car->acceleration < $similar->acceleration  ?  'slower ' :( $car->acceleration == $similar->acceleration ? 'same' : 'faster') }}
+                                        acceleration</span>
+                                    <span
+                                        class="{{ $car->realconsumption > $similar->realconsumption  ?  'better' : ($car->realconsumption == $similar->realconsumption ? 'same' : 'worse' )}}"><i
+                                            class="fa fa{{ $car->realconsumption > $similar->realconsumption  ?  '-plus' : ($car->realconsumption == $similar->realconsumption ? '' : '-minus' )}}-circle"></i>
+                                        {{round(abs(abs(($similar->realconsumption/$car->realconsumption)*100) -100))   }}%
+                                        {{ $car->realconsumption < $similar->realconsumption  ?  'less' : ($car->realconsumption == $similar->realconsumption ? 'same' : 'more') }}
+                                        energy efficient</span>
                                 </div>
 
                                 @empty
                                 @endforelse
 
-                              
-                               
-                          
+
+
+
                         </section>
 
 
@@ -458,11 +483,11 @@
                         <!-- section video -->
                         <section class="data-table-container detail-video" id="detail-video">
                             <div class="videowrapper">
-                                    {!! $car->yt_iframe !!}
+                                {!! $car->yt_iframe !!}
                             </div>
                         </section>
 
-                    
+
                     </div>
 
                     <!-- subfooter -->

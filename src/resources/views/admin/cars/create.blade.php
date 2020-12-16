@@ -416,11 +416,18 @@
                                     id="roofrails" name="roofrails">
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <strong>@lang('youtube'):</strong>
+                                <input class="form-control" type="text"
+                                    value="{{  old('youtube',  empty($car->youtube) ? '' : $car->youtube ) }}"
+                                    id="youtube" name="youtube">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary">@lang('submit')</button>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary">@lang('submit')</button>
-                    </div>
-                </div>
 
             </form>
         </div>
