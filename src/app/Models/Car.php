@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Favorite;
+
 
 class Car extends Model
 {
@@ -22,6 +24,17 @@ class Car extends Model
         } catch (\Throwable $th) {
             return 'default.png';
         }
+    }
+
+
+    public function isFavorite($idUser)
+    {
+        $obj = Favorite::where([
+            ['car_id', '=', $this->id],
+            ['user_id', '=', $idUser]
+        ])->first();
+
+        return empty($obj) ? false : true;
     }
 
     public function brand()

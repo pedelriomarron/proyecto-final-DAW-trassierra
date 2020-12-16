@@ -68,6 +68,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::POST('admin-panel/api/generate', 'AdminApiController@generate')->name('admin.api.generate');
     // Comparate
     Route::get('comparate', 'ComparateController@index')->name('comparate');
+    //Favoritos
+    Route::get('favorite/{id}', 'FavoriteController@save')->name('favorite.save');
+    Route::get('favourites', 'FavoriteController@index')->name('favorite.index');
 });
 
 

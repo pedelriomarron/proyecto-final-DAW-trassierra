@@ -2,7 +2,6 @@
 @section('content')
 
 @push('styles')
-<!-- image main -->
 <style>
 </style>
 @endpush
@@ -15,8 +14,14 @@
 
                     <!-- subheader -->
                     <header class="sub-header">
-                        <h1>{{$car->brand->name}} {{$car->name}}</h1>
-                        <span>Battery Electric Vehicle</span>
+                        <h1><b>{{$car->brand->name}} {{$car->name}}</b></h1>
+                        <span><a href="{{route('favorite.save',$car->id)}}">
+                                @if($car->isFavorite(Auth::user()->id))
+                                <i class="fas fa-heart"></i>
+                                @else
+                                <i class="far fa-heart"></i>
+                                @endif
+                            </a></span>
                     </header>
 
                     <!-- core content -->
@@ -422,7 +427,13 @@
                                             </tr>
                                             <tr>
                                                 <td>Roof Rails</td>
-                                                <td>{{$car->roofrails}}</td>
+                                                <td>
+                                                    @if ($car->roofrails === 1)
+                                                    @lang('Yes')
+                                                    @else
+                                                    @lang('No')
+                                                    @endif
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -164,6 +164,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('comparate') }}">{{ __('comparate') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('favorite.index') }}">{{ __('My favourites') }}</a>
+                </li>
 
             </ul>
 

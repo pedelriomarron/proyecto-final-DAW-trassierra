@@ -163,26 +163,26 @@
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('acceleration'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="2" max="23" class="form-control" type="number"
                                     value="{{  old('acceleration',  empty($car->acceleration) ? 0 : $car->acceleration ) }}"
                                     id="acceleration" name="acceleration">
                             </div>
                             <div class="form-group col-lg-4">
                                 <strong>@lang('topspeed'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="110" max="450" class="form-control" type="number"
                                     value="{{  old('topspeed',  empty($car->topspeed) ? 0 : $car->topspeed ) }}"
                                     id="topspeed" name="topspeed">
                             </div>
                             <div class="form-group col-lg-4">
                                 <strong>@lang('electricrange'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="5" max="1200" class="form-control" type="number"
                                     value="{{  old('electricrange',  empty($car->electricrange) ? 0 : $car->electricrange ) }}"
                                     id="electricrange" name="electricrange">
                             </div>
 
                             <div class="form-group col-lg-4">
                                 <strong>@lang('totalpower'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="1" class="form-control" type="number"
                                     value="{{  old('totalpower',  empty($car->totalpower) ? 0 : $car->totalpower ) }}"
                                     id="totalpower" name="totalpower">
                             </div>
@@ -209,13 +209,13 @@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <strong>@lang('batterycapacity'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="10" max="200" class="form-control" type="number"
                                     value="{{  old('batterycapacity',  empty($car->batterycapacity) ? 0 : $car->batterycapacity ) }}"
                                     id="batterycapacity" name="batterycapacity">
                             </div>
                             <div class="form-group col-lg-6">
                                 <strong>@lang('batteryuseable'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="10" max="200" class="form-control" type="number"
                                     value="{{  old('batteryuseable',  empty($car->batteryuseable) ? 0 : $car->batteryuseable ) }}"
                                     id="batteryuseable" name="batteryuseable">
                             </div>
@@ -236,7 +236,7 @@
                             </div>
                             <div class="form-group col-lg-3">
                                 <strong>@lang('realconsumption'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="100" max="300" class="form-control" type="number"
                                     value="{{  old('realconsumption',  empty($car->realconsumption) ? 0 : $car->realconsumption ) }}"
                                     id="realconsumption" name="realconsumption">
                             </div>
@@ -260,7 +260,7 @@
                             </div>
                             <div class="form-group col-lg-3">
                                 <strong>@lang('wltpconsumption'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="100" max="300" class="form-control" type="number"
                                     value="{{  old('wltpconsumption',  empty($car->wltpconsumption) ? 0 : $car->wltpconsumption ) }}"
                                     id="wltpconsumption" name="wltpconsumption">
                             </div>

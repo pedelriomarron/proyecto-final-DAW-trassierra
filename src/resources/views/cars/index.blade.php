@@ -17,11 +17,9 @@
         <div class="col-md-12">
             <main id="evdb">
                 <div class="content jplist">
-                    <!-- panel-top -->
-                    <!-- panel-top-header -->
                     <div class="jplist-panel panel-header sub-header">
                         <div class="subheader-title">
-                            <h1>All electric vehicles</h1>
+                            <h1>{{$title}}</h1>
                             <span data-control-type="counter" data-control-action="counter"
                                 data-control-name="all-counter" data-format="{count} cars found"
                                 data-path=".data-wrapper" data-mode="filter" data-type="path">
@@ -49,13 +47,14 @@
                                             Low-High</span></li>
                                     <li><span data-path=".price" data-order="desc" data-type="number">Price
                                             High-Low</span></li>
-                                    <li><span data-path=".erange_real" data-order="desc" data-type="number">Range</span>
-                                    </li>
-                                    <li><span data-path=".efficiency" data-order="asc"
-                                            data-type="number">Efficiency</span></li>
+                                    
                                     <li><span data-path=".fastcharge_speed" data-order="desc"
                                             data-type="number">Fastcharging</span></li>
                                             -->
+                                    <li><span data-path=".efficiency" data-order="asc"
+                                            data-type="number">Efficiency</span></li>
+                                    <li><span data-path=".erange_real" data-order="desc" data-type="number">Range</span>
+                                    </li>
                                     <li><span data-path=".acceleration" data-order="asc"
                                             data-type="number">Acceleration</span>
                                     </li>
@@ -69,7 +68,7 @@
                             <!-- reset button -->
                             <button type="button" class="jplist-reset-btn" data-control-type="reset"
                                 data-control-name="reset" data-control-action="reset">
-                                Reset &nbsp;<i class="fa fa-share"></i>
+                                @lang("Reset") &nbsp;<i class="fa fa-share"></i>
                             </button>
                         </div>
 
@@ -148,6 +147,33 @@
                                     </ul>
                                 </div>
                                 -->
+
+                                <!-- drive dropdown -->
+                                <div class="jplist-checkbox-dropdown" data-control-type="checkbox-dropdown"
+                                    data-control-name="propulsion-checkbox-dropdown" data-control-action="filter"
+                                    data-no-selected-text="Drive" data-one-item-text="{selected}"
+                                    data-many-items-text="{num} selected">
+
+                                    <ul>
+                                        @foreach ( $drives as $drive )
+                                        <li>
+                                            <input data-path=".drive-{{$drive->id}}" id="drive-{{$drive->id}}"
+                                                type="checkbox" />
+                                            <label for="drive-{{$drive->id}}"><i class="fa fa-circle-o"></i><i
+                                                    class="fa fa-circle"></i> -
+                                                {{$drive->name}}
+                                                <span data-control-type="counter" data-control-action="counter"
+                                                    data-control-name="drive-{{$drive->id}}-counter"
+                                                    data-format="({count})" data-path=".drive-{{$drive->id}}"
+                                                    data-mode="filter" data-type="path">
+                                                </span>
+                                            </label>
+                                        </li>
+                                        @endforeach
+
+                                    </ul>
+                                </div>
+
                                 <!-- vormgeving dropdown -->
                                 <div class="jplist-checkbox-dropdown" data-control-type="checkbox-dropdown"
                                     data-control-name="bodyshape-checkbox-dropdown" data-control-action="filter"
@@ -300,31 +326,8 @@
                                     </ul>
                                 </div>
 
-                                <!-- drive dropdown -->
-                                <div class="jplist-checkbox-dropdown" data-control-type="checkbox-dropdown"
-                                    data-control-name="propulsion-checkbox-dropdown" data-control-action="filter"
-                                    data-no-selected-text="Drive" data-one-item-text="{selected}"
-                                    data-many-items-text="{num} selected">
 
-                                    <ul>
-                                        @foreach ( $drives as $drive )
-                                        <li>
-                                            <input data-path=".drive-{{$drive->id}}" id="drive-{{$drive->id}}"
-                                                type="checkbox" />
-                                            <label for="drive-{{$drive->id}}"><i class="fa fa-circle-o"></i><i
-                                                    class="fa fa-circle"></i> -
-                                                {{$drive->name}}
-                                                <span data-control-type="counter" data-control-action="counter"
-                                                    data-control-name="drive-{{$drive->id}}-counter"
-                                                    data-format="({count})" data-path=".drive-{{$drive->id}}"
-                                                    data-mode="filter" data-type="path">
-                                                </span>
-                                            </label>
-                                        </li>
-                                        @endforeach
 
-                                    </ul>
-                                </div>
 
                             </div>
 
@@ -341,6 +344,14 @@
                                     <div class="ui-slider" data-type="ui-slider"></div>
                                 </div>
                                 <div class="jplist-range-slider" data-control-type="range-slider"
+                                    data-control-name="range-slider-battery" data-control-action="filter"
+                                    data-path=".battery" data-slider-func="batterySlider"
+                                    data-setvalues-func="batteryValues">
+                                    <label for="range-slider-battery">Battery: <span data-type="prev-value"></span> -
+                                        <span data-type="next-value"></span></label>
+                                    <div class="ui-slider" data-type="ui-slider"></div>
+                                </div>
+                                <div class="jplist-range-slider" data-control-type="range-slider"
                                     data-control-name="range-slider-topspeed" data-control-action="filter"
                                     data-path=".topspeed" data-slider-func="topspeedSlider"
                                     data-setvalues-func="topspeedValues">
@@ -350,22 +361,14 @@
                                 </div>
 
                             </div>
-                            <!-- first slider row 
-                            
+
                             <div class="second-slider-row">
 
-                                <div class="jplist-range-slider" data-control-type="range-slider"
-                                    data-control-name="range-slider-battery" data-control-action="filter"
-                                    data-path=".battery" data-slider-func="batterySlider"
-                                    data-setvalues-func="batteryValues">
-                                    <label for="range-slider-battery">Battery: <span data-type="prev-value"></span> -
-                                        <span data-type="next-value"></span></label>
-                                    <div class="ui-slider" data-type="ui-slider"></div>
-                                </div>
+
 
                             </div>
 
-                            -->
+
                         </div>
 
                     </div>
@@ -393,7 +396,8 @@
                                         class="rank hidden">7673</span>
                                     <!--<span class="not-current">(coming soon)</span>-->
                                     <div class="subtitle">
-                                        <!--    Battery Electric Vehicle - <span class="battery">48</span> kWh *-->
+                                        Battery Electric Vehicle - <span class="battery">{{$car->batteryuseable}}</span>
+                                        kWh
                                     </div>
 
                                 </div>

@@ -87,7 +87,7 @@ class CreateCarsTable extends Migration
             $table->integer('seat')->default('0')->nullable(true);
             $table->integer('isofix')->default('0')->nullable(true);
             $table->integer('turningcircle')->default('0')->nullable(true);
-            $table->boolean('roofrails')->default('0')->nullable(true);
+            $table->boolean('roofrails')->default('0');
 
             $table->string('youtube')->nullable(true);
 

@@ -70,12 +70,13 @@ class CarController extends Controller
         $bodystyles = Bodystyle::select('id', 'name')->get();
         $segments = Segment::select('id', 'name', 'letter')->get();
         $drives = Drive::select('id', 'name')->get();
+        $title = "All electric vehicles";
 
 
 
 
         $cars = Car::all();
-        return view('cars.index', ['cars' => $cars, 'brands' => $brands, 'bodystyles' => $bodystyles, "segments" => $segments, "drives" => $drives]);
+        return view('cars.index', ["title" => $title, 'cars' => $cars, 'brands' => $brands, 'bodystyles' => $bodystyles, "segments" => $segments, "drives" => $drives]);
     }
 
 
