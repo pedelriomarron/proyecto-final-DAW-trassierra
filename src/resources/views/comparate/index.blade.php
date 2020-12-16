@@ -116,7 +116,14 @@
             foto.setAttribute('width', '100%');
             foto.setAttribute('height', '200rem');
 
-            foto.setAttribute('src', `${pathIMG}/${car.images[0].image}`);
+
+            try {
+                foto.setAttribute('src', `${pathIMG}/${car.images[0].image}`);
+
+            } catch (error) {
+                foto.setAttribute('src', "{{ asset('uploads/gallery') }}/default.png");
+
+            }
             foto.setAttribute('class', ' border');
 
             elemento.appendChild(foto);
