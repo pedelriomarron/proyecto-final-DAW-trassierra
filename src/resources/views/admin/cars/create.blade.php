@@ -61,6 +61,7 @@
                 @csrf
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
+
                         <div class="row">
                             <div class="form-group col">
                                 <strong>@lang('brand'):</strong>
@@ -82,9 +83,7 @@
                                     value="{{ old('name', $car->name) }}">
                             </div>
                         </div>
-
-
-
+                        <hr>
                         <div class="row">
                             <div class="form-group col">
                                 <strong>@lang('bodystyles'):</strong>
@@ -114,11 +113,7 @@
                                 </select>
                             </div>
                         </div>
-
-
-
-
-
+                        <hr>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('range_city_cold'):</strong>
@@ -159,7 +154,7 @@
                                     id="range_combined_mild" name="range_combined_mild">
                             </div>
                         </div>
-
+                        <hr>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('acceleration'):</strong>
@@ -206,6 +201,7 @@
                             </div>
 
                         </div>
+                        <hr>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <strong>@lang('batterycapacity'):</strong>
@@ -220,7 +216,7 @@
                                     id="batteryuseable" name="batteryuseable">
                             </div>
                         </div>
-
+                        <hr>
                         <div class="row">
                             <div class="form-group col-lg-3">
                                 <strong>@lang('realrange'):</strong>
@@ -271,6 +267,7 @@
                                     id="wltpfuelequivalent" name="wltpfuelequivalent">
                             </div>
                         </div>
+                        <hr>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('energy_city_cold'):</strong>
@@ -309,6 +306,7 @@
                                     id="energy_combined_mild" name="energy_combined_mild">
                             </div>
                         </div>
+                        <hr>
                         <div class="row">
                             <div class="form-group col-lg-2">
                                 <strong>@lang('length'):</strong>
@@ -383,6 +381,7 @@
                                     id="maxpayload" name="maxpayload">
                             </div>
                         </div>
+                        <hr>
                         <div class="row">
                             <div class="form-group col-lg-3">
                                 <strong>@lang('seats'):</strong>
@@ -416,6 +415,7 @@
                                     id="roofrails" name="roofrails">
                             </div>
                         </div>
+                        <hr>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <strong>@lang('youtube'):</strong>
@@ -424,6 +424,8 @@
                                     id="youtube" name="youtube">
                             </div>
                         </div>
+                        <hr>
+
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">@lang('submit')</button>
                         </div>

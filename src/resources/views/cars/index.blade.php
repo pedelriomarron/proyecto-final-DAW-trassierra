@@ -219,7 +219,8 @@
                             </div>
 
                             <!-- more options -->
-                            <div id="toggle-more-options"><i class="fa fa-angle-double-down fa-fw"></i>More Options
+                            <div id="toggle-more-options"><i class="fa fa-angle-double-down fa-fw"></i>@lang("More
+                                Options")
                             </div>
 
                         </div>
@@ -420,6 +421,18 @@
                                     <span style="padding-left: 10px;" title="Number of seats"
                                         class="seats-{{$car->seat}} fa fa-user"> {{$car->seat}}
                                     </span>
+
+                                    @if(Auth::check())
+                                    <span><a href="{{route('favorite.save',$car->id)}}">
+                                            @if($car->isFavorite(Auth::user()->id))
+                                            <i class="fas fa-heart"></i>
+                                            @else
+                                            <i class="far fa-heart"></i>
+                                            @endif
+                                        </a>
+                                    </span>
+                                    @endif
+
                                 </div>
 
                                 <div class="specs">

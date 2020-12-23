@@ -15,13 +15,16 @@
                     <!-- subheader -->
                     <header class="sub-header">
                         <h1><b>{{$car->brand->name}} {{$car->name}}</b></h1>
+                        @if(Auth::check())
                         <span><a href="{{route('favorite.save',$car->id)}}">
                                 @if($car->isFavorite(Auth::user()->id))
                                 <i class="fas fa-heart"></i>
                                 @else
                                 <i class="far fa-heart"></i>
                                 @endif
-                            </a></span>
+                            </a>
+                        </span>
+                        @endif
                     </header>
 
                     <!-- core content -->
