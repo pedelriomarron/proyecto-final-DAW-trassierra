@@ -101,7 +101,7 @@
         @endforeach
         @endif
     </div>
-    <button id="submitOrder" onClick="submit()">Enviar</button>
+    <button class="btn btn-primary" id="submitOrder" onClick="submit()">Enviar</button>
 </div>
 
 

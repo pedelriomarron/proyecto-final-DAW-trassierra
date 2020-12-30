@@ -32,36 +32,20 @@
                                 data-control-action="sort">
 
                                 <ul>
-                                    <!-- sort dropdown 
-                                    <li><span data-path=".rank" data-order="desc" data-type="number">Most Viewed</span>
-                                    </li>
-                                    -->
-                                    <li><span data-path=".title" data-order="asc" data-type="text">Alphabetic
+                                    <li><span data-path=".title" data-order="asc" data-type="text">@lang('Alphabetic')
                                             (a-z)</span>
                                     </li>
-                                    <li><span data-path=".title" data-order="desc" data-type="text">Alphabetic
+                                    <li><span data-path=".title" data-order="desc" data-type="text">@lang('Alphabetic')
                                             (z-a)</span>
                                     </li>
-                                    <!--
-                                    <li><span data-path=".price" data-order="asc" data-type="number">Price
-                                            Low-High</span></li>
-                                    <li><span data-path=".price" data-order="desc" data-type="number">Price
-                                            High-Low</span></li>
-                                    
-                                    <li><span data-path=".fastcharge_speed" data-order="desc"
-                                            data-type="number">Fastcharging</span></li>
-                                            -->
                                     <li><span data-path=".efficiency" data-order="asc"
-                                            data-type="number">Efficiency</span></li>
-                                    <li><span data-path=".erange_real" data-order="desc" data-type="number">Range</span>
+                                            data-type="number">@lang('Efficiency')</span></li>
+                                    <li><span data-path=".erange_real" data-order="desc"
+                                            data-type="number">@lang('Range')</span>
                                     </li>
                                     <li><span data-path=".acceleration" data-order="asc"
-                                            data-type="number">Acceleration</span>
+                                            data-type="number">@lang('Acceleration')</span>
                                     </li>
-                                    <!--
-                                    <li><span data-path=".date_from" data-order="desc" data-type="number">Date
-                                            Available</span>
-                                    </li> -->
                                 </ul>
                             </div>
 
@@ -287,7 +271,7 @@
                                     <ul>
                                         <li>
                                             <input data-path=".seats-2" id="seats-2" type="checkbox" />
-                                            <label for="seats-2">2 Seats
+                                            <label for="seats-2">2 @lang("Seats")
                                                 <span data-control-type="counter" data-control-action="counter"
                                                     data-control-name="seats-2-counter" data-format="({count})"
                                                     data-path=".seats-2" data-mode="filter" data-type="path">
@@ -297,7 +281,7 @@
 
                                         <li>
                                             <input data-path=".seats-4" id="seats-4" type="checkbox" />
-                                            <label for="seats-4">4 Seats
+                                            <label for="seats-4">4 @lang("Seats")
                                                 <span data-control-type="counter" data-control-action="counter"
                                                     data-control-name="seats-4-counter" data-format="({count})"
                                                     data-path=".seats-4" data-mode="filter" data-type="path">
@@ -307,7 +291,7 @@
 
                                         <li>
                                             <input data-path=".seats-5" id="seats-5" type="checkbox" />
-                                            <label for="seats-5">5 Seats
+                                            <label for="seats-5">5 @lang("Seats")
                                                 <span data-control-type="counter" data-control-action="counter"
                                                     data-control-name="seats-5-counter" data-format="({count})"
                                                     data-path=".seats-5" data-mode="filter" data-type="path">
@@ -317,7 +301,7 @@
 
                                         <li>
                                             <input data-path=".seats-7" id="seats-7" type="checkbox" />
-                                            <label for="seats-7">5+ Seats
+                                            <label for="seats-7">5+ @lang("Seats")
                                                 <span data-control-type="counter" data-control-action="counter"
                                                     data-control-name="seats-7-counter" data-format="({count})"
                                                     data-path=".seats-7" data-mode="filter" data-type="path">
@@ -339,7 +323,7 @@
                                     data-control-name="range-slider-acceleration" data-control-action="filter"
                                     data-path=".acceleration" data-slider-func="accelerationSlider"
                                     data-setvalues-func="accelerationValues">
-                                    <label for="range-slider-acceleration">Acceleration: <span
+                                    <label for="range-slider-acceleration">@lang("Acceleration"): <span
                                             data-type="prev-value"></span> - <span
                                             data-type="next-value"></span></label>
                                     <div class="ui-slider" data-type="ui-slider"></div>
@@ -348,7 +332,8 @@
                                     data-control-name="range-slider-battery" data-control-action="filter"
                                     data-path=".battery" data-slider-func="batterySlider"
                                     data-setvalues-func="batteryValues">
-                                    <label for="range-slider-battery">Battery: <span data-type="prev-value"></span> -
+                                    <label for="range-slider-battery">@lang("Battery"): <span
+                                            data-type="prev-value"></span> -
                                         <span data-type="next-value"></span></label>
                                     <div class="ui-slider" data-type="ui-slider"></div>
                                 </div>
@@ -356,7 +341,8 @@
                                     data-control-name="range-slider-topspeed" data-control-action="filter"
                                     data-path=".topspeed" data-slider-func="topspeedSlider"
                                     data-setvalues-func="topspeedValues">
-                                    <label for="range-slider-topspeed">Top Speed: <span data-type="prev-value"></span> -
+                                    <label for="range-slider-topspeed">@lang("Top Speed"): <span
+                                            data-type="prev-value"></span> -
                                         <span data-type="next-value"></span></label>
                                     <div class="ui-slider" data-type="ui-slider"></div>
                                 </div>
@@ -393,11 +379,11 @@
                                     <h2><a href="{{route('show_car',$car->id)}}" class="title"><span
                                                 class="brand-{{$car->brand->id}}">{{$car->brand->name}}
                                             </span><span class="model">{{$car->name}}</span></a>
-                                    </h2><span class="date_from hidden">1606777200</span><span
-                                        class="rank hidden">7673</span>
+                                    </h2>
                                     <!--<span class="not-current">(coming soon)</span>-->
                                     <div class="subtitle">
-                                        Battery Electric Vehicle - <span class="battery">{{$car->batteryuseable}}</span>
+                                        @lang("Battery Electric Vehicle") - <span
+                                            class="battery">{{$car->batteryuseable}}</span>
                                         kWh
                                     </div>
 
@@ -443,24 +429,18 @@
                                     </p>
 
                                     <p class="left">
-                                        <span class="tag">Top Speed</span>
+                                        <span class="tag">@lang("Top Speed")</span>
                                         <span class="topspeed">{{$car->topspeed}} km/h</span>
                                     </p>
 
                                     <p class="left">
-                                        <span class="tag">Range*</span>
-                                        <span class="erange_real">280 km</span>
+                                        <span class="tag">@lang("Range")*</span>
+                                        <span class="erange_real">{{$car->realrange}} km</span>
                                     </p>
 
                                     <p class="left">
-                                        <span class="tag">Efficiency*</span>
+                                        <span class="tag">@lang("Efficiency")*</span>
                                         <span class="efficiency">161 Wh/km</span>
-                                    </p>
-
-                                    <p class="left">
-                                        <span class="tag">Fastcharge*</span>
-                                        <span class="fastcharge_speed_print">260 km/h</span>
-                                        <span class="fastcharge_speed hidden">260</span>
                                     </p>
 
                                 </div>

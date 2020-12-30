@@ -3,19 +3,19 @@
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
+@push('styles')
+<style>
+    p ins {
+        font-weight: 700;
+    }
+
+</style>
+@endpush
 <div class="card shadow mb-4">
-    <!-- Title Card  -->
     <div class="card-header py-3">
         <h3 class="m-0 font-weight-bold text-primary">@lang('create-car')</h3>
     </div>
-    <!-- Button Add 
-    <div>
-        <div class=" p-3 pt-4">
-            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> @lang('create-cars')</button>
-        </div>
-    </div>
-     -->
-    <!-- Body Card  -->
+
     <div class="card-body">
         <div class="">
             <div class="row">
@@ -61,6 +61,8 @@
                 @csrf
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
+                        <hr>
+                        <p><ins>@lang('Vehicle data')</ins></p>
 
                         <div class="row">
                             <div class="form-group col">
@@ -83,11 +85,10 @@
                                     value="{{ old('name', $car->name) }}">
                             </div>
                         </div>
-                        <hr>
                         <div class="row">
                             <div class="form-group col">
                                 <strong>@lang('bodystyles'):</strong>
-                                <select name="bodystyle_id" class="form-control select2">
+                                <select name="bodystyle_id" class="form-control select22">
                                     @foreach($bodystyles as $val)
                                     <option @if (request()->route()->getName() !== 'cars.create')
                                         @if($car->bodystyle->id
@@ -101,7 +102,7 @@
                             </div>
                             <div class="form-group col">
                                 <strong>@lang('segments'):</strong>
-                                <select name="segment_id" class="form-control select2">
+                                <select name="segment_id" class="form-control select22">
                                     @foreach($segments as $val)
                                     <option @if (request()->route()->getName() !== 'cars.create') @if($car->segment->id
                                         ==
@@ -114,6 +115,7 @@
                             </div>
                         </div>
                         <hr>
+                        <p><ins>@lang('Real Range Estimation')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('range_city_cold'):</strong>
@@ -155,6 +157,7 @@
                             </div>
                         </div>
                         <hr>
+                        <p><ins>@lang('Performance')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('acceleration'):</strong>
@@ -168,13 +171,14 @@
                                     value="{{  old('topspeed',  empty($car->topspeed) ? 0 : $car->topspeed ) }}"
                                     id="topspeed" name="topspeed">
                             </div>
+                            <!--
                             <div class="form-group col-lg-4">
                                 <strong>@lang('electricrange'):</strong>
                                 <input min="5" max="1200" class="form-control" type="number"
                                     value="{{  old('electricrange',  empty($car->electricrange) ? 0 : $car->electricrange ) }}"
                                     id="electricrange" name="electricrange">
                             </div>
-
+-->
                             <div class="form-group col-lg-4">
                                 <strong>@lang('totalpower'):</strong>
                                 <input min="1" class="form-control" type="number"
@@ -189,7 +193,7 @@
                             </div>
                             <div class="form-group col-lg-4">
                                 <strong>@lang('drive'):</strong>
-                                <select name="drive_id" class="form-control select2">
+                                <select name="drive_id" class="form-control select22">
                                     @foreach($drives as $val)
                                     <option @if (request()->route()->getName() !== 'cars.create') @if($car->drive->id ==
                                         $val->id) selected="selected" @endif @endif
@@ -202,6 +206,7 @@
 
                         </div>
                         <hr>
+                        <p><ins>@lang('Battery')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <strong>@lang('batterycapacity'):</strong>
@@ -217,10 +222,11 @@
                             </div>
                         </div>
                         <hr>
+                        <p><ins>@lang('Energy Consumption')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-3">
                                 <strong>@lang('realrange'):</strong>
-                                <input class="form-control" type="number"
+                                <input min="5" max="1200" form-control" type="number"
                                     value="{{  old('realrange',  empty($car->realrange) ? 0 : $car->realrange ) }}"
                                     id="realrange" name="realrange">
                             </div>
@@ -268,6 +274,7 @@
                             </div>
                         </div>
                         <hr>
+                        <p><ins>@lang('Real Energy Consumption Estimation')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('energy_city_cold'):</strong>
@@ -307,6 +314,7 @@
                             </div>
                         </div>
                         <hr>
+                        <p><ins>@lang('Dimensions and Weight')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-2">
                                 <strong>@lang('length'):</strong>
@@ -382,6 +390,7 @@
                             </div>
                         </div>
                         <hr>
+                        <p><ins>@lang('Miscellaneous')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-3">
                                 <strong>@lang('seats'):</strong>
@@ -408,14 +417,18 @@
                                     value="{{  old('turningcircle',  empty($car->turningcircle) ? 0 : $car->turningcircle ) }}"
                                     id="turningcircle" name="turningcircle">
                             </div>
+                            <!--
                             <div class="form-group col-lg-3">
                                 <strong>@lang('roofrails'):</strong>
-                                <input class="form-control" type="number"
+                                <input class="form-control" type="checkbox"
                                     value="{{  old('roofrails',  empty($car->roofrails) ? 0 : $car->roofrails ) }}"
                                     id="roofrails" name="roofrails">
                             </div>
+                             -->
                         </div>
                         <hr>
+                        <p><ins>@lang('Media')</ins></p>
+
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <strong>@lang('youtube'):</strong>
@@ -431,6 +444,13 @@
                         </div>
                     </div>
 
+
+
+
+
+
+
+                </div>
             </form>
         </div>
     </div>
@@ -438,18 +458,10 @@
 
 @if (isset($car->id))
 <div class="card shadow mb-4">
-    <!-- Title Card  -->
     <div class="card-header py-3">
         <h3 class="m-0 font-weight-bold text-primary">@lang('g-car')</h3>
     </div>
-    <!-- Button Add 
-    <div>
-        <div class=" p-3 pt-4">
-            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> @lang('create-cars')</button>
-        </div>
-    </div>
-     -->
-    <!-- Body Card  -->
+
 
     <div class="card-body">
         <div class="">
@@ -487,7 +499,6 @@
 
 
 
-        // $('.select2').select2();
     });
 
 </script>

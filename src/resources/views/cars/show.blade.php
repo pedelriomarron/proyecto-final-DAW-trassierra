@@ -11,7 +11,6 @@
         <div class="col-md-12">
             <main id="evdb">
                 <div class="content" id="detail-page">
-
                     <!-- subheader -->
                     <header class="sub-header">
                         <h1><b>{{$car->brand->name}} {{$car->name}}</b></h1>
@@ -137,7 +136,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Electric Range *</td>
-                                                <td>{{$car->electricrange}} km</td>
+                                                <td>{{$car->realrange}} km</td>
                                             </tr>
 
                                         </tbody>

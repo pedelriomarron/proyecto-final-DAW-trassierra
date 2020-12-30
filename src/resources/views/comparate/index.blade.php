@@ -186,7 +186,7 @@
                 range_combined_mild: "km",
                 acceleration: "sec",
                 topspeed: "km/h",
-                electricrange: "km",
+                //electricrange: "km",
                 totalpower: "kW",
                 totaltorque: "nm",
                 batterycapacity: "kWh",

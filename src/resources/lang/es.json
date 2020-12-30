@@ -123,9 +123,9 @@
     "dashboard_cars-admin": "Administrar Coches",
     "dashboard_cars-create": "Crear Coche",
     "manage-bodystyles": "Administrar Carrocerías",
-    "create-record": "",
-    "bodystyle-id": "",
-    "bodystyle-logo": "",
+    "create-record": "Crear",
+    "bodystyle-id": "Id",
+    "bodystyle-logo": "Logo",
     "bodystyle-name": "Nombre de Carrocería",
     "bodystyle-actions": "",
     "confirmation-delete-title": "",
@@ -154,8 +154,8 @@
     "drive": "Tracción",
     "bodystyles": "Carrocería",
     "segments": "Segmento",
-    "g-car": "",
-    "manage-cars": "",
+    "g-car": "Galería",
+    "manage-cars": "Administrar Coches",
     "car-id": "",
     "car-actions": "",
     "car-logo": "Logo de coche",
@@ -229,5 +229,7 @@
     "concessionaire": "",
     "Yes": "",
     "No": "",
-    "Reset": ""
+    "Reset": "",
+    "More\r                                 Options": "",
+    "My favourites": ""
 }

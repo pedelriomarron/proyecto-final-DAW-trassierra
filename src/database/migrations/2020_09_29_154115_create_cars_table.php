@@ -45,7 +45,7 @@ class CreateCarsTable extends Migration
 
             $table->float('acceleration')->default('0')->nullable(true);
             $table->integer('topspeed')->default('0')->nullable(true);
-            $table->integer('electricrange')->default('0')->nullable(true);
+            //$table->integer('electricrange')->default('0')->nullable(true);
             $table->integer('totalpower')->default('0')->nullable(true);
             $table->integer('totaltorque')->default('0')->nullable(true);
 
