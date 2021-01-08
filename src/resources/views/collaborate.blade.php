@@ -5,7 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-8">
                 <div class="section-title">
-                    <h2>Collaborate Us</h2>
+                    <h1>{{ __('Colabora con nosotros') }}</h1>
+                    <hr>
                 </div>
             </div>
         </div>
@@ -124,9 +125,8 @@
                                     <label for="name"
                                         class="col-form-label text-md-right">{{ __('Attach Screenshot') }}</label>
 
-                                    <input type="file" 
-                                        class="form-control @error('screenshot') is-invalid @enderror" name="screenshot"
-                                        autofocus>
+                                    <input type="file" class="form-control @error('screenshot') is-invalid @enderror"
+                                        name="screenshot" autofocus>
 
                                 </div>
                             </div>

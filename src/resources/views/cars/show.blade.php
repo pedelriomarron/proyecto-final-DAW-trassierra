@@ -459,7 +459,8 @@
                                 @forelse ($similars as $similar)
                                 <div>
                                     <a href="{{route('show_car',$similar->id)}}">
-                                        <img class="thumb" src="{{ asset('uploads/gallery/')."/".$similar->getIMG()}}"
+                                        <img width="224" height="126" class="thumb"
+                                            src="{{ asset('uploads/gallery/')."/".$similar->getIMG()}}"
                                             alt="Coche similar">
                                         {{ $similar->brand->name}} {{$similar->name}}
                                     </a>

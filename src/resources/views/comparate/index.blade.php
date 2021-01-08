@@ -175,7 +175,7 @@
 
 
             let exception = ["id", "brand_id", 'bodystyle_id', 'drive_id', 'segment_id',
-                'name', 'youtube', 'created_at', 'updated_at'
+                'name', 'youtube', 'created_at', 'updated_at', "roofrails", "electricrange"
             ]
             let extension = {
                 range_city_cold: "km",
@@ -220,7 +220,6 @@
                 seat: "personas",
                 isofix: "asientos",
                 turningcircle: "m",
-                roofrails: "",
             }
             if (finalOk) {
                 for (var key in car1.car[0]) {

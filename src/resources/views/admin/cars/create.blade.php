@@ -20,9 +20,7 @@
         <div class="">
             <div class="row">
                 <div class="col-lg-12 margin-tb ">
-                    <div class="pull-left">
-                        <h2> @lang('add.car')</h2>
-                    </div>
+
                     <div class="pull-right my-3">
                         <a class="btn btn-primary" href="{{ route('cars.index') }}" title="Go back"> <i
                                 class="fas fa-backward "></i> </a>
@@ -118,39 +116,39 @@
                         <p><ins>@lang('Real Range Estimation')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
-                                <strong>@lang('range_city_cold'):</strong>
+                                <strong>@lang('range_city_cold') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('range_city_cold',  empty($car->range_city_cold) ? 0 : $car->range_city_cold ) }}"
                                     id="range_city_cold" name="range_city_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('range_highway_cold'):</strong>
+                                <strong>@lang('range_highway_cold') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('range_highway_cold',  empty($car->range_highway_cold) ? 0 : $car->range_highway_cold ) }}"
                                     id="range_highway_cold" name="range_highway_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('range_combined_cold'):</strong>
+                                <strong>@lang('range_combined_cold') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('range_combined_cold',  empty($car->range_combined_cold) ? 0 : $car->range_combined_cold ) }}"
                                     id="range_combined_cold" name="range_combined_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('range_city_mild'):</strong>
+                                <strong>@lang('range_city_mild') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('range_city_mild',  empty($car->range_city_mild) ? 0 : $car->range_city_mild ) }}"
                                     id="range_city_mild" name="range_city_mild">
                             </div>
 
                             <div class="form-group col-lg-4">
-                                <strong>@lang('range_highway_mild'):</strong>
+                                <strong>@lang('range_highway_mild') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('range_highway_mild',  empty($car->range_highway_mild) ? 0 : $car->range_highway_mild ) }}"
                                     id="range_highway_mild" name="range_highway_mild">
                             </div>
 
                             <div class="form-group col-lg-4">
-                                <strong>@lang('range_combined_mild'):</strong>
+                                <strong>@lang('range_combined_mild') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('range_combined_mild',  empty($car->range_combined_mild) ? 0 : $car->range_combined_mild ) }}"
                                     id="range_combined_mild" name="range_combined_mild">
@@ -160,33 +158,25 @@
                         <p><ins>@lang('Performance')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
-                                <strong>@lang('acceleration'):</strong>
+                                <strong>@lang('acceleration') (0/100* sec) *:</strong>
                                 <input min="2" max="23" class="form-control" type="number"
                                     value="{{  old('acceleration',  empty($car->acceleration) ? 0 : $car->acceleration ) }}"
                                     id="acceleration" name="acceleration">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('topspeed'):</strong>
+                                <strong>@lang('topspeed') (km/h) *: </strong>
                                 <input min="110" max="450" class="form-control" type="number"
                                     value="{{  old('topspeed',  empty($car->topspeed) ? 0 : $car->topspeed ) }}"
                                     id="topspeed" name="topspeed">
                             </div>
-                            <!--
                             <div class="form-group col-lg-4">
-                                <strong>@lang('electricrange'):</strong>
-                                <input min="5" max="1200" class="form-control" type="number"
-                                    value="{{  old('electricrange',  empty($car->electricrange) ? 0 : $car->electricrange ) }}"
-                                    id="electricrange" name="electricrange">
-                            </div>
--->
-                            <div class="form-group col-lg-4">
-                                <strong>@lang('totalpower'):</strong>
+                                <strong>@lang('totalpower')(kW)*:</strong>
                                 <input min="1" class="form-control" type="number"
                                     value="{{  old('totalpower',  empty($car->totalpower) ? 0 : $car->totalpower ) }}"
                                     id="totalpower" name="totalpower">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('totaltorque'):</strong>
+                                <strong>@lang('totaltorque')(nm)*:</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('totaltorque',  empty($car->totaltorque) ? 0 : $car->totaltorque ) }}"
                                     id="totaltorque" name="totaltorque">
@@ -209,13 +199,13 @@
                         <p><ins>@lang('Battery')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-6">
-                                <strong>@lang('batterycapacity'):</strong>
+                                <strong>@lang('batterycapacity')(kWh)*:</strong>
                                 <input min="10" max="200" class="form-control" type="number"
                                     value="{{  old('batterycapacity',  empty($car->batterycapacity) ? 0 : $car->batterycapacity ) }}"
                                     id="batterycapacity" name="batterycapacity">
                             </div>
                             <div class="form-group col-lg-6">
-                                <strong>@lang('batteryuseable'):</strong>
+                                <strong>@lang('batteryuseable')(kWh)*:</strong>
                                 <input min="10" max="200" class="form-control" type="number"
                                     value="{{  old('batteryuseable',  empty($car->batteryuseable) ? 0 : $car->batteryuseable ) }}"
                                     id="batteryuseable" name="batteryuseable">
@@ -225,49 +215,49 @@
                         <p><ins>@lang('Energy Consumption')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-3">
-                                <strong>@lang('realrange'):</strong>
-                                <input min="5" max="1200" form-control" type="number"
+                                <strong>@lang('realrange') (Km)*:</strong>
+                                <input min="5" max="1200" class=" form-control" type="number"
                                     value="{{  old('realrange',  empty($car->realrange) ? 0 : $car->realrange ) }}"
                                     id="realrange" name="realrange">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('realco2emissions'):</strong>
+                                <strong>@lang('realco2emissions') (g/km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('realco2emissions',  empty($car->realco2emissions) ? 0 : $car->realco2emissions ) }}"
                                     id="realco2emissions" name="realco2emissions">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('realconsumption'):</strong>
+                                <strong>@lang('realconsumption') (Wh/km):</strong>
                                 <input min="100" max="300" class="form-control" type="number"
                                     value="{{  old('realconsumption',  empty($car->realconsumption) ? 0 : $car->realconsumption ) }}"
                                     id="realconsumption" name="realconsumption">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('realfuelequivalent'):</strong>
+                                <strong>@lang('realfuelequivalent') (l/100km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('realfuelequivalent',  empty($car->realfuelequivalent) ? 0 : $car->realfuelequivalent ) }}"
                                     id="realfuelequivalent" name="realfuelequivalent">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('wltprange'):</strong>
+                                <strong>@lang('wltprange') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('wltprange',  empty($car->wltprange) ? 0 : $car->wltprange ) }}"
                                     id="wltprange" name="wltprange">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('wltpco2emissions'):</strong>
+                                <strong>@lang('wltpco2emissions') (g/km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('wltpco2emissions',  empty($car->wltpco2emissions) ? 0 : $car->wltpco2emissions ) }}"
                                     id="wltpco2emissions" name="wltpco2emissions">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('wltpconsumption'):</strong>
+                                <strong>@lang('wltpconsumption') (Wh/km):</strong>
                                 <input min="100" max="300" class="form-control" type="number"
                                     value="{{  old('wltpconsumption',  empty($car->wltpconsumption) ? 0 : $car->wltpconsumption ) }}"
                                     id="wltpconsumption" name="wltpconsumption">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('wltpfuelequivalent'):</strong>
+                                <strong>@lang('wltpfuelequivalent') (l/100km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('wltpfuelequivalent',  empty($car->wltpfuelequivalent) ? 0 : $car->wltpfuelequivalent ) }}"
                                     id="wltpfuelequivalent" name="wltpfuelequivalent">
@@ -277,37 +267,37 @@
                         <p><ins>@lang('Real Energy Consumption Estimation')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_city_cold'):</strong>
+                                <strong>@lang('energy_city_cold') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_city_cold',  empty($car->energy_city_cold) ? 0 : $car->energy_city_cold ) }}"
                                     id="energy_city_cold" name="energy_city_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_city_mild'):</strong>
+                                <strong>@lang('energy_city_mild') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_city_mild',  empty($car->energy_city_mild) ? 0 : $car->energy_city_mild ) }}"
                                     id="energy_city_mild" name="energy_city_mild">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_highway_cold'):</strong>
+                                <strong>@lang('energy_highway_cold') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_highway_cold',  empty($car->energy_highway_cold) ? 0 : $car->energy_highway_cold ) }}"
                                     id="energy_highway_cold" name="energy_highway_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_highway_mild'):</strong>
+                                <strong>@lang('energy_highway_mild') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_highway_mild',  empty($car->energy_highway_mild) ? 0 : $car->energy_highway_mild ) }}"
                                     id="energy_highway_mild" name="energy_highway_mild">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_combined_cold'):</strong>
+                                <strong>@lang('energy_combined_cold') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_combined_cold',  empty($car->energy_combined_cold) ? 0 : $car->energy_combined_cold ) }}"
                                     id="energy_combined_cold" name="energy_combined_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_combined_mild'):</strong>
+                                <strong>@lang('energy_combined_mild') (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_combined_mild',  empty($car->energy_combined_mild) ? 0 : $car->energy_combined_mild ) }}"
                                     id="energy_combined_mild" name="energy_combined_mild">
@@ -317,73 +307,73 @@
                         <p><ins>@lang('Dimensions and Weight')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-2">
-                                <strong>@lang('length'):</strong>
+                                <strong>@lang('length') (mm):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('length',  empty($car->length) ? 0 : $car->length ) }}" id="length"
                                     name="length">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('width'):</strong>
+                                <strong>@lang('width') (mm):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('width',  empty($car->width) ? 0 : $car->width ) }}" id="width"
                                     name="width">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('height'):</strong>
+                                <strong>@lang('height') (mm):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('height',  empty($car->height) ? 0 : $car->height ) }}" id="height"
                                     name="height">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('wheelbase'):</strong>
+                                <strong>@lang('wheelbase') (mm):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('wheelbase',  empty($car->wheelbase) ? 0 : $car->wheelbase ) }}"
                                     id="wheelbase" name="wheelbase">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('weightunladen'):</strong>
+                                <strong>@lang('weightunladen') (kg):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('weightunladen',  empty($car->weightunladen) ? 0 : $car->weightunladen ) }}"
                                     id="weightunladen" name="weightunladen">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('gvwr'):</strong>
+                                <strong>@lang('gvwr') (kg):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('gvwr',  empty($car->gvwr) ? 0 : $car->gvwr ) }}" id="gvwr"
                                     name="gvwr">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('cargovolume'):</strong>
+                                <strong>@lang('cargovolume') (L):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('cargovolume',  empty($car->cargovolume) ? 0 : $car->cargovolume ) }}"
                                     id="cargovolume" name="cargovolume">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('cargovolumemax'):</strong>
+                                <strong>@lang('cargovolumemax') (L):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('cargovolumemax',  empty($car->cargovolumemax) ? 0 : $car->cargovolumemax ) }}"
                                     id="cargovolumemax" name="cargovolumemax">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('towingweightunbraked'):</strong>
+                                <strong>@lang('towingweightunbraked') (Kg):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('towingweightunbraked',  empty($car->towingweightunbraked) ? 0 : $car->towingweightunbraked ) }}"
                                     id="towingweightunbraked" name="towingweightunbraked">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('towingweightbraked'):</strong>
+                                <strong>@lang('towingweightbraked') (Kg):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('towingweightbraked',  empty($car->towingweightbraked) ? 0 : $car->towingweightbraked ) }}"
                                     id="towingweightbraked" name="towingweightbraked">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('roofload'):</strong>
+                                <strong>@lang('roofload') (Kg):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('roofload',  empty($car->roofload) ? 0 : $car->roofload ) }}"
                                     id="roofload" name="roofload">
                             </div>
                             <div class="form-group col-lg-2">
-                                <strong>@lang('maxpayload'):</strong>
+                                <strong>@lang('maxpayload') (Kg):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('maxpayload',  empty($car->maxpayload) ? 0 : $car->maxpayload ) }}"
                                     id="maxpayload" name="maxpayload">
@@ -406,13 +396,13 @@
                                 </select>
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('isofix'):</strong>
+                                <strong>@lang('isofix') (@lang('seats')):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('isofix',  empty($car->isofix) ? 0 : $car->isofix ) }}" id="isofix"
                                     name="isofix">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('turningcircle'):</strong>
+                                <strong>@lang('turningcircle') (m):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('turningcircle',  empty($car->turningcircle) ? 0 : $car->turningcircle ) }}"
                                     id="turningcircle" name="turningcircle">

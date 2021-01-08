@@ -143,8 +143,7 @@
                                         <li>
                                             <input data-path=".drive-{{$drive->id}}" id="drive-{{$drive->id}}"
                                                 type="checkbox" />
-                                            <label for="drive-{{$drive->id}}"><i class="fa fa-circle-o"></i><i
-                                                    class="fa fa-circle"></i> -
+                                            <label for="drive-{{$drive->id}}">
                                                 {{$drive->name}}
                                                 <span data-control-type="counter" data-control-action="counter"
                                                     data-control-name="drive-{{$drive->id}}-counter"
@@ -390,13 +389,11 @@
                                 </div>
 
                                 <div class="icons">
-                                    <!-- 
-                                    <span title="Rapid charging possible" class="fastcharge_ja fa fa-bolt"></span><span
-                                        title="Rear Wheel Drive">
-                                        <span class="drive-{{$car->drive->id}} fa fa-circle-o"
-                                            style="padding-left: 10px; margin-right: -3px;"></span>
-                                        <span class="drive-{{$car->drive->id}} fa fa-circle"></span>
-                                    </span>-->
+
+                                    <span title="Rear Wheel Drive">
+                                        <span class="drive-{{$car->drive->id}} "></span>
+                                        <span class="drive-{{$car->drive->id}}"></span>
+                                    </span>
                                     <!-- 
                                     <span title="plug-type2-ccs" class="plug-type2-ccs hidden">Type 2 CCS</span>-->
                                     <span class="bodystyle-{{$car->bodystyle->id}}
@@ -440,34 +437,11 @@
 
                                     <p class="left">
                                         <span class="tag">@lang("Efficiency")*</span>
-                                        <span class="efficiency">161 Wh/km</span>
+                                        <span class="efficiency">{{$car->realconsumption}} Wh/km</span>
                                     </p>
 
                                 </div>
-                                <!-- 
 
-
-                                <div class="pricing align-right">
-                                    <span class="price_buy">
-                                        <span class="country_de" title="Price in Germany before incentives">*
-                                            €30,000</span>
-                                        <span class="flag-icon flag-icon-de"></span>
-                                    </span>
-
-                                    <span class="price_buy">
-                                        <span class="country_nl" title="Price in The Netherlands before incentives">*
-                                            €30,000</span>
-                                        <span class="flag-icon flag-icon-nl"></span>
-                                    </span>
-                                    <span class="price_buy">
-                                        <span class="country_uk" title="Price in the United Kingdom after incentives">*
-                                            £25,000</span>
-                                        <span class="flag-icon flag-icon-gb"></span>
-                                    </span>
-
-                                    <span class="price price_filter20-40 hidden">0.56</span>
-                                </div>
-                                -->
                             </div>
                         </div>
 
