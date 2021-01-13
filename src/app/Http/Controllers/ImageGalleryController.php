@@ -32,7 +32,6 @@ class ImageGalleryController extends Controller
     public function upload(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
             'image' => 'required',
             'image.*' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
             'car_id' => 'required'
@@ -52,7 +51,7 @@ class ImageGalleryController extends Controller
 
         foreach ($data as $key => $img) {
             ImageGallery::create([
-                'title' => $request->title,
+                'title' => "title",
                 'image' => $img,
                 //     'order' => 1,
                 'car_id' => $request->car_id

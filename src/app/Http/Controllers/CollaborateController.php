@@ -35,7 +35,7 @@ class CollaborateController extends Controller
             'screenshot' =>  $request->file('screenshot')->store('collaborate', 'public')
         ];
 
-        Mail::to('receipent@domain.com')->send(new CollaborateFormMail($collaborate));
+        Mail::to('ev.trassierra@gmail.com')->send(new CollaborateFormMail($collaborate));
 
         return redirect()->route('collaborate')->with('status', ' Your Mail has been received');
     }

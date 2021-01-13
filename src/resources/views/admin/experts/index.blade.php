@@ -5,7 +5,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h3 class="m-0 font-weight-bold text-primary">Administradir de experts</h3>
+        <h3 class="m-0 font-weight-bold text-primary">@lang('Administrador de expertos')</h3>
     </div>
 
     <div class="card-body">
@@ -62,7 +62,7 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
 
 
 
@@ -100,7 +100,7 @@
             ],
             columnDefs: [{
                 targets: 1,
-                render: function(a, b, row) {
+                render: function (a, b, row) {
                     let img = "{{ asset('uploads/avatars') }}" + "/" + row.avatar
 
                     return '<img height="100vw" src="' + img + '">'
@@ -109,7 +109,7 @@
         });
 
 
- var user_id;
+        var user_id;
         // Click Delete
         $(document).on('click', '.delete', function () {
             user_id = $(this).attr('id');
@@ -148,13 +148,14 @@
     function readURL(input, id_prev) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 $(id_prev).attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
     }
+
 </script>
 
 

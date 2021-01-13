@@ -32,7 +32,7 @@ class CollaborateFormMail extends Mailable
     public function build()
     {
 
-        return $this->from('noreply@domain.com')
+        return $this->from('ev.trassierra@gmail.com')
             ->markdown('template.client.collaborateform')
             ->attachFromStorageDisk("public", $this->user['screenshot'])
             ->with([

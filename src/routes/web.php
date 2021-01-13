@@ -22,6 +22,9 @@ Route::get('/car/{id}', 'CarController@show_car')->name('show_car');
 
 Route::get('/home', 'CarController@public_index')->name('home');
 
+//Acerca de
+Route::get('/about', 'AboutController@index')->name('about');
+
 // Contacto
 Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
@@ -111,7 +114,7 @@ Route::group(['middleware' => ['auth', 'verified', 'role:Admin']], function () {
 
 
 // Usuarios Expertos
-Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Expert']], function () {
+Route::group(['middleware' => ['auth', 'verified', 'role:Admin|Expert|Editor']], function () {
     //Cars
     Route::resource('admin-panel/cars', 'CarController');
     //Gallery

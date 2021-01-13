@@ -90,7 +90,7 @@ class CarController extends Controller
     {
 
         if ($request->ajax()) {
-            if (Auth::user()->hasRole('Admin')) {
+            if (Auth::user()->hasRole('Admin|Editor')) {
                 $data = Car::latest()->get();
             } elseif (Auth::user()->hasRole('Expert')) {
                 $data3 = Car::latest()->get();

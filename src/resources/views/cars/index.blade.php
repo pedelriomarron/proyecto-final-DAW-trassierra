@@ -452,7 +452,7 @@
 
                     <!-- no-results -->
                     <div class="jplist-no-results align-center">
-                        <p>No results</p>
+                        <p>@lang('Sin resultados')</p>
                         <p><br /><a href="">
                                 .</a>
                         </p>
@@ -485,10 +485,10 @@
                                 data-control-name="paging" data-control-action="paging">
 
                                 <ul>
-                                    <li><span data-number="3">3 por pagina</span></li>
-                                    <li><span data-number="6">6 por pagina</span></li>
-                                    <li><span data-number="9" data-default="true">9 por pagina</span></li>
-                                    <li><span data-number="all">ver todo</span></li>
+                                    <li><span data-number="3">3 @lang('por pagina')</span></li>
+                                    <li><span data-number="6">6 @lang('por pagina')</span></li>
+                                    <li><span data-number="9" data-default="true">9 @lang('por pagina')</span></li>
+                                    <li><span data-number="all">@lang('ver todo')</span></li>
                                 </ul>
                             </div>
                         </div>

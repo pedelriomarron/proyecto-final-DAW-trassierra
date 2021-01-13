@@ -30,9 +30,9 @@ class ContactController extends Controller
                 'comment' => $request->get('comment')
             ],
             function ($message) {
-                $message->from('pedelriomarron@gmail.com');
-                $message->to('pedelriomarron@gmail.com', 'Your Name')
-                    ->subject('Your Website Contact Form');
+                $message->from('ev.trassierra@gmail.com');
+                $message->to('ev.trassierra@gmail.com', 'Mensaje de Contacto')
+                    ->subject('Formulario de contacto');
             }
         );
 

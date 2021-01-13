@@ -8,11 +8,11 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h3 class="m-0 font-weight-bold text-primary">Administradir de Brand</h3>
+        <h3 class="m-0 font-weight-bold text-primary">@lang('Administrador de Roles')</h3>
     </div>
     <div>
         <div align="left" class=" p-3 pt-4">
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('roles.index') }}">@lang('back')</a>
 
         </div>
     </div>
@@ -26,13 +26,13 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Name:</strong>
+                    <strong>@lang('name'):</strong>
                     {{ $role->name }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Permissions:</strong>
+                    <strong>@lang('permisos'):</strong>
                     @if(!empty($rolePermissions))
                     @foreach($rolePermissions as $v)
                     <label class="label label-success">{{ $v->name }},</label>

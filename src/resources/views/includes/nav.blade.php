@@ -158,6 +158,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contact') }}">{{ __('contact') }}</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('collaborate') }}">{{ __('collaborate') }}</a>
                 </li>
@@ -166,6 +167,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('favorite.index') }}">{{ __('My favourites') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('about') }}">{{ __('Acerca de') }}</a>
                 </li>
 
             </ul>

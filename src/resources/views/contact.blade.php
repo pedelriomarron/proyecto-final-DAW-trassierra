@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="">
                 <div class="section-title">
-                    <h1>{{ __('Contacta con nosotros') }}</h1>
+                    <h1 style="font-weight:900;font-size:2em">{{ __('Contacta con nosotros') }}</h1>
                     <hr>
                 </div>
                 @if(session('success'))

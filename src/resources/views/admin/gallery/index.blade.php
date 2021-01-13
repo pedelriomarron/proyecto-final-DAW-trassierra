@@ -57,12 +57,9 @@
 
 
     <div class="row">
+
         <div class="col-md-5">
-            <strong>Title:</strong>
-            <input type="title" name="title" class="form-control " placeholder="Title">
-        </div>
-        <div class="col-md-5">
-            <strong>Image:</strong>
+            <strong>@lang('Image'):</strong>
             <input type="file" name="image[]" class="form-control-file" multiple>
         </div>
         <div class="col-md-2">
@@ -102,6 +99,10 @@
         @endif
     </div>
     <button class="btn btn-primary" id="submitOrder" onClick="submit()">Enviar</button>
+    <p class="my-2"> <span style="font-weight:900">@lang('Nota'):</span> @lang("Puedes editar el orden de aparición de
+        imagenes
+        arrastrondolas y colocandolas en su orden deseado, despues pulsa el boton enviar, al guardarse los numeros
+        indicaran el orden empezando desde 0")</p>
 </div>
 
 

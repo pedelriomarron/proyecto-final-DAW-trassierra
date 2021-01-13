@@ -113,7 +113,9 @@
                             </div>
                         </div>
                         <hr>
-                        <p><ins>@lang('Real Range Estimation')</ins></p>
+                        <p data-toggle="tooltip" title="@lang('Rango de Km en diferentes tipos de terreno')">
+                            <ins>@lang('Real
+                                Range Estimation')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('range_city_cold') (Km):</strong>
@@ -155,7 +157,8 @@
                             </div>
                         </div>
                         <hr>
-                        <p><ins>@lang('Performance')</ins></p>
+                        <p data-toggle="tooltip" title="@lang('Caracteristicas de Rendimiento basicas')">
+                            <ins>@lang('Performance')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <strong>@lang('acceleration') (0/100* sec) *:</strong>
@@ -185,7 +188,8 @@
                                 <strong>@lang('drive'):</strong>
                                 <select name="drive_id" class="form-control select22">
                                     @foreach($drives as $val)
-                                    <option @if (request()->route()->getName() !== 'cars.create') @if($car->drive->id ==
+                                    <option @if (request()->route()->getName() !== 'cars.create')
+                                        @if($car->drive->id ==
                                         $val->id) selected="selected" @endif @endif
                                         value="{{ $val->id }}"
                                         data-logo="{{ $val->logo }}"> {{ $val->name }}
@@ -199,105 +203,130 @@
                         <p><ins>@lang('Battery')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-6">
-                                <strong>@lang('batterycapacity')(kWh)*:</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Capacidad de bataría fisica')">@lang('batterycapacity')(kWh)*:</strong>
                                 <input min="10" max="200" class="form-control" type="number"
                                     value="{{  old('batterycapacity',  empty($car->batterycapacity) ? 0 : $car->batterycapacity ) }}"
                                     id="batterycapacity" name="batterycapacity">
                             </div>
                             <div class="form-group col-lg-6">
-                                <strong>@lang('batteryuseable')(kWh)*:</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Capacidad de batería utilizable')">@lang('batteryuseable')(kWh)*:</strong>
                                 <input min="10" max="200" class="form-control" type="number"
                                     value="{{  old('batteryuseable',  empty($car->batteryuseable) ? 0 : $car->batteryuseable ) }}"
                                     id="batteryuseable" name="batteryuseable">
                             </div>
                         </div>
                         <hr>
-                        <p><ins>@lang('Energy Consumption')</ins></p>
+                        <p><ins data-toggle="tooltip" title="@lang('Consumos segun documentos oficiales')">@lang('Energy
+                                Consumption')</ins> / <strong data-toggle="tooltip" title="@lang('es un estándar global para determinar los niveles de contaminantes,
+                                    emisiones de CO₂ y consumo de combustible de los coches tradicionales, híbridos, y
+                                    automóviles eléctricos puros')"><ins>@lang('WLTP')</ins>
+                                :</strong></p>
                         <div class="row">
                             <div class="form-group col-lg-3">
-                                <strong>@lang('realrange') (Km)*:</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Numero de Km reales que pueda hacer el vehiculo')">@lang('realrange')
+                                    (Km)*:</strong>
                                 <input min="5" max="1200" class=" form-control" type="number"
                                     value="{{  old('realrange',  empty($car->realrange) ? 0 : $car->realrange ) }}"
                                     id="realrange" name="realrange">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('realco2emissions') (g/km):</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Emisiones de CO2 reales que produce el vehiculo')">@lang('realco2emissions')
+                                    (g/km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('realco2emissions',  empty($car->realco2emissions) ? 0 : $car->realco2emissions ) }}"
                                     id="realco2emissions" name="realco2emissions">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('realconsumption') (Wh/km):</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Cantidad de vatios hora por Km')">@lang('realconsumption')
+                                    (Wh/km)*:</strong>
                                 <input min="100" max="300" class="form-control" type="number"
                                     value="{{  old('realconsumption',  empty($car->realconsumption) ? 0 : $car->realconsumption ) }}"
                                     id="realconsumption" name="realconsumption">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('realfuelequivalent') (l/100km):</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Equivalencia de Combustible que gastaría el vehiculo')">@lang('realfuelequivalent')
+                                    (l/100km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('realfuelequivalent',  empty($car->realfuelequivalent) ? 0 : $car->realfuelequivalent ) }}"
                                     id="realfuelequivalent" name="realfuelequivalent">
                             </div>
+
                             <div class="form-group col-lg-3">
-                                <strong>@lang('wltprange') (Km):</strong>
+
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Rango de km segun el estandar WLTP')">@lang('wltprange')
+                                    (Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('wltprange',  empty($car->wltprange) ? 0 : $car->wltprange ) }}"
                                     id="wltprange" name="wltprange">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('wltpco2emissions') (g/km):</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Rango de emisiones segun el estandar WLTP')">@lang('wltpco2emissions')
+                                    (g/km)*:</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('wltpco2emissions',  empty($car->wltpco2emissions) ? 0 : $car->wltpco2emissions ) }}"
                                     id="wltpco2emissions" name="wltpco2emissions">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('wltpconsumption') (Wh/km):</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Consumos vatio hora segun WLTP')">@lang('wltpconsumption')
+                                    (Wh/km):</strong>
                                 <input min="100" max="300" class="form-control" type="number"
                                     value="{{  old('wltpconsumption',  empty($car->wltpconsumption) ? 0 : $car->wltpconsumption ) }}"
                                     id="wltpconsumption" name="wltpconsumption">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('wltpfuelequivalent') (l/100km):</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Equivalente a gasolina segun WLTP')">@lang('wltpfuelequivalent')
+                                    (l/100km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('wltpfuelequivalent',  empty($car->wltpfuelequivalent) ? 0 : $car->wltpfuelequivalent ) }}"
                                     id="wltpfuelequivalent" name="wltpfuelequivalent">
                             </div>
                         </div>
                         <hr>
-                        <p><ins>@lang('Real Energy Consumption Estimation')</ins></p>
+                        <p data-toggle="tooltip" title="@lang('Consumo de energia por km')"><ins>@lang('Real
+                                Energy Consumption Estimation')</ins></p>
                         <div class="row">
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_city_cold') (Km):</strong>
+                                <strong>@lang('energy_city_cold') (Wh/Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_city_cold',  empty($car->energy_city_cold) ? 0 : $car->energy_city_cold ) }}"
                                     id="energy_city_cold" name="energy_city_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_city_mild') (Km):</strong>
+                                <strong>@lang('energy_city_mild') (Wh/Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_city_mild',  empty($car->energy_city_mild) ? 0 : $car->energy_city_mild ) }}"
                                     id="energy_city_mild" name="energy_city_mild">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_highway_cold') (Km):</strong>
+                                <strong>@lang('energy_highway_cold') (Wh/Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_highway_cold',  empty($car->energy_highway_cold) ? 0 : $car->energy_highway_cold ) }}"
                                     id="energy_highway_cold" name="energy_highway_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_highway_mild') (Km):</strong>
+                                <strong>@lang('energy_highway_mild') (wh/Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_highway_mild',  empty($car->energy_highway_mild) ? 0 : $car->energy_highway_mild ) }}"
                                     id="energy_highway_mild" name="energy_highway_mild">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_combined_cold') (Km):</strong>
+                                <strong>@lang('energy_combined_cold') (wh/Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_combined_cold',  empty($car->energy_combined_cold) ? 0 : $car->energy_combined_cold ) }}"
                                     id="energy_combined_cold" name="energy_combined_cold">
                             </div>
                             <div class="form-group col-lg-4">
-                                <strong>@lang('energy_combined_mild') (Km):</strong>
+                                <strong>@lang('energy_combined_mild') (wh/Km):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('energy_combined_mild',  empty($car->energy_combined_mild) ? 0 : $car->energy_combined_mild ) }}"
                                     id="energy_combined_mild" name="energy_combined_mild">
@@ -396,32 +425,31 @@
                                 </select>
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('isofix') (@lang('seats')):</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Numero de asientos que pertmiten tener silla ISOFIX')">@lang('isofix')
+                                    (@lang('seats')):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('isofix',  empty($car->isofix) ? 0 : $car->isofix ) }}" id="isofix"
                                     name="isofix">
                             </div>
                             <div class="form-group col-lg-3">
-                                <strong>@lang('turningcircle') (m):</strong>
+                                <strong data-toggle="tooltip" title="@lang('Capacidad de vehiculo para crear un angulo de giro,Cuanto más corto es
+                                    el radio de giro de un vehículo se dice que este ofrece más
+                                    maniobrabilidad')">@lang('turningcircle')
+                                    (m):</strong>
                                 <input class="form-control" type="number"
                                     value="{{  old('turningcircle',  empty($car->turningcircle) ? 0 : $car->turningcircle ) }}"
                                     id="turningcircle" name="turningcircle">
                             </div>
-                            <!--
-                            <div class="form-group col-lg-3">
-                                <strong>@lang('roofrails'):</strong>
-                                <input class="form-control" type="checkbox"
-                                    value="{{  old('roofrails',  empty($car->roofrails) ? 0 : $car->roofrails ) }}"
-                                    id="roofrails" name="roofrails">
-                            </div>
-                             -->
+
                         </div>
                         <hr>
                         <p><ins>@lang('Media')</ins></p>
 
                         <div class="row">
                             <div class="form-group col-lg-6">
-                                <strong>@lang('youtube'):</strong>
+                                <strong data-toggle="tooltip"
+                                    title="@lang('Inserte video de youtube para mostrarlo')">@lang('youtube'):</strong>
                                 <input class="form-control" type="text"
                                     value="{{  old('youtube',  empty($car->youtube) ? '' : $car->youtube ) }}"
                                     id="youtube" name="youtube">
@@ -467,6 +495,9 @@
 @push('scripts')
 <script>
     $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
 
         function formatState(state) {
             if (!state.id) {

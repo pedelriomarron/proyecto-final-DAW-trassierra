@@ -7,7 +7,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h3 class="m-0 font-weight-bold text-primary">Administradir de Brand</h3>
+        <h3 class="m-0 font-weight-bold text-primary">@lang('Administrador de Roles')</h3>
     </div>
     <div>
         <div align="left" class=" p-3 pt-4">

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-8">
                 <div class="section-title">
-                    <h1>{{ __('Colabora con nosotros') }}</h1>
+                    <h1 style="font-weight:900;font-size:2em">{{ __('Colabora con nosotros') }}</h1>
                     <hr>
                 </div>
             </div>
@@ -32,13 +32,11 @@
 
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="name" class="col-form-label text-md-right">{{ __('Full Name') }}</label>
-
+                                    <label value="{{ old('fullname') }}" for="fullname"
+                                        class="col-form-label text-md-right">{{ __('Full Name') }}</label>
                                     <input type="text" class="form-control @error('fullname') is-invalid @enderror"
-                                        name="fullname"
-                                        value="{{ isset(Auth::user()->firstname) ? Auth::user()->firstname : '' }} {{ isset(Auth::user()->lastname) ? Auth::user()->lastname : '' }}"
-                                        required autocomplete="Fullname" autofocus>
-
+                                        required="true" name="fullname"
+                                        value="{{ isset(Auth::user()->firstname) ? Auth::user()->firstname : '' }} {{ isset(Auth::user()->lastname) ? Auth::user()->lastname : '' }}">
                                     @error('fullname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -52,10 +50,10 @@
                                 <div class="form-group">
                                     <label for="email"
                                         class="col-form-label text-md-right">{{ __('Email Address') }}</label>
-
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ isset(Auth::user()->email) ? Auth::user()->email : '' }}"
-                                        required autocomplete="email" autofocus>
+                                    <input value="{{ old('email') }}" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ isset(Auth::user()->email) ? Auth::user()->email : '' }}" required
+                                        autocomplete="email" autofocus>
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -69,10 +67,10 @@
                             <div class="col-6">
 
                                 <div class="form-group">
-                                    <label for="name"
+                                    <label for="phone_number"
                                         class="col-form-label text-md-right">{{ __('Phone Number') }}</label>
-
-                                    <input type="text" class="form-control @error('phone_number') is-invalid @enderror"
+                                    <input value="{{ old('phone_number') }}" type="text"
+                                        class="form-control @error('phone_number') is-invalid @enderror"
                                         name="phone_number"
                                         value="{{ isset(Auth::user()->phone_number) ? Auth::user()->phone_number : '' }}"
                                         required autocomplete="phone_number" autofocus>
@@ -89,11 +87,11 @@
 
 
                                 <div class="form-group">
-                                    <label for="name" class="col-form-label text-md-right">{{ __('Subject') }}</label>
-
-                                    <input type="text" class="form-control @error('subject') is-invalid @enderror"
-                                        name="subject" required autofocus>
-
+                                    <label for="subject"
+                                        class="col-form-label text-md-right">{{ __('Subject') }}</label>
+                                    <input value="{{ old('subject') }}" type="text"
+                                        class="form-control @error('subject') is-invalid @enderror" name="subject"
+                                        required autofocus>
                                     @error('subject')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -104,13 +102,11 @@
 
                             <div class="col-6">
                                 <div class="form-group">
-
-                                    <label for="password"
+                                    <label for="message"
                                         class="col-form-label text-md-right">{{ __('Message') }}</label>
-
-                                    <textarea class="form-control @error('message') is-invalid @enderror" name="message"
+                                    <textarea value="{{ old('message') }}"
+                                        class="form-control @error('message') is-invalid @enderror" name="message"
                                         required></textarea>
-
                                     @error('message')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -122,11 +118,11 @@
                             <div class="col-6">
 
                                 <div class="form-group">
-                                    <label for="name"
+                                    <label for="screenshot"
                                         class="col-form-label text-md-right">{{ __('Attach Screenshot') }}</label>
-
-                                    <input type="file" class="form-control @error('screenshot') is-invalid @enderror"
-                                        name="screenshot" autofocus>
+                                    <input value="{{ old('screenshot') }}" type="file"
+                                        class="form-control @error('screenshot') is-invalid @enderror" name="screenshot"
+                                        autofocus required>
 
                                 </div>
                             </div>

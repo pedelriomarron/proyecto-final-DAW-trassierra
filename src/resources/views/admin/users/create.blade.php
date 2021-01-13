@@ -7,7 +7,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h3 class="m-0 font-weight-bold text-primary">Administradir de Brand</h3>
+        <h3 class="m-0 font-weight-bold text-primary">@lang('Crear Usuario')</h3>
     </div>
 
     @if ($message = Session::get('success'))
@@ -22,7 +22,7 @@
             <div class="col-lg-12 margin-tb pb-3">
 
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                    <a class="btn btn-primary" href="{{ route('users.index') }}">@lang('back')</a>
                 </div>
             </div>
         </div>

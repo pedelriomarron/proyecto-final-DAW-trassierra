@@ -38,7 +38,7 @@ $factory->define(Car::class, function (Faker $faker) {
 
         'acceleration' => rand(5, 17),
 
-        'topspeed' => rand(111, 448),
+        'topspeed' => rand(111, 222),
         'totalpower' => rand(2, 300),
         'totaltorque' => rand(100, 500),
 

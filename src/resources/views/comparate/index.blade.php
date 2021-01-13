@@ -40,10 +40,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col" id="text_car_1">#</th>
+                                <th style="font-size:2em" scope="col" id="text_car_1">#</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
-                                <th scope="col" id="text_car_2">#</th>
+                                <th style="font-size:2em" scope="col" id="text_car_2">#</th>
                             </tr>
                         </thead>
                         <tbody id="table_comparative">
@@ -124,29 +124,18 @@
                 foto.setAttribute('src', "{{ asset('uploads/gallery') }}/default.png");
 
             }
-            foto.setAttribute('class', ' border');
-
-            elemento.appendChild(foto);
-            //Useable Battery
-            /*
-            let div1 = document.createElement("div");
-            var useableBatteryTXT = document.createTextNode("Useable Battery: ");
-            div1.appendChild(useableBatteryTXT);
-            let span1 = document.createElement("span");
-            var useableBatteryNumber = document.createTextNode(car.car[0]["id"]);
-            span1.appendChild(useableBatteryNumber);
-            div1.appendChild(span1);
+            foto.setAttribute('class', ' border img-thumbnail');
 
 
+            console.log(car)
 
-            elemento.appendChild(div1);
-            //Real Range
-            var realrangeTXT = document.createTextNode("Real Range");
-            elemento.appendChild(realrangeTXT);
-            //Efficiency
-            var efficiencyTXT = document.createTextNode("Efficiency");
-            elemento.appendChild(efficiencyTXT);
-            */
+            let fotoA = document.createElement("a");
+            fotoA.setAttribute('href', "{{env('APP_URL')}}" + 'car/' + car.car[0].id);
+            fotoA.setAttribute('target', '_blank');
+            elemento.appendChild(fotoA);
+            fotoA.appendChild(foto);
+
+
 
 
         }
@@ -164,8 +153,13 @@
             let car2 = await getCar($("#car_2").val())
 
             try {
-                document.getElementById("text_car_2").innerHTML = `${car2.car[0].name}`;
-                document.getElementById("text_car_1").innerHTML = `${car1.car[0].name}`;
+
+                //document.getElementById("text_car_2").innerHTML = `${normalize(car2.car[0].name)}`;
+                //document.getElementById("text_car_1").innerHTML = `${normalize(car1.car[0].name)}`;
+                document.getElementById("text_car_2").innerHTML = $("#car_1 option:selected")
+                    .text()
+                document.getElementById("text_car_1").innerHTML = $("#car_2 option:selected")
+                    .text()
             } catch (error) {
                 finalOk = false
                 alert('')
@@ -221,6 +215,50 @@
                 isofix: "asientos",
                 turningcircle: "m",
             }
+            let trans = {
+                range_city_cold: "@lang('range_city_cold')",
+                range_city_mild: "@lang('range_city_mild')",
+                range_highway_cold: "@lang('range_highway_cold')",
+                range_highway_mild: "@lang('range_highway_mild')",
+                range_combined_cold: "@lang('range_combined_cold')",
+                range_combined_mild: "@lang('range_combined_mild')",
+                acceleration: "@lang('acceleration')",
+                topspeed: "@lang('topspeed')",
+                //electricrange: "km",
+                totalpower: "@lang('totalpower')",
+                totalpower: "@lang('totalpower')",
+                batterycapacity: "@lang('batterycapacity')",
+                batteryuseable: "@lang('batteryuseable')",
+                realrange: "@lang('realrange')",
+                realco2emissions: "@lang('realco2emissions')",
+                realconsumption: "@lang('realconsumption')",
+                realfuelequivalent: "@lang('realfuelequivalent')",
+                wltprange: "@lang('wltprange')",
+                wltpco2emissions: "@lang('wltpco2emissions')",
+                wltpconsumption: "@lang('wltpconsumption')",
+                wltpfuelequivalent: "@lang('wltpfuelequivalent')",
+                energy_city_cold: "@lang('energy_city_cold')",
+                energy_city_mild: "@lang('energy_city_mild')",
+                energy_highway_cold: "@lang('energy_highway_cold')",
+                energy_highway_mild: "@lang('energy_highway_mild')",
+                energy_combined_cold: "@lang('energy_combined_cold')",
+                energy_combined_mild: "@lang('energy_combined_mild')",
+                length: "@lang('length')",
+                width: "@lang('width')",
+                height: "@lang('height')",
+                wheelbase: "@lang('wheelbase')",
+                weightunladen: "@lang('weightunladen')",
+                gvwr: "@lang('gvwr')",
+                cargovolume: "@lang('cargovolume')",
+                cargovolumemax: "@lang('cargovolumemax')",
+                towingweightunbraked: "@lang('towingweightunbraked')",
+                towingweightbraked: "@lang('towingweightbraked')",
+                roofload: "@lang('roofload')",
+                maxpayload: "@lang('maxpayload')",
+                seat: "@lang('seats')",
+                isofix: "@lang('isofix')",
+                turningcircle: "@lang('turningcircle')",
+            }
             if (finalOk) {
                 for (var key in car1.car[0]) {
                     let ok = true;
@@ -231,10 +269,12 @@
                     })
                     if (ok) {
                         let normalizeName = normalize(attrName)
-                        console.log(attrName, attrValue)
+                        // console.log(attrName, attrValue)
                         let tr = document.createElement("tr");
                         let th1 = document.createElement("th");
-                        let th1_text = document.createTextNode(`${normalizeName}`);
+                        //let th1_text = document.createTextNode(`${normalizeName}`);
+                        let th1_text = document.createTextNode(`${trans[attrName]}`);
+
                         table_comparative.appendChild(tr)
                         tr.appendChild(th1);
                         th1.appendChild(th1_text)
@@ -253,7 +293,9 @@
                         td2.appendChild(td2_text)
                         //---
                         let th2 = document.createElement("th");
-                        let th2_text = document.createTextNode(`${normalizeName}`);
+                        // let th2_text = document.createTextNode(`${normalizeName}`);
+                        let th2_text = document.createTextNode(`${trans[attrName]}`);
+
                         tr.appendChild(th2);
                         th2.appendChild(th2_text)
 

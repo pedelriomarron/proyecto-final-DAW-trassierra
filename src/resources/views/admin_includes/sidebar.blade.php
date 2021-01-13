@@ -51,7 +51,7 @@
              </div>
          </li>
          @endhasanyrole
-         @hasanyrole('Admin|Expert')
+         @hasanyrole('Admin|Expert|Editor')
          <!-- Nav Item - Utilities Collapse Menu -->
          <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -63,7 +63,7 @@
                  data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
                      <a class="collapse-item" href="{{ route('cars.index') }}">@lang('dashboard_cars-admin')</a>
-                     @hasanyrole('Admin')
+                     @hasanyrole('Admin|Editor')
                      <a class="collapse-item" href="{{ route('cars.create') }}">@lang('dashboard_cars-create')</a>
                      @endhasanyrole
 

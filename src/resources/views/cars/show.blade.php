@@ -13,7 +13,7 @@
                 <div class="content" id="detail-page">
                     <!-- subheader -->
                     <header class="sub-header">
-                        <h1><b>{{$car->brand->name}} {{$car->name}}</b></h1>
+                        <h1 style="font-size:2em;font-weight:900"><b>{{$car->brand->name}} {{$car->name}}</b></h1>
                         @if(Auth::check())
                         <span><a href="{{route('favorite.save',$car->id)}}">
                                 @if($car->isFavorite(Auth::user()->id))
@@ -48,49 +48,55 @@
                         <section class="data-table" id="icons">
                             <a href="#charging">
                                 <div class="icon"><i class="fa fa-battery-full"></i>
-                                    <p>{{$car->batteryuseable}} kWh<span>Useable Battery</span></p>
+                                    <p>{{$car->batteryuseable}} kWh<span>@lang('Useable Battery')</span></p>
                                 </div>
                             </a>
                             <a href="#range">
                                 <div class="icon"><i class="fa fa-road"></i>
-                                    <p>{{$car->realrange}} km *<span>Real Range</span></p>
+                                    <p>{{$car->realrange}} km *<span>@lang('Real Range')</span></p>
                                 </div>
                             </a> <a href="#efficiency">
                                 <div class="icon"><i class="fa fa-leaf"></i>
-                                    <p>{{$car->realconsumption}} Wh/km *<span>Efficiency</span></p>
+                                    <p>{{$car->realconsumption}} Wh/km *<span>@lang('Efficiency')</span></p>
                                 </div>
                             </a>
                         </section>
 
                         <section class="expected-notification">
-                            <h1><b>Concesionarios asociados:</b></h1>
+                            <h1 style="font-weight:900">@lang('Concesionarios asociados'):</h1>
                             @forelse($conses as $conse)
                             <p><a target="_blank" href="{{ $conse->url_show}}">{{ $conse->name_show }}</a></p>
                             @empty
-                            <p>No tenemos concesionarios asociados para esta marca</p>
+                            <p>@lang('No tenemos concesionarios asociados para esta marca')</p>
                             @endforelse
                         </section>
 
-                        <section class="data-table-container" id="main-data">
+                        <section class=" data-table-container" id="main-data">
                             <!-- data-table realrange -->
                             <div class="data-table has-legend" id="range">
 
-                                <h2>Real Range Estimation <span>between {{$car->range_highway_cold}} -
-                                        {{$car->range_city_mild}} km</span></h2>
+                                <h2 style="font-weight:900"><ins data-toggle="tooltip"
+                                        title="@lang('Rango de Km en diferentes tipos de terreno')">@lang('Real
+                                        Range Estimation')
+                                        <span>@lang('between')
+                                            {{$car->range_highway_cold}} -
+                                            {{$car->range_city_mild}} km</span></h2>
+                                </ins>
+                                <hr>
 
                                 <div class="inline-block">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>City - Cold Weather *</td>
+                                                <td>@lang('range_city_cold') </td>
                                                 <td>{{$car->range_city_cold}} km</td>
                                             </tr>
                                             <tr>
-                                                <td>Highway - Cold Weather *</td>
+                                                <td>@lang('range_highway_cold') </td>
                                                 <td>{{$car->range_highway_cold}} km</td>
                                             </tr>
                                             <tr>
-                                                <td>Combined - Cold Weather *</td>
+                                                <td>@lang('range_combined_cold') </td>
                                                 <td>{{$car->range_combined_cold}} km</td>
                                             </tr>
                                         </tbody>
@@ -101,15 +107,15 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>City - Mild Weather *</td>
+                                                <td>@lang('range_city_mild') </td>
                                                 <td>{{$car->range_city_mild}} km</td>
                                             </tr>
                                             <tr>
-                                                <td>Highway - Mild Weather *</td>
+                                                <td>@lang('range_highway_mild') </td>
                                                 <td>{{$car->range_highway_mild}} km</td>
                                             </tr>
                                             <tr>
-                                                <td>Combined - Mild Weather *</td>
+                                                <td>@lang('range_combined_mild') </td>
                                                 <td>{{$car->range_combined_mild}} km</td>
                                             </tr>
                                         </tbody>
@@ -121,21 +127,24 @@
                             <!-- data-table performance -->
                             <div class="data-table" id="performance">
 
-                                <h2>Performance</h2>
+                                <h2 style="font-weight:900"><ins data-toggle="tooltip"
+                                        title="@lang('Caracteristicas de Rendimiento basicas')">@lang('Performance')
+                                </h2></ins>
+                                <hr>
 
                                 <div class="inline-block">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Acceleration 0 - 100 km/h *</td>
+                                                <td>@lang('acceleration') 0 - 100 km/h </td>
                                                 <td>{{$car->acceleration}} sec</td>
                                             </tr>
                                             <tr>
-                                                <td>Top Speed</td>
+                                                <td>@lang('topspeed')</td>
                                                 <td>{{$car->topspeed}} km/h</td>
                                             </tr>
                                             <tr>
-                                                <td>Electric Range *</td>
+                                                <td>@lang('realrange') *</td>
                                                 <td>{{$car->realrange}} km</td>
                                             </tr>
 
@@ -147,15 +156,15 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Total Power</td>
+                                                <td>@lang('totalpower')</td>
                                                 <td>{{$car->totalpower}} kW</td>
                                             </tr>
                                             <tr>
-                                                <td>Total Torque *</td>
+                                                <td>@lang('totaltorque')</td>
                                                 <td>{{$car->totaltorque}} Nm</td>
                                             </tr>
                                             <tr>
-                                                <td>Drive</td>
+                                                <td>@lang('drive')</td>
                                                 <td>{{$car->drive->name}}</td>
                                             </tr>
 
@@ -169,13 +178,15 @@
                             <!-- data-table battery charging -->
                             <div class="data-table" id="charging">
 
-                                <h2>Battery and Charging</h2>
+                                <h2 style="font-weight:900"><ins data-toggle="tooltip"
+                                        title="@lang('Capacidad de bataría')">@lang('Battery')</ins></h2>
+                                <hr>
 
                                 <div class="inline-block">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Battery Capacity *</td>
+                                                <td>@lang('batterycapacity')</td>
                                                 <td>{{$car->batterycapacity}} kWh</td>
                                             </tr>
 
@@ -187,7 +198,7 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Battery Useable</td>
+                                                <td>@lang('batteryuseable')</td>
                                                 <td>{{$car->batteryuseable}} kWh</td>
                                             </tr>
 
@@ -204,19 +215,21 @@
                             <!-- data-table efficiency -->
                             <div class="data-table has-legend" id="efficiency">
 
-                                <h2>Energy Consumption</h2>
+                                <h2 style="font-weight:900"><ins>@lang('Energy Consumption')</ins></h2>
+                                <hr>
 
-                                <h3>Real Range</h3>
+                                <h3 data-toggle="tooltip" title="@lang('Consumos oficiales del vehiculo')">
+                                    @lang('realrange')</h3>
 
                                 <div class="inline-block">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Range *</td>
+                                                <td>@lang('realrange')</td>
                                                 <td>{{$car->realrange}} km</td>
                                             </tr>
                                             <tr>
-                                                <td>Vehicle Consumption *</td>
+                                                <td>@lang('realconsumption')</td>
                                                 <td>{{$car->realconsumption}} Wh/km</td>
                                             </tr>
                                         </tbody>
@@ -227,11 +240,11 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>CO2 Emissions</td>
+                                                <td>@lang('realco2emissions')</td>
                                                 <td>{{$car->realco2emissions}} g/km</td>
                                             </tr>
                                             <tr>
-                                                <td>Vehicle Fuel Equivalent * </td>
+                                                <td>@lang('realfuelequivalent') </td>
                                                 <td>{{$car->realfuelequivalent}} l/100km</td>
                                             </tr>
                                         </tbody>
@@ -241,18 +254,19 @@
 
 
 
-                                <h3>WLTP Ratings</h3>
+                                <h3 class="my-4" data-toggle="tooltip" title="@lang('Consumos segun el estandar WLTP')">
+                                    @lang('wltprange')</h3>
 
                                 <div class="inline-block">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Range</td>
+                                                <td>@lang('wltprange')</td>
                                                 <td>{{$car->wltprange}} km</td>
                                             </tr>
 
                                             <tr>
-                                                <td>Vehicle Consumption</td>
+                                                <td>@lang('wltpconsumption')</td>
                                                 <td>{{$car->wltpconsumption}} Wh/km</td>
                                             </tr>
                                         </tbody>
@@ -263,11 +277,11 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>CO2 Emissions</td>
+                                                <td>@lang('wltpco2emissions')</td>
                                                 <td>{{$car->wltpco2emissions}} g/km</td>
                                             </tr>
                                             <tr>
-                                                <td>Vehicle Fuel Equivalent</td>
+                                                <td>@lang('wltpfuelequivalent')</td>
                                                 <td>{{$car->wltpfuelequivalent}} l/100km</td>
                                             </tr>
                                         </tbody>
@@ -279,21 +293,25 @@
 
                             <!-- data-table real consumption -->
                             <div class="data-table has-legend" id="real-consumption">
-                                <h2>Real Energy Consumption Estimation <span>between 107 - 225 Wh/km</span></h2>
+                                <h2 style="font-weight:900"><ins>@lang('Real Energy Consumption Estimation')
+                                        <span>@lang('between') 107 - 225
+                                            Wh/km</span>
+                                    </ins></h2>
+                                <hr>
 
                                 <div class="inline-block">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>City - Cold Weather *</td>
+                                                <td>@lang('energy_city_cold')</td>
                                                 <td>{{$car->energy_city_cold}} Wh/km</td>
                                             </tr>
                                             <tr>
-                                                <td>Highway - Cold Weather *</td>
+                                                <td>@lang('energy_highway_cold')</td>
                                                 <td>{{$car->energy_highway_cold}} Wh/km</td>
                                             </tr>
                                             <tr>
-                                                <td>Combined - Cold Weather *</td>
+                                                <td>@lang('energy_combined_cold')</td>
                                                 <td>{{$car->energy_combined_cold}} Wh/km</td>
                                             </tr>
                                         </tbody>
@@ -304,15 +322,15 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>City - Mild Weather *</td>
+                                                <td>@lang('energy_city_mild')</td>
                                                 <td>{{$car->energy_city_mild}} Wh/km</td>
                                             </tr>
                                             <tr>
-                                                <td>Highway - Mild Weather *</td>
+                                                <td>@lang('energy_highway_mild')</td>
                                                 <td>{{$car->energy_highway_mild}} Wh/km</td>
                                             </tr>
                                             <tr>
-                                                <td>Combined - Mild Weather *</td>
+                                                <td>@lang('energy_combined_mild')</td>
                                                 <td>{{$car->energy_combined_mild}} Wh/km</td>
                                             </tr>
                                         </tbody>
@@ -326,33 +344,34 @@
                             <!-- data-table size weight -->
                             <div class="data-table">
 
-                                <h2>Dimensions and Weight</h2>
+                                <h2 style="font-weight:900"><ins>@lang('Dimensions and Weight')</ins></h2>
+                                <hr>
 
                                 <div class="inline-block">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Length</td>
+                                                <td>@lang('length')</td>
                                                 <td>{{$car->length}} mm</td>
                                             </tr>
                                             <tr>
-                                                <td>Width</td>
+                                                <td>@lang('width')</td>
                                                 <td>{{$car->width}} mm</td>
                                             </tr>
                                             <tr>
-                                                <td>Height</td>
+                                                <td>@lang('height')</td>
                                                 <td>{{$car->height}} mm</td>
                                             </tr>
                                             <tr>
-                                                <td>Wheelbase</td>
+                                                <td>@lang('wheelbase')</td>
                                                 <td>{{$car->wheelbase}} mm</td>
                                             </tr>
                                             <tr>
-                                                <td>Weight Unladen (EU) *</td>
+                                                <td>@lang('weightunladen')</td>
                                                 <td>{{$car->weightunladen}} kg</td>
                                             </tr>
                                             <tr>
-                                                <td>Gross Vehicle Weight (GVWR)</td>
+                                                <td>@lang('gvwr')</td>
                                                 <td>{{$car->gvwr}}</td>
                                             </tr>
                                         </tbody>
@@ -363,27 +382,27 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Cargo Volume</td>
+                                                <td>@lang('cargovolume')</td>
                                                 <td>{{$car->cargovolume}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Cargo Volume Max</td>
+                                                <td>@lang('cargovolumemax')</td>
                                                 <td>{{$car->cargovolumemax}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Towing Weight Unbraked</td>
+                                                <td>@lang('towingweightunbraked')</td>
                                                 <td>{{$car->towingweightunbraked}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Towing Weight Braked</td>
+                                                <td>@lang('towingweightbraked')</td>
                                                 <td>{{$car->towingweightbraked}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Roof Load</td>
+                                                <td>@lang('roofload')</td>
                                                 <td>{{$car->roofload}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Max. Payload</td>
+                                                <td>@lang('maxpayload')</td>
                                                 <td>{{$car->maxpayload}}</td>
                                             </tr>
                                         </tbody>
@@ -395,21 +414,22 @@
                             <!-- data-table misc -->
                             <div class="data-table">
 
-                                <h2>Miscellaneous</h2>
+                                <h2 style="font-weight:900"><ins>@lang('Miscellaneous')</ins></h2>
+                                <hr>
 
                                 <div class="inline-block">
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Seats </td>
+                                                <td>@lang('seats') </td>
                                                 <td>{{$car->seat}} people</td>
                                             </tr>
                                             <tr>
-                                                <td>Isofix</td>
+                                                <td>@lang('isofix')</td>
                                                 <td>{{$car->isofix}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Turning Circle</td>
+                                                <td>@lang('turningcircle')</td>
                                                 <td>{{$car->turningcircle}} m</td>
                                             </tr>
                                         </tbody>
@@ -420,23 +440,14 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Car Body</td>
+                                                <td>@lang('bodystyle')</td>
                                                 <td>{{$car->bodystyle->name}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Segment</td>
+                                                <td>@lang('segment')</td>
                                                 <td>{{$car->segment->letter}} - {{$car->segment->name}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Roof Rails</td>
-                                                <td>
-                                                    @if ($car->roofrails === 1)
-                                                    @lang('Yes')
-                                                    @else
-                                                    @lang('No')
-                                                    @endif
-                                                </td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -453,7 +464,7 @@
 
                         <!-- section similar -->
                         <section class="data-table-container similar-table" id="similar">
-                            <h2>Similar electric vehicles</h2>
+                            <h2>@lang('Other electric vehicles')</h2>
 
                             <div class="info-box space-around">
                                 @forelse ($similars as $similar)
@@ -469,19 +480,19 @@
                                             class="fa fa{{ $car->realrange < $similar->realrange  ?  '-plus' : ($car->realrange == $similar->realrange ? '' : '-minus') }}-circle"></i>
                                         {{ abs($car->realrange - $similar->realrange)}} km
                                         {{ $car->realrange < $similar->realrange  ?  'more' : ($car->realrange == $similar->realrange ? 'same' : 'less') }}
-                                        range</span>
+                                        @lang('range')</span>
                                     <span
                                         class="{{ $car->acceleration < $similar->acceleration  ?  'worse' : ($car->acceleration == $similar->acceleration ? 'same' : 'better' )}}"><i
                                             class="fa fa{{ $car->acceleration > $similar->acceleration  ?  '-plus' : ( $car->acceleration == $similar->acceleration ? '' : '-minus') }}-circle"></i>
                                         {{round(abs(abs(($similar->acceleration/$car->acceleration)*100) -100))   }} %
                                         {{ $car->acceleration < $similar->acceleration  ?  'slower ' :( $car->acceleration == $similar->acceleration ? 'same' : 'faster') }}
-                                        acceleration</span>
+                                        @lang('acceleration')</span>
                                     <span
                                         class="{{ $car->realconsumption > $similar->realconsumption  ?  'better' : ($car->realconsumption == $similar->realconsumption ? 'same' : 'worse' )}}"><i
                                             class="fa fa{{ $car->realconsumption > $similar->realconsumption  ?  '-plus' : ($car->realconsumption == $similar->realconsumption ? '' : '-minus' )}}-circle"></i>
                                         {{round(abs(abs(($similar->realconsumption/$car->realconsumption)*100) -100))   }}%
                                         {{ $car->realconsumption < $similar->realconsumption  ?  'less' : ($car->realconsumption == $similar->realconsumption ? 'same' : 'more') }}
-                                        energy efficient</span>
+                                        @lang('energy efficient')</span>
                                 </div>
 
                                 @empty
@@ -506,8 +517,7 @@
 
                     <!-- subfooter -->
                     <footer class="sub-footer">
-                        <h1>{{$car->brand->name}} {{$car->name}}</h1>
-                        <span>Battery Electric Vehicle</span>
+
                     </footer>
 
                 </div>
@@ -519,6 +529,16 @@
 
 
 @push('scripts')
+<script>
+    $(document).ready(function () {
 
+        $('[data-toggle="tooltip"]').tooltip();
+
+
+
+
+    });
+
+</script>
 
 @endpush
